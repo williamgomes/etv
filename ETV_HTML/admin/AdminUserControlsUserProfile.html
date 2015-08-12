@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta Tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="essential.tv - Responsive" />
+<meta name="keywords" content="essential.tv," />
+<meta name="author" content="essential.tv" />
+<title>Admin - User Controls</title>
+<link href="images/favicon.png" rel="shortcut icon" type="image/png">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!-- Stylesheet -->
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="js/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-select.css">
+<link href="css/bootstrap-switch.css" rel="stylesheet">
+<!-- CSS | main style file -->
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="css/mmenu.css" />
+<link href="css/responsive.css" rel="stylesheet" type="text/css">
+
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="AdminUserControls">
+  <div id="preloader" style="">
+    <div id="spinner"></div>
+  </div>
+<div class="mheader" style="display: none;">
+    <a href="#menu"></a>
+    <a href="index.html" class="mlogo"><img alt="" src="images/logo.png"></a>
+</div>
+<nav id="menu" style="display: none;">
+    <ul>
+        <li class="mm-selected"><a href="#"><span class="home_icon"></span>Home</a></li>
+        <li><a href="#"><span class="trending_icon"></span>Trending</a></li>
+         <li><a href="#"><span class="newest_icon"></span>Newest</a></li>
+         <li><a href="#"><span class="popular_icon"></span>Popular</a></li>
+         <li><a href="#"><span class="choose_icon"></span>Choose Show</a></li>
+        <li><a href="#"><span class="episode_icon"></span>Episode Guide</a></li>
+        <li><a href="#"><span class="settings_icon"></span>Settings</a></li>
+        <li class="abouts"><a href="#">About Us</a></li>
+        <li class="logout"><a href="#">Logout</a></li>
+    </ul>
+    <div class="userinfo">
+        <div class="avater">
+            <img alt="" src="images/avater.png">
+        </div>
+        <div class="userdec">
+            <h3>Rahman R.</h3>
+            <h4>Web Developer @ Rahman</h4>
+        </div>
+        </div>
+        
+</nav>
+<!-- wrapper starts -->
+<div id="wrapper">
+<header id="header">
+    <div class="topheader"> 
+      <div class="container">
+          <div class="logo">
+            <!-- logo -->
+            <a href="index.html" class="navbar-brand">essential.tv</a>
+          </div>
+          <div class="search_top">
+          	<form method="post" action="#" class="form-inline">
+            	<button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>
+                <input type="text" placeholder="Search.." class="form-control pull-left">
+            </form>
+          </div>
+          <div class="userinfo">
+          	<div class="userdec">
+            	<h3>Rahman R.</h3>
+                <h4>Developer</h4>
+            </div>
+            <div class="avater">
+            	<img src="images/avater.png" alt="" />
+            </div>
+          </div>
+          <!--/.nav-collapse --> 
+        </div>
+    </div>
+</header>
+<section class="mainbody">
+<h1 class="admin_hadding">Admin - User Controls</h1>
+	<div class="container">
+    	<div class="user_controls">
+            <div class="usercontrol">
+                        <div class="reactions">
+                        <img alt="" src="images/user.jpg">
+                        <h4><a title="" href="AdminUserControlsUserProfile.html">Luke, W </a></h4>
+                        <p><strong>User Type :</strong><span> Admin</span></p>
+                        <p><span>20 Shows Watched</span> | <span>215 Shows Rated</span></p>
+                        <p><strong>Most Watched:</strong> The Walking Dead</p>
+                        <p><strong>Highest Rated:</strong> Breaking Bad</p>
+                        </div>
+                    </div>
+            <p>I watch TV like it's my job ... because it kind of is. I came here in a time machine that you invented to bring you Essential TV. Your future depends on it ... but I can't tell you why.</p>
+            <div class="row">
+            <div class="col-md-6"><button class="btn btn-block"><span>Suspend</span></button></div>
+            <div class="col-md-6"><button class="btn btn-block"><span>Delete</span></button></div>
+            </div>
+            <div class="row">
+            <div class="col-md-4">
+            	<div class="title">
+                <label>Admin ON</label>
+                        <input type="checkbox" name="my-checkbox" checked>
+                </div>
+                        
+            </div>
+            <div class="col-md-4">
+            	<div class="title">
+                <label>Moderator ON</label>
+                        <input type="checkbox" name="my-checkbox" checked>
+                </div>
+                        
+            </div>
+            <div class="col-md-4">
+            	<div class="title">
+                	<label>General Users ON</label>
+                        <input type="checkbox" name="my-checkbox" checked>
+                </div>
+            </div>
+            </div>
+            <div role="tabpanel">
+            <ul class="nav nav-tabs tab2" role="tablist">
+            <li role="presentation" class="active"><a href="#ShowsWatched" aria-controls="Shows Watched" role="tab" data-toggle="tab">Shows Watched</a></li>
+            <li role="presentation"><a href="#MostWatched" aria-controls="Most Watched" role="tab" data-toggle="tab">Most Watched</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="ShowsWatched">
+                    <div class="ShowsWatched">
+                    	<ul class="list-inline episode_search">
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode01.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode02.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode03.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode04.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode05.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode06.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode07.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode08.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode09.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode02.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode03.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode04.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+            </ul>
+                    </div>
+                    
+                </div>
+                <div role="tabpanel" class="tab-pane" id="MostWatched">
+                    <div class="MostWatched">
+                    	<ul class="list-inline episode_search">
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode03.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode01.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode02.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode01.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode03.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode02.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode08.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode01.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode06.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode04.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode07.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+              <li class="item">
+                  <a href="AdminShowSelect.html"><img src="images/episode/episode02.jpg" class="img-responsive" alt=""></a>
+                  
+                  	<h6 class="title">Game of Thrones Parody</h6>
+              </li>
+            </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mfooter">
+<ul class="mfooter_menu">
+<li><a class="left_link" href="AdminShowControls.html">SHOW CONTROLS</a></li>
+<li><a class="right_link" href="AdminShowCharacters.html">CHARACTERS</a></li>
+</ul>
+<div class="search_user">
+	<a class="search_btn"></a>
+    <div class="btmsearch closed">
+<form class="form-inline" action="#" method="post">
+    <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
+    <input type="text" class="form-control pull-left" placeholder="Search..">
+</form>
+</div>
+    <div class="user_avater"><img src="images/avater.png" alt="" /></div>
+    <a class="maddbtn" href="#"><i class="fa fa-plus"></i></a>
+</div>
+</section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+            	<p class="copyright">Copyright 2014 Essential TV. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-right">
+            	<ul class="social_link list-inline">
+            	<li data-wow-duration=".8s" data-wow-delay=".1s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.1s; animation-name: fadeIn;">
+                	<a title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="youtube" href="#"><i class="fa fa-youtube"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="linkedin" href="#"><i class="fa fa-linkedin-square"></i></a>
+                </li>
+            </ul>
+            </div>
+          </div>
+        <div class="row">
+              <div class="col-md-12 text-right">
+                <a href="#" class="scrollToTop"><i class="fa fa-angle-up"></i></a>
+              </div>
+        </div>
+    </div>
+  </footer>
+</div>
+<!-- wrapper ends -->
+<!--Scripts-->
+<script src="js/jquery-2.1.1.min.js"></script> 
+<script src="js/smoothscroll/smoothscroll.js"></script> 
+<script src="js/scrollTo/jquery.scrollTo.min.js"></script> 
+<script src="js/sticky/jquery.sticky.js"></script> 
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl-carousel/owl.carousel.js"></script>  
+<script src="js/fitvids/jquery.fitvids.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script type="text/javascript" src="js/mmenu.min.js"></script>
+<script src="js/bootstrap-switch.js"></script>
+<script src="js/AdminCustom.js"></script>
+</body>
+</html>

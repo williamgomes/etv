@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\SpoilerFeedbacks" table="spoiler_feedbacks" repository-class="EssentialTv\EtvBundle\Entity\SpoilerFeedbacksRepository">
+    <indexes>
+      <index name="spoiler_feedback_user_id" columns="spoiler_feedback_user_id"/>
+      <index name="spoiler_feedback_spoiler_id" columns="spoiler_feedback_spoiler_id"/>
+    </indexes>
+    <id name="spoilerFeedbackId" type="integer" column="spoiler_feedback_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="spoilerFeedbackUserId" type="integer" column="spoiler_feedback_user_id" nullable="false"/>
+    <field name="spoilerFeedbackSpoilerId" type="integer" column="spoiler_feedback_spoiler_id" nullable="false"/>
+    <field name="spoilerFeedbackFeedback" type="string" column="spoiler_feedback_feedback" nullable="false"/>
+    <field name="spoilerFeedbackCreatedOn" type="datetime" column="spoiler_feedback_created_on" nullable="false"/>
+    <field name="spoilerFeedbackCreatedBy" type="integer" column="spoiler_feedback_created_by" nullable="false"/>
+    <field name="spoilerFeedbackUpdatedOn" type="datetime" column="spoiler_feedback_updated_on" nullable="false"/>
+    <field name="spoilerFeedbackUpdatedBy" type="integer" column="spoiler_feedback_updated_by" nullable="false"/>
+  </entity>
+</doctrine-mapping>

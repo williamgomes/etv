@@ -1,0 +1,409 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block toprow %}
+{% endblock %}
+
+{% block sidemenu %}
+{% endblock %}
+{% block content %}
+<div class="container">
+        <div class="row">
+        	<div class="col-md-12">
+            	<div role="tabpanel">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs tab3" role="tablist">
+    <li role="presentation" class="active"><a href="#myprofile" aria-controls="my profile" role="tab" data-toggle="tab">My profile</a></li>
+    <li role="presentation"><a href="#notifications" aria-controls="notifications" role="tab" data-toggle="tab" onclick="loadNotifications()">Notifications</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="myprofile">
+    	<div class="myprofile">
+        	<div class="profileview">
+            	<div class="firstname">{{userinfo.userFirstName}}</div>
+                <div class="profile_img_area">
+                	<div class="profile_img">
+                    <img id="uploadedFile" src="{{ app.request.getBaseURL() }}{{userinfo.userProfilePicture}}" alt="" />
+                    <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                        <input type="file" multiple="" name="files" id="fileupload" onchange="uploadPhoto(this)">
+                        </span>
+                     </div>
+                </div>
+                <div class="lastname">{{userinfo.userLastName}}</div>
+            </div>
+            <div class="dec">{{userinfo.userAboutme}}<a class="edit" href="#settings" data-toggle="tab"><i class="fa fa-edit"></i></a></div>
+            
+        </div>
+		<div role="tabpanel">
+			<ul class="nav nav-tabs tab2" role="tablist">
+			<li role="presentation" class="active"><a href="#recentlyposted" aria-controls="recently posted" role="tab" data-toggle="tab">Recently Posted</a></li>
+			<li role="presentation"><a href="#recentlyviewed" aria-controls="recently viewed" role="tab" data-toggle="tab">Recently Viewed</a></li>
+			</ul>
+			<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="recentlyposted">
+		<ul class="thumb-post">
+                  {% for post in posts %}
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a href="{{ app.request.getBaseURL() }}/post/view/{{post.postId}}" title="{{post.postTitle}}" class="post-image">
+                              <img alt="" title="" src="{{app.request.getBaseURL()}}{{post.postCoverImage}}">
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a href="{{ app.request.getBaseURL() }}/post/view/{{post.postId}}" title="{{post.postTitle}}">{{post.postTitle}}</a></h2>
+                              <p class="date">{{post.postCreatedOn | date('M d, Y')}}</p>
+                              <p>{{post.postAbout[:110]}}</p>
+                          </div>
+                      </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+	</div>
+        <div role="tabpanel" class="tab-pane" id="recentlyviewed">
+	<ul class="thumb-post">
+            {% for views in recentViews %}
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a href="{{ app.request.getBaseURL() }}{{views.url}}" title="" class="post-image">
+                              <img alt="" title="{{views.title}}" src="{{ app.request.getBaseURL() }}{{views.image}}">
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a href="{{ app.request.getBaseURL() }}{{views.url}}" title="{{views.title}}">{{views.title}}</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>{{views.desc[:100]}}</p>
+                          </div>
+                      </div>
+                  </li>
+                  {% endfor %}
+                 
+        </ul>
+        </div>
+		
+			</div>
+                
+		</div>
+                
+    </div>
+                
+    
+    <div role="tabpanel" class="tab-pane" id="notifications">
+    	
+        	
+                
+      
+    </div>
+    <div role="tabpanel" class="tab-pane" id="settings">
+    	<div class="setting">
+        	<h3>Account Settings:</h3>
+            <a class="btn edit_btn" href="javascript:void(0)" id="settings_edit_btn"><i class="fa fa-edit"></i>Edit</a>
+        	<ul class="settings" id="settingInfo">
+            	<li><a href="#">
+                	<label>First Name :</label>
+                    <span>{{userinfo.userFirstName}}</span>	
+                </a></li>
+                <li><a href="#">
+                	<label>Last Name :</label>
+                    <span>{{userinfo.userLastName}}</span>	
+                </a></li>
+                <li><a href="#">
+                	<label>Email :</label>
+                    <span>{{userinfo.userEmail}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>Password :</label>
+                    <span>************</span>
+					<span class="edit" data-toggle="modal" data-target="#changePassword"><i class="fa fa-edit"></i>Change Password</span>	
+                </a></li>
+                <li><a href="#">
+                	<label>Gender :</label>
+                    <span>{{userinfo.userGender}}</span>	
+                </a></li>
+                <li><a href="#">
+                	<label>Date of Birth :</label>
+                    <span>{{userinfo.userDob|date('Y-m-d')}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>Address 1:</label>
+                    <span>{{userinfo.userStreetAddress}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>Address 2:</label>
+                    <span>{{userinfo.userStreetAddress2}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>City:</label>
+                    <span>{{userinfo.userCity}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>State:</label>
+                    <span>{{userinfo.userState}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>Zip / Country :</label>
+                    <span>{{userinfo.userZip}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>Country :</label>
+                    <span>{{userinfo.userCountry}}</span>	
+                </a></li>
+                <li><a href="#">
+                	<label>Facebook :</label>
+                    <span>{{userinfo.userFacebookLink}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>Twitter:</label>
+                    <span>{{userinfo.userTwitterLink}}</span>
+                </a></li>
+                <li><a href="#">
+                	<label>Google + :</label>
+                    <span>{{userinfo.userGoogleLink}}</span>
+                </a></li>
+            </ul>
+	
+        {{ form_start(form,{ 'attr': {'class': 'singup','id':'settingsForm'} })}}
+            <ul style="display:none" class="settings">
+            	<li>
+                	<label>First Name :</label>
+                    <span>{{ form_widget(form.userFirstName,{ 'attr': {'class': 'form-control'} }) }}</span>	
+                </li>
+                <li>
+                	<label>Last Name :</label>
+                    <span>{{ form_widget(form.userLastName,{ 'attr': {'class': 'form-control'} }) }}</span>	
+                </li>
+                
+                <li>
+                	<label>About Me :</label>
+                    <span>{{ form_widget(form.userAboutme,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>Gender :</label>
+                    <div class="radio radio_box">
+                       <div class="form-gender" id="form_userGender">
+                       {{ form_widget(form.userGender,{ 'attr': {'class': 'form-gender'} }) }}
+                       </div>
+                    </div>
+                </li>
+                <li>
+                	<label>Date of Birth :</label>
+                    <div id="form_userDob">
+                        {{ form_widget(form.userDob) }}
+                   </div>
+                </li>
+                <li>
+                	<label>Address 1:</label>
+                    <span>{{ form_widget(form.userStreetAddress,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>Address 2:</label>
+                    <span>{{ form_widget(form.userStreetAddress2,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>City:</label>
+                    <span>{{ form_widget(form.userCity,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>State:</label>
+                    <span> {{ form_widget(form.userState,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>Zip Code:</label>
+                    <span>{{ form_widget(form.userZip,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>Country :</label>
+                    <span>
+                        {{ form_widget(form.userCountry,{ 'attr': {'class': 'form-control'} }) }}
+                    </span>	
+                </li>
+                <li>
+                	<label>Facebook :</label>
+                    <span> {{ form_widget(form.userFacebookLink,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>Twitter:</label>
+                    <span> {{ form_widget(form.userTwitterLink,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                <li>
+                	<label>Google + :</label>
+                    <span> {{ form_widget(form.userGoogleLink,{ 'attr': {'class': 'form-control'} }) }}</span>
+                </li>
+                
+            </ul>
+            <div class="text-center">
+                    	{{form_widget(form.save,{ 'attr': {'class': 'btn settings','style':'display:none'} }) }}
+                </div>
+           {{form_end(form)}}
+            <div class="row">
+                <div class="col-md-12 text-right"><a class="btn deactivate" data-toggle="modal" data-target="#deactivate"><i class="fa fa-trash"></i>Deactivate Account</a></div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal Change password -->
+<div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Change Password</h4>
+      </div>
+      <div class="modal-body">
+        <form class="singup" id="changePassForm" action="{{ app.request.getBaseURL() }}/user/changePassword">
+        	<div class="form-group">
+                <label for="password">Old Password</label>
+                <input type="password" value="" class="form-control">
+             </div>
+             <div class="form-group">
+                <label for="password">New Password</label>
+                <input type="password" value="" class="form-control">
+             </div>
+             <div class="form-group">
+                <label for="password">Re-Type New Password</label>
+                <input type="password" value="" class="form-control">
+             </div>
+            <div class="form-group text-center">
+                    	<input type="submit" value="Submit" class="btn btn-default btn-lg btn-large">
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- wrapper ends -->
+   
+
+<script type = "text/javascript">
+    $('#settings_edit_btn').click(function(){
+        $('.settings').toggle();
+    });
+    
+     $( "#settingsForm" ).submit(function( event ) {
+ 
+    // Stop form from submitting normally
+    event.preventDefault();
+ 
+    // Get some values from elements on the page:
+    var $form = $( this ),
+        url = $form.attr( "action" );
+ 
+    // Send the data using post
+    var posting = $.post( url, $( this ).serialize() );
+ 
+    // Put the results in a div
+    posting.done(function( data ) {
+      var response = data;
+      if (response.isPosted)
+            {
+                $("#settingInfo").html(response.html);
+                notify('success', response.message);
+                $('.settings').toggle();
+            }
+                else
+                notify('error', response.message);
+    });
+});
+
+
+$( "#changePassForm" ).submit(function( event ) {
+ 
+    // Stop form from submitting normally
+    event.preventDefault();
+ 
+    // Get some values from elements on the page:
+    var $form = $( this ),
+        url = $form.attr( "action" );
+ 
+    // Send the data using post
+    var posting = $.post( url, $( this ).serialize() );
+ 
+    // Put the results in a div
+    posting.done(function( data ) {
+      var response = data;
+      if (response.isPosted)
+            {
+                $("#settingInfo").html(response.html);
+                notify('success', response.message);
+                $('.settings').toggle();
+            }
+                else
+                notify('error', response.message);
+    });
+});
+
+function uploadPhoto(elem){
+    file = $('input[type=file]')[0].files[0];
+    filename = file.name;
+   
+    var extension = filename.substr( (filename.lastIndexOf('.') +1) );
+    if(extension!='jpg' && extension!='png')
+    {
+         notify('error', 'Extension Not Supported!');
+         return false;
+    }
+    var oFReader = new FileReader();
+        oFReader.readAsDataURL(elem.files[0]);
+        
+        oFReader.onload = function (oFREvent) {
+            //console.log(oFREvent.target.result);
+         $("#uploadedFile").attr('src',oFREvent.target.result);
+         var $form = $( "#settingsForm" ),
+        url = $form.attr( "action" );
+    // Send the data using post
+    var formData = new FormData();
+     formData.append('files',file);
+   
+    $.ajax({
+            url: url, // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: formData, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            success: function(data)   // A function to be called if request succeeds
+            {
+                response = data;
+                if(response.isPosted)
+                {
+                     notify('success', response.message);
+                }
+                else
+                {
+                    notify('error', 'Something Went Wrong!');
+                }
+            }
+            });
+        };
+        
+}
+
+function loadNotifications()
+{
+    divElem = '<div class="plus col-md-2 col-md-offset-5">Loading...</div>';
+    $("#notifications").html(divElem);
+    $.ajax({
+            url: window.siteUrl + "/user/notification", // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            success: function(data)   // A function to be called if request succeeds
+            {
+                $("#notifications").html(data);
+            }
+            });
+}
+        
+
+    </script>
+ {% endblock %}

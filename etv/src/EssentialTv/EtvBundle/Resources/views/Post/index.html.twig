@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% block menu %}
+            <ul>
+                <li class="mm-selected"><a href="#"><span class="home_icon"></span>Home</a></li>
+                <li><a href="javascript:void(0)" onclick="loadPostAjax('Trending',this)"><span class="trending_icon"></span>Trending</a></li>
+                <li><a href="javascript:void(0)" onclick="loadPostAjax('Newest',this)"><span class="newest_icon"></span>Newest</a></li>
+                <li><a href="javascript:void(0)" onclick="loadPostAjax('Popular',this)"><span class="popular_icon"></span>Popular</a></li>
+                <li><a href="{{ app.request.getBaseURL() }}/show/chooseShow"><span class="choose_icon"></span>Choose Show</a></li>
+                <li><a href="javascript:void(0)"><span class="episode_icon"></span>Episode Guide</a></li>
+                {{ render(controller('EssentialTvEtvBundle:User:showUserMenu')) }}
+            </ul>
+        {% endblock %}
+{% block topmenu %}
+    <li class="{{filter =="Trending"?"active":""}}"><a href="javascript:void(0)" onclick="loadPostAjax('Trending',this)" >Trending</a></li>
+    <li class="{{filter =="Newest"?"active":""}}"><a href="javascript:void(0)" onclick="loadPostAjax('Newest',this)">Newest</a></li>
+    <li class="{{filter =="Popular"?"active":""}}"><a href="javascript:void(0)" onclick="loadPostAjax('Popular',this)">Popular</a></li>
+{% endblock %}
+{% block toprow %}
+  
+    {% endblock %}
+{% block content %}
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            	<div class="top_post">
+                    <a href="{{ app.request.getBaseURL() }}/post/view/{{popularPost.postId}}"><img src="{{ app.request.getBaseURL() }}{{asset(popularPost.postCoverImage)}}" alt="" /></a>
+                    <div class="dec_title">
+                        <a href="{{ app.request.getBaseURL() }}/post/view/{{popularPost.postId}}"><h5>{{popularPost.postTitle}}</h5></a>
+                        <p>{{popularPost.showTitle}}| <span>{{popularPost.postPrimaryType}}</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 no-padding-left">
+                
+            	<div class="recent_episodes clearfix">
+                	<h2 class="title">Recent Episodes</h2>
+                    {% for episodes in recentEpisodes %}
+                        <a href="{{ app.request.getBaseURL()}}/episode/{{episodes.episodeId}}/{{episodes.episodeTitle|replace(' ','-')}}">
+                        <div class="episode">
+                    	<img src="{{ app.request.getBaseURL() }}{{asset(episodes.episodeBannerImage)}}" alt="" />
+                    <div class="dec_title">
+                        <p>{{episodes.episodeTitle}}</p>
+                    </div>
+                    </div>
+                    </a>
+                    {% endfor %}               
+                </div>    
+            </div>
+    </div>
+<div class="row">
+	<div class="col-md-12 scrollLoader">
+		<ul class="thumb-post">
+                  
+                      {% for post in postList %}
+                          <li class="item">
+                            <div class="post-content">
+                                <div class="content_img">
+                                    {% if date(post.postCreatedOn) > date('-7days') %}<div class="new">New</div>{% endif %}
+                                    <a class="post-image" title="" href="{{ app.request.getBaseURL() }}/post/view/{{post.postId}}">
+                                    <img src="{{ app.request.getBaseURL() }}{{asset(post.postCoverImage)}}" title="" alt=""/>
+                                    </a>
+                                </div>
+                                <div class="post_dec">
+                                    <h2 class="product-name"><a title="{{post.postTitle}}" href="{{ app.request.getBaseURL() }}/post/view/{{post.postId}}">{{post.postTitle}}</a></h2>
+                                    <p class="date">{{ post.postCreatedOn is empty ? "" : post.postCreatedOn|date("M d, Y") }}</p>
+                                    <p>{{post.postAbout[:110]}}</p>
+                                </div>
+                            </div>
+                          </li>
+                      {% endfor %}
+                                  </ul>
+                   <div class="next" ><a class="infinite-more-link" href="{{ app.request.getBaseURL() }}/post/moreposts/{{firstResult}}/{{filter}}"></a></div>
+                                  
+</div>  
+                                  
+</div>   
+</div>                       
+
+{% endblock %}

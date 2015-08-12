@@ -1,0 +1,11 @@
+{% if user is not null %}
+               
+		<div class="user_avater">
+			 <a href="{{ app.request.getBaseURL()}}/user/profile"><img src="{{app.request.getBaseURL()}}{{user.userProfilePicture}}" alt=""> </a>
+		</div>
+
+{% else %}
+		<div class="user_avater loginimg">
+			 <a href="{{ app.request.getBaseURL()}}/user/signin"><img src="{{app.request.getBaseURL()}}/assets/images/login_icon.png" alt=""> </a>
+		</div>
+{% endif %}

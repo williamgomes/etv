@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta Tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="essential.tv - Responsive" />
+<meta name="keywords" content="essential.tv," />
+<meta name="author" content="essential.tv" />
+<title>essential.tv</title>
+<link href="images/favicon.png" rel="shortcut icon" type="image/png">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<!-- Stylesheet -->
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="js/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-select.css">
+<!-- CSS | main style file -->
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="css/mmenu.css" />
+<link href="css/responsive.css" rel="stylesheet" type="text/css">
+
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.min.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="indexpage">
+  <div id="preloader" style="">
+    <div id="spinner"></div>
+  </div>
+<div class="mheader" style="display: none;">
+    <a href="#menu"></a>
+    <a href="index.html" class="mlogo"><img alt="" src="images/logo.png"></a>
+</div>
+<nav id="menu" style="display: none;">
+    <ul>
+        <li class="mm-selected"><a href="#"><span class="home_icon"></span>Home</a></li>
+        <li><a href="#"><span class="trending_icon"></span>Trending</a></li>
+         <li><a href="#"><span class="newest_icon"></span>Newest</a></li>
+         <li><a href="#"><span class="popular_icon"></span>Popular</a></li>
+         <li><a href="ChooseAShow.html"><span class="choose_icon"></span>Choose Show</a></li>
+        <li><a href="#"><span class="episode_icon"></span>Episode Guide</a></li>
+        <li><a href="#"><span class="settings_icon"></span>Settings</a></li>
+        <li class="abouts"><a href="#">About Us</a></li>
+        <li class="logout"><a href="#">Logout</a></li>
+    </ul>
+    <div class="userinfo">
+        <div class="avater">
+            <img alt="" src="images/avater.png">
+        </div>
+        <div class="userdec">
+            <h3>Rahman R.</h3>
+            <h4>Web Developer @ Rahman</h4>
+        </div>
+        </div>
+        
+</nav>
+<!-- wrapper starts -->
+<div id="wrapper">
+<header id="header">
+    <div class="topheader"> 
+      <div class="container">
+          <div class="logo">
+            <!-- logo -->
+            <a href="index.html" class="navbar-brand">essential.tv</a>
+          </div>
+          <div class="search_top">
+          	<form method="post" action="#" class="form-inline">
+            	<button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>
+                <input type="text" placeholder="Search.." class="form-control pull-left">
+            </form>
+          </div>
+          <div class="userinfo">
+          	<div class="userdec">
+            	<h3>Rahman R.</h3>
+                <h4>Developer</h4>
+            </div>
+            <div class="avater">
+            	<img src="images/avater.png" alt="" />
+            </div>
+          </div>
+          <!--/.nav-collapse --> 
+        </div>
+    </div>
+    <div class="header-nav"> 
+      <!-- menu -->
+      <nav role="navigation" class="navbar navbar-default">
+        <div class="container">
+          <div id="navbar" aria-expanded="false" role="menu">
+            <ul class="nav navbar-nav header-nav">
+              	<li class="active"><a href="#">Trending</a></li>
+              	<li><a href="#">Newest</a></li>
+              	<li><a href="#">Popular</a></li>
+            </ul>
+          </div>
+          <a class="post_btn" href="CreatePostChooseTemplate.html" title="Create Post"><span>Create Post</span></a>
+          <!--/.nav-collapse --> 
+        </div>
+      </nav>
+      <!-- end nav --> 
+    </div>
+</header>
+<section class="mainbody">
+	<div class="container">
+        <div class="row">
+        	<div class="col-md-12">
+            <div class="episode-carousel">
+            <ul class="list-inline epi-carousel">
+            <li class="item upcoming_epi">
+              <a href="ShowEpisodeReaction.html"><img src="images/episode/large/episode01.jpg" alt="" /></a>
+              <div class="dec_title">
+                <div class="question">
+                    <h3>new episode in<span>April 5, 2015</span></h3>
+                </div>
+                <div class="answer">
+                    <span id="episodeCountdown"></span>
+                </div>
+                <div class="season">
+                    <h4><span>Season 4</span>ep12: The Watchers on the wall</h4>
+                </div>
+            </div>
+            </li>
+            <li class="item">
+              <a href="ShowEpisodeReaction.html"><img src="images/episode/large/episode01.jpg" alt="" /></a>
+              <div class="dec_title">
+                <div class="question">
+                    <h3>is this episode<span>essential?</span></h3>
+                </div>
+                <div class="answer">
+                    <a class="yesbtn" data-toggle="modal" data-target="#addspoiler">YES</a>
+                    <a class="yesbtn" data-toggle="modal" data-target="#addspoiler">NO</a>
+                </div>
+                <div class="season">
+                    <h4><span>Season 4</span>ep12: The Watchers on the wall</h4>
+                </div>
+            </div>
+            </li>
+            </ul>
+                <div class="short_dec"><p>George R.R. Martin's best-selling book series "A Song of Ice and Fire" is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families -- kings and queens, knights and renegades, liars and honest men -- playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta.</p></div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+                <ul class="thumb-post">
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                            <div class="new">New</div>
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post01.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Game of Thrones Parody</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post02.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Doctor Who Fan Film</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                            <div class="new">New</div>
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post03.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">The Walking Dead Parody</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post04.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Game of Thrones Meme</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post05.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Game of Thrones Fan Art</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post06.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Aliquam lorem ante olsa</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post01.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">The Walking Dead Fan Art</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post02.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Aliquam lorem ante olsa</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post03.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Aliquam lorem ante olsa</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post04.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Aliquam lorem ante olsa</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post05.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Aliquam lorem ante olsa</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item">
+                      <div class="post-content">
+                          <div class="content_img">
+                              <a class="post-image" title="" href="#">
+                              <img src="images/post/small/post06.jpg" title="" alt=""/>
+                              </a>
+                          </div>
+                          <div class="post_dec">
+                              <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">Aliquam lorem ante olsa</a></h2>
+                              <p class="date">July 15, 2014</p>
+                              <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my</p>
+                          </div>
+                      </div>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mfooter">
+<ul class="mfooter_menu">
+<li><a class="left_link" href="ChooseAShow.html">CHOOSE SHOW</a></li>
+<li><a class="right_link" href="EpisodeGuideSeasons.html">EPISODE GUIDE</a></li>
+</ul>
+<div class="search_user">
+	<a class="search_btn"></a>
+    <div class="user_avater"><img src="images/avater.png" alt="" /></div>
+    <a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>
+</div>
+</section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+            	<p class="copyright">Copyright 2014 Essential TV. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-right">
+            	<ul class="social_link list-inline">
+            	<li data-wow-duration=".8s" data-wow-delay=".1s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.1s; animation-name: fadeIn;">
+                	<a title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="youtube" href="#"><i class="fa fa-youtube"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="linkedin" href="#"><i class="fa fa-linkedin-square"></i></a>
+                </li>
+            </ul>
+            </div>
+          </div>
+        <div class="row">
+              <div class="col-md-12 text-right">
+                <a href="#" class="scrollToTop"><i class="fa fa-angle-up"></i></a>
+              </div>
+        </div>
+    </div>
+  </footer>
+</div>
+<!-- Modal Add spoiler -->
+<div class="modal fade" id="addspoiler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ADD SPOILER</h4>
+      </div>
+      <div class="modal-body">
+        <div class="spoilers">
+            <p>This is just my opinion but blah blah blah. I like to write
+            reactions to TV episodes, which are, basically, my short form
+            reviews. It is easy to share them across outside social media
+            platforms and link people back to Essential TV.</p>
+            </div>
+            <div class="spoilers">
+            <p>This is just my opinion but blah blah blah. I like to write
+            reactions to TV episodes, which are, basically, my short form
+            reviews. It is easy to share them across outside social media
+            platforms and link people back to Essential TV.</p>
+            </div>
+        <div class="addspoiler_submit">
+        	<p>ADD SPOILER</p>
+        	<p><textarea></textarea></p>
+            <input class="btn" type="submit" value="Submit" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- wrapper ends -->
+<!--Scripts-->
+<script src="js/jquery-2.1.1.min.js"></script> 
+<script src="js/smoothscroll/smoothscroll.js"></script> 
+<script src="js/scrollTo/jquery.scrollTo.min.js"></script> 
+<script src="js/sticky/jquery.sticky.js"></script> 
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl-carousel/owl.carousel.js"></script>
+<script src="js/fitvids/jquery.fitvids.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script type="text/javascript" src="js/mmenu.min.js"></script>
+<script src="js/bootstrap-switch.js"></script>
+<script type="text/javascript" src="js/jquery.countdown/jquery.countdown.js"></script>
+<script src="js/custom.js"></script>
+<script type="text/javascript">
+	(function($) {
+  "use strict";
+  //windows load event
+  $(window).load(function() {
+	$(function () {
+		var austDay = new Date();
+		austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
+		$('#episodeCountdown').countdown({until: austDay});
+		$('#year').text(austDay.getFullYear());
+	});
+ });
+})(jQuery);
+</script>
+</body>
+</html>

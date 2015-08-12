@@ -1,0 +1,399 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block content %}
+
+    {#{{ dump(taggedCharInfo) }}#}
+    {#    {{ dump(quoteInfo) }}#}
+
+    <div class="hadding_title">
+        <div class="container">
+            <h1 class="">{{ episodeInfo[0].episodeTitle }}</h1>
+            <ul class="list-inline social">
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_sharing_toolbox"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="episode-carousel">
+                    <ul class="list-inline epi-carousel">
+                        <li class="item">
+                            <a href="{{ url('episode_video', { 'id': episodeInfo[0].episodeId}) }}">
+                                <img src="{{ app.request.getBaseURL() }}{{ episodeInfo[0].episodeBannerImage }}" alt="{{ episodeInfo[0].episodeTitle }}" />
+
+                            </a>
+                            <div class="dec_title">
+                                <div class="question">
+                                    <h3>is this episode<span>essential?</span></h3>
+                                </div>
+                                <div class="answer">
+                                    {% if countRating > 0 %}
+                                        <a onclick="submitEpisodeEssential({{ episodeId }}, 'yes',{{ episodeInfo[0].episodeShowId }} )" class="yesbtn">{{ episodeInfo[0].episodeEssentialCountTotal * yesRating[0].csValue }}%YES</a>
+                                        <a onclick="submitEpisodeEssential({{ episodeId }}, 'no',{{ episodeInfo[0].episodeShowId }} )" class="yesbtn">{{ episodeInfo[0].episodeNotEssentialCountTotal * noRating[0].csValue }}%NO</a>
+                                    {% else %}
+                                        <a onclick="submitEpisodeEssential({{ episodeId }}, 'yes',{{ episodeInfo[0].episodeShowId }} )" class="yesbtn">YES</a>
+                                        <a onclick="submitEpisodeEssential({{ episodeId }}, 'no',{{ episodeInfo[0].episodeShowId }} )" class="yesbtn">NO</a>
+                                    {% endif %}
+                                </div>
+                                <div class="season">
+                                    <h4><span>Season {{episodeInfo[0].episodeSeasonId}}</span>ep{{episodeInfo[0].episodeNumber}}: {{ episodeInfo[0].episodeTitle }}</h4>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    {% if episodeInfo[0].originalDataSupersede == 'active' %}
+                        <div class="short_dec"><p>{{ episodeInfo[0].episodeOriginalSummary }}</p></div>
+                            {% else %}    
+                        <div class="short_dec"><p>{{ episodeInfo[0].episodeApiSummary }}</p></div>
+                            {% endif %}    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% if taggedCharInfo|length > 0 %}
+                    <ul class="list-inline episode_search epi-carousel4">
+                        {% for Character in taggedCharInfo %}
+                        <li class="item">
+                            <a href="{{ url('character_details_without_showid', { 'id': Character.characterId , 'name': Character.characterTitle|replace(" ","-") }) }}">
+                                <img src="{{Character.characterBannerImage}}" class="img-responsive" alt="{{Character.characterTitle}}">
+                            </a>
+                            <h6 class="title">{{Character.characterTitle}}</h6>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div role="tabpanel">
+        <div class="container">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tab3" role="tablist">
+                <li role="presentation" class="active"><a href="#reactions" aria-controls="reactions" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Reactions</a></li>
+                <li role="presentation"><a href="#spoilers" aria-controls="spoilers" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Spoilers</a></li>
+                <li role="presentation"><a href="#quotes" aria-controls="quotes" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Quotes</a></li>
+            </ul>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="reactions">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span id="showReaction">
+                                {% if countReaction > 0 %}
+                                    {% for Reaction in reactionInfo %}
+                                        {#                                    {% for ReactionDetails in Reaction %}#}
+
+                                        <div class="reactions">
+                                            {% if Reaction['userProfilePicture'] == "" %}
+                                                <img alt="{{ Reaction['userFirstName'] }}" src="{{ app.request.getBaseURL() }}/images/uploads/users/default.gif">
+                                            {% else %}
+                                                <img alt="{{ Reaction['userFirstName'] }}" src="{{ app.request.getBaseURL() }}{{ Reaction['userProfilePicture'] }}">
+                                            {% endif %}
+                                            <h4><a href="" title="">{{ Reaction['userFirstName'] }}</a> |  
+                                                <a class="responses"  href="{{ url('episode_reaction_details', { 'id': Reaction.reactionId, 'episodeid': episodeInfo[0].episodeId }) }}">{{ Reaction.ResponseCount }} Responses</a></h4>
+                                            <p>{{ Reaction.reactionText }}</p>
+                                        </div>
+                                        {#                                    {% endfor %}#}
+                                    {% endfor %}
+                                {% else %}
+                                    <h5>No reaction found in record.</h5>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% block mfooter %}
+                    <div class="mfooter">
+                        <ul class="mfooter_menu">
+                            <li><a class="left_link" href="{{ url('show_episode_season', { 'id': showInfo.showId, 'name': showInfo.showTitle|replace(' ','-') }) }}">EPISODE GUIDE</a></li>
+                                {% if isLoggedIn %}
+                                <li><a class="right_link reaction" data-toggle="modal" data-target="#reaction">ADD REACTION</a></li>
+                                {% else %}
+                                <li><a class="right_link reaction" href="{{ url('user_signup') }}">ADD REACTION</a></li>
+                                {% endif %}
+                        </ul>
+                        <div class="search_user">
+                            <a class="search_btn"></a>
+                            <div class="user_avater"><img src="{{asset('assets/images/avater.png')}}" alt="" /></div>
+                            <a href="#" class="maddbtn"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="spoilers">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span id="episodeSpoiler">
+                                {% if countSpoiler > 0 %}
+                                    {% for Spoiler in spoilerInfo %}
+                                        <div onclick="javascript:actionSpoiler({{ Spoiler.spoilerId }});" id="spoiler_div_{{ Spoiler.spoilerId }}" class="spoilers" data-toggle="modal" data-target="#spoiler">
+                                            <p>{{ Spoiler.spoilerText|raw }}</p>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <h5>No spoiler found in record.</h5>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mfooter">
+
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="quotes">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span id="showQuotes">
+                                {% if countQuote > 0 %}
+                                    {% for Quote in quoteInfo %}
+
+                                        <div onclick="javascript:actionQuote({{ Quote.quoteId }});" class="quotes" data-toggle="modal" data-target="#quote">
+                                            <div class="quote_img">
+                                                {% if Quote.characterOriginalDataSupersede == 'active' %}
+                                                    <img src="{{ Quote.characterBannerImage }}" alt="{{ Quote.characterTitle }}" />
+                                                {% else %}
+                                                    <img src="{{ Quote.characterApiImages }}" alt="{{ Quote.characterTitle }}" />
+                                                {% endif %}
+                                            </div>
+                                            <div class="quote_area">
+                                                <div class="quote arrow_box">
+                                                    <p>"{{ Quote.quoteText }}"</p>
+                                                </div>
+                                                <h5 class="name">- {{ Quote.characterTitle }}</h5>
+                                                <ul class="list-inline social">
+                                                    <li><a class="facebook" href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a class="twitter" href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+                                {% else %}
+                                    <h5>No quotes found in record.</h5>
+                                {% endif %}
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block modal %}
+
+    <!-- Modal ADD REACTION -->
+    <div class="modal fade" id="reaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ADD REACTION</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="reaction_submit">
+                        <p>ADD REACTION</p>
+                        <textarea id="txtReaction"></textarea>
+                        <input type="hidden" id="episodeId" value="{{ episodeId }}">
+                        <input onclick="addReaction();" class="btn" type="button" value="Submit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal spoiler -->
+    <div class="approp_dispute modal fade" id="spoiler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="text-center">
+                    <a class="approp btn" onclick="javascript:approveSpoiler();" href="javascript:void(0);"><i class="fa fa-check"></i>Approve</a>
+                    <a class="approp btn" onclick="javascript:disputeSpoiler();" href="javascript:void(0);"><i class="fa fa-times"></i>Dispute</a>
+                    <input type="hidden" value="" id="spoiler_id" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Quotes -->
+    <div class="approp_dispute modal fade" id="quote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="text-center">
+                    <a class="approp btn" onclick="javascript:approveQuote();" href="javascript:void(0);"><i class="fa fa-check"></i>Approve</a>
+                    <a class="approp btn" onclick="javascript:disputeQuote();" href="javascript:void(0);"><i class="fa fa-times"></i>Dispute</a>
+                    <input type="hidden" value="" id="quote_id" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Add spoiler -->
+    <div class="modal fade" id="addspoiler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ADD SPOILER</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="addspoiler_submit">
+                        <p>ADD SPOILER</p>
+                        <textarea class="tagged_text textbox" placeholder="Try to tag me, by typing @dan" style="height:40px;"></textarea>
+                        
+                        <input id="taggedChar" value="" type="hidden">
+                        <input id="episodeId" value="{{ episodeId }}" type="hidden">
+                        <p><em>To tag a character use '@' symbol.</em></p>
+                        <font size="1">(Maximum characters: 100)<br>
+                        You have <input readonly type="text" name="countdown" id="spoilerCharCount" size="3" value="100"> characters left.</font><br>
+                        <input type="button" onclick="javascript:addSpoiler();" class="btn" value="Submit" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal ADD QUOTE -->
+    <div class="modal fade" id="addquote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ADD QUOTE</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="addquote_submit">
+                        <p>ADD QUOTES</p>
+                        <form name="QUOTES">
+                            <input list="datalistChar" name="character" id="character" placeholder="Character Name" onkeyup="javascript:charSuggestion(this.value);">
+                            <datalist id="datalistChar">
+                            </datalist> 
+                            <br><br>
+                            <input type="hidden" name="charId" id="charId" value="">
+                            <input id="episodeIdQuote" value="{{ episodeId }}" type="hidden">
+                            <textarea name="limitedtextarea" id="txtQuote"></textarea><br>
+                            <font size="1">(Maximum characters: 500)<br>
+                            You have <input readonly type="text" id="characterQuoteCount" name="countdown" size="3" value="500"> characters left.</font><br>
+                            <input onclick="javascript:addQuote();" type="button" class="btn" value="Submit" />
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_css %}
+<link href="{{asset('assets/css/jquery-textntags.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{{asset('assets/js/underscore.js')}}"></script>
+    <script src="{{asset('assets/js/jquery-textntags.js')}}"></script> 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('textarea.tagged_text').textntags({
+                onDataRequest: function (mode, query, triggerChar, callback) {
+                  var data = {{showCharacters|raw}};
+
+                  query = query.toLowerCase();
+                  var found = _.filter(data, function(item) { return item.name.toLowerCase().indexOf(query) > -1; });
+
+                 callback.call(this, found);
+                }
+              }).bind('tagsAdded.textntags', function (e, addedTagsList) { 
+                    prevVal = $("#taggedChar").val();
+                    if(prevVal=="")
+                    $("#taggedChar").val(addedTagsList[0].id);
+                    else
+                    $("#taggedChar").val(prevVal+","+addedTagsList[0].id);
+                })
+                .bind('tagsRemoved.textntags', function (e, removedTagsList) { 
+                     prevVal = $("#taggedChar").val();
+                     currentVal = prevVal.replace(","+removedTagsList[0].id,"");
+                     currentVal = currentVal.replace(removedTagsList[0].id,"");
+                      $("#taggedChar").val(currentVal);
+                });
+        });
+        
+        window.glShowId = {{showInfo.showId}};
+                function checkId(ancId) {
+                var myArr = ancId.split("#");
+                        var isLoggedIn = 1{{isLoggedIn}};
+                        anchorId = myArr[1];
+                        var Html = "";
+                        if (anchorId == "reactions") {
+                Html += '<div class="mfooter">';
+                        Html += '<ul class="mfooter_menu">';
+                        Html += '<li><a class="left_link" href="{{ url('show_episode_season', { 'id': showInfo.showId, 'name': showInfo.showTitle|replace(' ','-') }) }}">EPISODE GUIDE</a></li>';
+                        if (isLoggedIn == 11){
+                Html += '<li><a class="right_link reaction" data-toggle="modal" data-target="#reaction">ADD REACTION</a></li>';
+                } else {
+                Html += '<li><a class="right_link reaction" href="{{ url('user_signup') }}">ADD REACTION</a></li>';
+                }
+                Html += '</ul>';
+                        Html += '<div class="search_user">';
+                        Html += '<a class="search_btn"></a>';
+                        Html += '<div class="user_avater"><img src="images/avater.png" alt="" /></div>';
+                        Html += '<a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>';
+                        Html += '</div>';
+                        Html += '</div>';
+                } else if (anchorId == "spoilers") {
+                Html += '<div class="mfooter">';
+                        Html += '<ul class="mfooter_menu">';
+                        Html += '<li><a class="left_link" href="{{ url('show_episode_season', { 'id': showInfo.showId, 'name': showInfo.showTitle|replace(' ','-') }) }}">EPISODE GUIDE</a></li>';
+                        if (isLoggedIn == 11){
+                Html += '<li><a class="right_link addspoiler" data-toggle="modal" data-target="#addspoiler">ADD SPOILER</a></li>';
+                } else {
+                Html += '<li><a class="right_link reaction" href="{{ url('user_signup') }}">ADD SPOILER</a></li>';
+                }
+                Html += '</ul>';
+                        Html += '<div class="search_user">';
+                        Html += '<a class="search_btn"></a>';
+                        Html += '<div class="user_avater"><img src="images/avater.png" alt="" /></div>';
+                        Html += '<a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>';
+                        Html += '</div>';
+                        Html += '</div>';
+                } else if (anchorId == "quotes") {
+                Html += '<div class="mfooter">';
+                        Html += '<ul class="mfooter_menu">';
+                        Html += '<li><a class="left_link" href="{{ url('show_episode_season', { 'id': showInfo.showId, 'name': showInfo.showTitle|replace(' ','-') }) }}">EPISODE GUIDE</a></li>';
+                        if (isLoggedIn == 11){
+                Html += '<li><a class="right_link addquote" data-toggle="modal" data-target="#addquote">ADD QUOTE</a></li>';
+                } else {
+                Html += '<li><a class="right_link reaction" href="{{ url('user_signup') }}">ADD QUOTE</a></li>';
+                }
+                Html += '</ul>';
+                        Html += '<div class="search_user">';
+                        Html += '<a class="search_btn"></a>';
+                        Html += '<div class="user_avater"><img src="images/avater.png" alt="" /></div>';
+                        Html += '<a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>';
+                        Html += '</div>';
+                        Html += '</div>';
+                }
+
+                $(".mfooter").replaceWith(Html);
+                }
+    </script>
+
+{% endblock %}

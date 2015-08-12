@@ -1,0 +1,349 @@
+{% extends 'base.html.twig' %}
+ {% block headerNav %}
+{% endblock %}
+{% block toprow %}
+{% endblock %}
+
+{% block content %}
+    <div class="hadding_title">
+    	<div class="container">
+            <h1 class="">{{type}} (<a href="{{ app.request.getBaseURL() }}/post/chooseTemplate">Choose Different Template?</a>)</h1>
+        </div>
+    </div>
+    <div class="container">
+        {{ form_start(form,{ 'attr': {'id': 'postForm'} }) }}
+        {% if type == 'Link' %}
+        <div class="form-group">
+            <label for="PasteLink">Paste Link Below</label>
+            {{ form_widget(form.postContent) }}
+        </div>
+        {% elseif type == 'Video' %}
+        <div class="form-group">
+            <label for="PasteLink">Paste Video URL Below</label>
+            {{ form_widget(form.postContent) }}
+        </div>
+        
+        {% elseif type=='Image' %}
+         <div class="form-group">
+                  	<label for="relate">Choose a Cover Image for this Post</label>
+                    <div class="add_cover clearfix">
+                    	<div class="images">
+                        <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                        {{ form_widget(form.postCoverImage) }}
+                        <p>Upload Primary Image</p>
+                        </span>
+                        
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                  	<label for="relate">Add more images?</label>
+                    <div class="add_img add_post clearfix">
+                    	<div class="images">
+                        <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                        {{ form_widget(form.postImages)}}
+                        </span>
+                        </div>
+                        <div class="images">
+                        <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                        <input type="file" multiple="" name="form[postImages][]" id="fileupload" onchange="PreviewImage(this);">
+                        </span>
+                        </div>
+                        <div class="images">
+                        <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                        <input type="file" multiple="" name="form[postImages][]" id="fileupload" onchange="PreviewImage(this);">
+                        </span>
+                        </div>
+                        <div class="images">
+                        <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                        <input type="file" multiple="" name="form[postImages][]" id="fileupload" onchange="PreviewImage(this);">
+                        </span>
+                        </div>
+                    </div>
+                  </div>
+        {% endif %}
+        
+         <div class="form-group">
+            <label for="PasteLink">Title</label>
+            {{ form_widget(form.postTitle) }}
+        </div>
+        
+        <div class="form-group">
+                  	<label for="relate">What show(s) does this relate to?</label>
+                    <div class="add_img add_relate clearfix" id ="showListImages" data-toggle="modal" data-target="#showModal">
+                       {% for show in shows %}
+                        <div class="images showListImage ">
+                            <a title="" data-placement="top" data-toggle="tooltip" href="javascript:void(0)" onclick="removeParent(this,0,'form_postEpisodeIds')" class="remove_icon" data-original-title="Remove">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <img src="{{ app.request.getBaseURL() }}{{show.showBannerImage}}">
+                        </div>
+                        {% endfor %}
+                        <div class="images" id ="showListImagesAddBtn">
+                        <span class="fileinput-button" >
+                       <i class="fa fa-plus"></i>
+                        </span>
+                        </div>
+                    </div>
+                  </div>
+        <div class="form-group clearfix">
+                        <div class="col-md-8">
+                        <label for="Title">What is the primary post type?</label>
+                        </div>
+                        <div class="col-md-4">
+                        {{ form_widget(form.postPrimaryType) }}
+                        </div>
+        </div>
+        <div class="form-group clearfix">
+                        <div class="col-md-8">
+                        <label for="Title">What is the secondary post type?</label>
+                        </div>
+                        <div class="col-md-4">
+                        {{ form_widget(form.postSecondaryType) }}
+                        </div>
+         </div>                
+                        
+        <div class="form-group text-center">
+            <label for="Title">{% if type=="Text" %}Content{% else %}What is this {{type}} about?{% endif %}</label>
+             {{ form_widget(form.postAbout) }}
+        </div>
+        
+        <div class="form-group">
+                  	<label for="relate">Does this relate to a specific episode? (optional)</label>
+                    <div class="add_img add_episode clearfix" >
+                       {% for episode in episodes %}
+                        <div class="images episodeListImage clearfix">
+                            <a title="" data-placement="top" data-toggle="tooltip" href="javascript:void(0)" onclick="removeParent(this,0,'form_postEpisodeIds')" class="remove_icon" data-original-title="Remove">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <img src="{{ app.request.getBaseURL() }}{{episode.episodeBannerImage}}">
+                        </div>
+                        {% endfor %}
+                        <div class="images" id="episodeListAddBtn" data-toggle="modal" data-target="#episodeModal">
+                        <span class="fileinput-button">
+                        <i class="fa fa-plus"></i>
+                        <input type="button" id="fileupload">
+                        </span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                  	<label for="relate">Does this relate to a specific character? (optional)</label>
+                    <div class="add_img add_character clearfix">
+                        {% for character in characters %}
+                        <div class="images episodeListImage clearfix">
+                            <a title="" data-placement="top" data-toggle="tooltip" href="javascript:void(0)" onclick="removeParent(this,0,'form_postEpisodeIds')" class="remove_icon" data-original-title="Remove">
+                                <i class="fa fa-times"></i>
+                            </a>
+                            <img src="{{ app.request.getBaseURL() }}{{character.characterBannerImage}}">
+                        </div>
+                        {% endfor %}
+                        <div class="images" id="characterListAddBtn" data-toggle="modal" data-target="#characterModal">
+                         <span class="fileinput-button">
+                        <i class="fa fa-plus"></i>
+                        <input type="button" id="fileupload">
+                        </span>
+                        </div>
+                    </div>
+                  </div>
+        {% if type!='Image' %} 
+                  <div class="form-group">
+                  	<label for="relate">Choose a Cover Image for this Post</label>
+                    <div class="add_img add_post clearfix">
+                      
+                    	<div class="images" id="imageChooser" data-toggle="modal" data-target="#chooseImageModal-NOTACTIVE">
+                        <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                       {{ form_widget(form.postImages,{ 'attr': {'name': 'form[postImages][]'} })}}
+                        </span>
+                        </div>
+                        {% if coverImage!="" %}
+                        <div class="images"><div class="overlay-image" style="position:absolute;left:0px;height:100%;width:100%;background:rgba(255,255,255,0.6);"></div>
+                        <img src="{{ app.request.getBaseURL() }}{{coverImage}}">
+                        </div>
+                        {%endif%}
+                    </div>
+                  </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="PasteLink">Tags - What would you search for to find this?</label>
+            {{ form_widget(form.postTags) }}
+        </div>
+        
+        <div class="form-group">
+                    <label for="PasteLink">If you are not the creator, who is?</label>
+                    {{ form_widget(form.postOriginallyCreatedBy) }}
+        </div>
+        {{ form_widget(form.Cancel,{ 'attr': {'onclick': 'setDraft();'} }) }}{{ form_widget(form.Draft,{ 'attr': {'onclick': 'setDraft();'} }) }}{{ form_widget(form.Save) }}
+        {{form_end(form)}}
+        
+<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Shows</h4>
+      </div>
+      <div class="modal-body">
+        <div class="reactions">
+        <div class="reaction_submit">
+            <select id="showList" name="showList" style="width:100%; height:50px;" multiple>
+                {% for show in showList %}
+                    <option value="{{show.showId}}" class="option_eight" data-left="<img src='{{show.showBannerImage}}'>" data-right="{{show.showId}}">{{show.showTitle}}</option>
+                {% endfor %}
+            </select>
+           
+        </div>
+            <div style="margin:50px 0 0 0;">
+            <button type="button" class="btn btn-default" onclick="updateShowList()">Done</button>
+          
+            </div>
+        </div>
+           
+      </div>
+    </div>
+  </div>
+</div>
+            
+<div class="modal fade" id="episodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Episodes</h4>
+      </div>
+      <div class="modal-body">
+        <div class="reactions">
+        <div class="reaction_submit">
+            <select id="episodeList" name="episodeList" style="width:100%; height:50px;" multiple>
+                
+            </select>
+           
+        </div>
+            <div style="margin:50px 0 0 0;">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="updateEpisodeList();">Done</button>
+          
+            </div>
+        </div>
+           
+      </div>
+    </div>
+  </div>
+</div>
+            
+<div class="modal fade" id="characterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Characters</h4>
+      </div>
+      <div class="modal-body">
+        <div class="reactions">
+        <div class="reaction_submit">
+            <select id="characterList" name="characterList" style="width:100%; height:50px;" multiple>
+                
+            </select>
+           
+        </div>
+            <div style="margin:50px 0 0 0;">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="updateCharacterList();">Done</button>
+          
+            </div>
+        </div>
+           
+      </div>
+    </div>
+  </div>
+</div>
+{% if type!='Image' %}            
+<div class="modal fade" id="chooseImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Choose Image</h4>
+      </div>
+      <div class="modal-body">
+        <div class="add_img add_post clearfix">
+                    	<div class="images">
+                        <span class="fileinput-button">
+                        <i class="fa fa-camera"></i>
+                        <input type="file" multiple="" name="files[]" id="fileupload">
+                        </span>
+                        </div>
+                        <div class="images">
+                        <img src="images/episode/episode05.jpg">
+                        <a title="" data-placement="top" data-toggle="tooltip" href="#" class="remove_icon" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="images">
+                        <img src="images/episode/episode05.jpg">
+                        <a title="" data-placement="top" data-toggle="tooltip" href="#" class="remove_icon" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="images">
+                        <img src="images/episode/episode02.jpg">
+                        <a title="" data-placement="top" data-toggle="tooltip" href="#" class="remove_icon" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="images">
+                        <img src="images/episode/episode05.jpg">
+                        <a title="" data-placement="top" data-toggle="tooltip" href="#" class="remove_icon" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="images">
+                        <img src="images/episode/episode02.jpg">
+                        <a title="" data-placement="top" data-toggle="tooltip" href="#" class="remove_icon" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="images">
+                        <img src="images/episode/episode05.jpg">
+                        <a title="" data-placement="top" data-toggle="tooltip" href="#" class="remove_icon" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="images">
+                        <img src="images/episode/episode02.jpg">
+                        <a title="" data-placement="top" data-toggle="tooltip" href="#" class="remove_icon" data-original-title="Remove"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+           
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}        
+{% endblock %}
+
+{% block custom_css %}
+<link href="{{asset('assets/css/editor.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('assets/css/fm.selectator.jquery.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block custom_js %}
+<script src="{{asset('assets/js/fm.selectator.jquery.js')}}"></script> 
+<script src="{{asset('assets/js/editor.js')}}"></script> 
+<script src="{{asset('assets/js/createPost.js')}}"></script> 
+<script type="text/javascript">
+ function setDraft()
+ {
+     $("#form_postStatus").val('draft');
+     $('#postForm').submit();
+ }
+ 
+  function cancel()
+ {
+      window.location.assign("{{ app.request.getBaseURL() }}/post/chooseTemplate");
+ }
+ 
+  tinymce.init({
+    selector: "#form_postAbout",
+    plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    
+    
+});
+</script>
+{% endblock %}

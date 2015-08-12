@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta name="description" content="essential.tv - Responsive" />
+        <meta name="keywords" content="essential.tv," />
+        <meta name="author" content="essential.tv" />
+        {% block title %}
+            <title>Essential Tv Admin</title>
+        {% endblock %}
+        <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+        <link href="{{asset('assets/admin/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('assets/admin/fonts/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('assets/admin/js/owl-carousel/owl.carousel.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('assets/admin/js/owl-carousel/owl.theme.css')}}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/bootstrap-select.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/bootstrap-switch.css')}}">
+        <!-- CSS | main style file -->
+        <link href="{{asset('assets/admin/css/style.css')}}" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="{{asset('assets/admin/css/mmenu.css')}}" />
+        <link href="{{asset('assets/admin/css/responsive.css')}}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/simply-toast.css')}}">
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body class="chooseshow">
+        <div id="preloader" style="">
+            <div id="spinner"></div>
+        </div>
+        <div class="mheader" style="display: none;">
+            <a href="#menu"></a>
+            <a href="{{ app.request.getBaseURL() }}" class="mlogo"><img alt="" src="{{ app.request.getBaseURL() }}{{asset('/assets/images/logo.png')}}"></a>
+        </div>
+        <nav id="menu" style="display: none;">
+            {% block mobilemenu %}
+                <ul>
+                    <li class="mm-selected"><a href="{{ app.request.getBaseURL() }}/admin/home"><span class="home_icon"></span>Home</a></li>
+                    {{ render(controller('EssentialTvEtvBundle:User:showUserMenu')) }}
+                </ul>
+            {% endblock %}
+            <div class="userinfo">
+                {% block userInfo %}
+                    {{ render(controller('EssentialTvEtvBundle:User:showUserInfoHeader')) }}
+                {% endblock %}
+            </div>
+
+        </nav>
+        <!-- wrapper starts -->
+        <div id="wrapper">
+            <header id="header">
+                <div class="topheader"> 
+                    <div class="container">
+                        <div class="logo">
+                            <!-- logo -->
+                            <a href="{{ app.request.getBaseURL() }}/admin/home" class="navbar-brand">ENKA</a>
+                        </div>
+                        <div class="search_top">
+                            {% block searchblock %}
+                                <form method="post" action="#" class="form-inline">
+                                    <button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>
+                                    <input type="text" placeholder="Search.." class="form-control pull-left">
+                                </form>
+                            {% endblock %}
+                        </div>
+                        <div class="userinfo">
+                            {{ render(controller('EssentialTvEtvBundle:User:showUserInfoHeader')) }}
+                        </div>
+                        <!--/.nav-collapse --> 
+                    </div>
+                </div>
+            </header>
+            <section class="mainbody">
+                {% block mainbody %}
+
+                {% endblock %}
+            </section>
+            {% block mfooter %}
+                <section class="mfooter">
+                    <ul class="mfooter_menu">
+                        {% block sidemenu %}
+                        <li><a class="left_link" href="{{ app.request.getBaseURL() }}/admin/home">ADMIN</a></li>
+                        {% endblock %}
+                    </ul>
+                    <div class="search_user">
+                        <a class="search_btn"></a>
+                        <div class="btmsearch closed">
+                            <form class="form-inline" action="#" method="post">
+                                <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
+                                <input type="text" class="form-control pull-left" placeholder="Search..">
+                            </form>
+                        </div>
+                        {{ render(controller('EssentialTvEtvBundle:User:showUserInfoImage')) }}
+                        <a class="maddbtn" href="#"><i class="fa fa-plus"></i></a>
+                    </div>
+                </section>
+            {% endblock %}        
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="copyright">Copyright 2014 Essential TV. All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <ul class="social_link list-inline">
+                                <li data-wow-duration=".8s" data-wow-delay=".1s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.1s; animation-name: fadeIn;">
+                                    <a title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                                    <a title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                                    <a title="youtube" href="#"><i class="fa fa-youtube"></i></a>
+                                </li>
+                                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                                    <a title="linkedin" href="#"><i class="fa fa-linkedin-square"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <a href="#" class="scrollToTop"><i class="fa fa-angle-up"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- wrapper ends -->
+        <script type="text/javascript">
+            window.siteUrl = "{{ app.request.getBaseURL() }}";
+        </script>
+        <!--Scripts-->
+        <script src="{{asset('assets/admin/js/jquery-2.1.1.min.js')}}"></script> 
+        <script src="{{asset('assets/js/simply-toast.js')}}"></script>
+        <script src="{{asset('assets/admin/js/jquery.form.min.js')}}"></script>
+        <script src="{{asset('assets/admin/js/smoothscroll/smoothscroll.js')}}"></script> 
+        <script src="{{asset('assets/admin/js/scrollTo/jquery.scrollTo.min.js')}}"></script> 
+        <script src="{{asset('assets/admin/js/sticky/jquery.sticky.js')}}"></script> 
+        <script src="{{asset('assets/admin/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/admin/js/owl-carousel/owl.carousel.js')}}"></script>  
+        <script src="{{asset('assets/admin/js/fitvids/jquery.fitvids.js')}}"></script>
+        <script src="{{asset('assets/admin/js/bootstrap-select.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assets/admin/js/mmenu.min.js')}}"></script>
+        <script src="{{asset('assets/admin/js/bootstrap-switch.js')}}"></script>
+        <script src="{{asset('assets/admin/js/AdminCustom.js')}}"></script>
+        <script src="{{asset('assets/admin/js/admin.custom.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.minimalect.min.js')}}"></script>
+        <!--Scripts-->
+
+        {% block customJs %}
+
+        {% endblock %}    
+
+    </body>
+</html>

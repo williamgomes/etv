@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\Seasons" table="seasons" repository-class="EssentialTv\EtvBundle\Entity\SeasonsRepository">
+    <indexes>
+      <index name="season_show_id" columns="season_show_id"/>
+    </indexes>
+    <id name="seasonId" type="integer" column="season_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="seasonTmsId" type="string" column="season_tms_id" length="255" nullable="false"/>
+    <field name="seasonApiId" type="integer" column="season_api_id" nullable="false"/>
+    <field name="seasonShowId" type="integer" column="season_show_id" nullable="false"/>
+    <field name="seasonEpisodeTotal" type="integer" column="season_episode_total" nullable="false"/>
+    <field name="seasonTitle" type="text" column="season_title" nullable="false"/>
+    <field name="seasonOriginalSummary" type="text" column="season_original_summary" nullable="false"/>
+    <field name="seasonApiSummary" type="text" column="season_api_summary" nullable="false"/>
+    <field name="seasonOriginalImages" type="text" column="season_original_images" nullable="false"/>
+    <field name="seasonApiImages" type="text" column="season_api_images" nullable="false"/>
+    <field name="seasonBannerImage" type="text" column="season_banner_image" nullable="false"/>
+    <field name="seasonStatus" type="string" column="season_status" nullable="false"/>
+    <field name="seasonOriginalDataSupersede" type="string" column="season_original_data_supersede" nullable="false"/>
+    <field name="seasonCreatedOn" type="datetime" column="season_created_on" nullable="false"/>
+    <field name="seasonCreatedBy" type="integer" column="season_created_by" nullable="false"/>
+    <field name="seasonUpdatedOn" type="datetime" column="season_updated_on" nullable="false"/>
+    <field name="seasonUpdatedBy" type="integer" column="season_updated_by" nullable="false"/>
+  </entity>
+</doctrine-mapping>

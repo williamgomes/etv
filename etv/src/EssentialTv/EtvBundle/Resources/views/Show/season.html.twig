@@ -1,0 +1,220 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block content %}
+    {#{{ dump(arrLastViewedEpisodeInfo) }}#}
+    {#        {{ dump(showInfo) }}#}
+
+    <section class="mainbody">
+        <div class="hadding_title">
+            <div class="container">
+                <h1 class="">{{ showInfo.showTitle }}</h1>
+                <ul class="list-inline social">
+                    <li><a class="share" href="#" title=""><i class="fa fa-share-alt"></i></a></li>
+                    <li><a class="facebook" href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab_area">
+            <div class="container">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#seasons" aria-controls="seasons" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Seasons</a></li>
+                    <li role="presentation"><a href="#characters" aria-controls="characters" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Characters</a></li>
+                </ul>
+            </div>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="seasons">
+                    <div class="container">
+                        <div class="row">
+                            {% if arrLastViewedEpisodeInfo %}
+                            <div class="col-md-12">
+                                <div class="top_post vedio_banner">
+                                    <a class="resume_btn" href="{{ url('episode_video', { 'id': arrLastViewedEpisodeInfo.episodeId }) }}"><i class="fa fa-pause"></i>resume</a>
+                                    <img alt="{{arrLastViewedEpisodeInfo.episodeTitle}}" src="{{ app.request.getBaseURL() }}{{ arrLastViewedEpisodeInfo.episodeBannerImage }}">
+                                    <div class="dec_title">
+                                        <h5>S{{arrLastViewedEpisodeInfo.episodeSeasonId}}E{{arrLastViewedEpisodeInfo.episodeNumber}}: {{arrLastViewedEpisodeInfo.episodeTitle}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="list-inline episode_search epi-carousel4">
+
+
+                                    {% if countEpisode > 0 %}
+                                        {% for Episode in oldEpisodeInfo %}
+                                            <li class="item">
+                                                <a href="{{ url('episode_details', { 'id': Episode.episodeId , 'name': Episode.episodeTitle|replace(' ', '-') }) }}">
+                                                    <img src="{{ app.request.getBaseURL() }}{{ Episode.episodeBannerImage }}" class="img-responsive" alt="{{ Episode.episodeTitle }}">
+                                                </a>
+                                                <a href="{{ url('episode_details', { 'id': Episode.episodeId , 'name': Episode.episodeTitle|replace(' ', '-') }) }}" class="playbtn"><i class="fa fa-play"></i></a>
+                                                <h6 class="title">{{ Episode.episodeTitle }}</h6>
+                                            </li>
+                                        {% endfor %} 
+                                    {% endif %}
+
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion">
+                            <div class="panel-group" id="accordion">
+                                {% if countEpisode > 0 %}
+                                    {% for Key,Value in episodeInfo %}
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ Key }}">Season {{ Key }}<i class="fa fa-angle-double-down"></i></a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse{{ Key }}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <div class="BarChart">
+                                                        <ul>
+                                                            {% for Episode in Value %}
+                                                                <li><a style="height:{{ Episode.episodeEssentialCountTotal }}%;" href="{{ url('episode_details', { 'id': Episode.episodeId , 'name': Episode.episodeTitle|replace(' ', '-') }) }}" data-toggle="tooltip" data-placement="top" title="{{ Episode.episodeEssentialCountTotal }}"><span>{{ loop.index }}</span></a></li>
+                                                            {% endfor %}                                                              
+                                                        </ul>
+                                                        <div class="count"><span>63% Essential </span>| <span>Most Essential e2 </span>| <span>{{ countEpisode }} Episodes</span></div>
+                                                    </div>
+
+
+                                                    {% for Episode in Value %}
+
+                                                        <div class="episode_list">
+                                                            <div class="episode_img"><img src="{{ app.request.getBaseURL() }}{{ Episode.episodeBannerImage }}" alt="{{ Episode.episodeTitle }}" /></div>
+                                                            <div class="episode_contant">
+                                                                <a href="{{ url('episode_details', { 'id': Episode.episodeId , 'name': Episode.episodeTitle|replace(' ', '-') }) }}" title="{{ Episode.episodeEssentialCountTotal }}"><h3>S{{ Episode.episodeSeasonId }}E{{ Episode.episodeNumber }}: {{ Episode.episodeTitle }}</h3></a>
+                                                                <h5>Essential: {{ Episode.episodeEssentialCountTotal }}% Yes | {{ Episode.episodeNotEssentialCountTotal }}% No</h5>
+                                                                <p>{{ Episode.episodeApiSummary }}</p>
+                                                            </div>
+                                                        </div>
+
+                                                    {% endfor %} 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+                                {% else %}
+                                    <h4>No season found under this show.</h4>
+                                {% endif %}    
+                            </div>
+                        </div>
+                    </div>
+                    {% block mfooter %}
+                        <div class="mfooter">
+                            <ul class="mfooter_menu">
+                                <li><a href="{{ app.request.getBaseURL() }}/{{showInfo.showTitle | replace({" " : ""})}}" class="left_link home">SHOW HOME</a></li>
+                            </ul>
+                            <div class="search_user">
+                                <a class="search_btn"></a>
+                                <div class="btmsearch closed">
+                                    <form method="post" action="#" class="form-inline">
+                                        <button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>
+                                        <input type="text" placeholder="Search.." class="form-control pull-left">
+                                    </form>
+                                </div>
+                                <div class="user_avater"><img alt="" src="images/avater.png"></div>
+                                <a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="characters">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% if countCharacter > 0 %}
+
+                                    <ul class="list-inline episode_search">
+                                        {% for Character in characterInfo %}
+                                            <li class="item">
+                                                <a href="{{ url('character_details', { 'id': Character.characterId , 'name': Character.characterTitle|replace(' ', '-'), 'showid': showId }) }}">
+                                                    {% if Character.characterOriginalDataSupersede == 'active' %}
+                                                        <img src="{{ app.request.getBaseURL() }}{{ Character.characterBannerImage }}" class="img-responsive" alt="{{ Character.characterTitle }}">
+                                                    {% else %}
+                                                        <img src="{{ app.request.getBaseURL() }}{{ Character.characterBannerImage }}" class="img-responsive" alt="{{ Character.characterTitle }}">
+                                                    {% endif %}
+                                                </a>
+                                                <h6 class="title text-center">{{ Character.characterTitle }}</h6>
+                                            </li>
+
+                                        {% endfor %}
+                                    {% else %}
+                                        <h4>No character found under this show.</h4>
+                                    {% endif %}    
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
+
+
+
+{% block custom_js %}
+    <script>
+        function checkId(ancId) {
+            var myArr = ancId.split("#");
+            anchorId = myArr[1];
+            var Html = "";
+
+            if (anchorId == "seasons") {
+                Html += '<div class="mfooter">';
+                Html += '<ul class="mfooter_menu">';
+                Html += '<li><a href="{{ app.request.getBaseURL() }}/show/selected/{{showId}}" class="left_link home">HOME SHOW</a></li>';
+                Html += '</ul>';
+                Html += '<div class="search_user">';
+                Html += '<a class="search_btn"></a>';
+                Html += '<div class="btmsearch closed">';
+                Html += '<form method="post" action="#" class="form-inline">';
+                Html += '<button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>';
+                Html += '<input type="text" placeholder="Search.." class="form-control pull-left">';
+                Html += '</form>';
+                Html += '</div>';
+                Html += '<div class="user_avater"><img alt="" src=""></div>';
+                Html += '<a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>';
+                Html += '</div>';
+                Html += '</div>';
+            } else if (anchorId == "characters") {
+                Html += '<div class="mfooter">';
+                Html += '<ul class="mfooter_menu">';
+                Html += '<li><a href="index.html" class="left_link home">HOME</a></li>';
+                Html += '<li><a href="#" class="right_link">ADD CHARACTER</a></li>';
+                Html += '</ul>';
+                Html += '<div class="search_user">';
+                Html += '<a class="search_btn"></a>';
+                Html += '<div class="btmsearch closed">';
+                Html += '<form method="post" action="#" class="form-inline">';
+                Html += '<button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>';
+                Html += '<input type="text" placeholder="Search.." class="form-control pull-left">';
+                Html += '</form>';
+                Html += '</div>';
+                Html += '<div class="user_avater"><img alt="" src=""></div>';
+                Html += '<a class="maddbtn" href="#"><i class="fa fa-plus"></i></a>';
+                Html += '</div>';
+                Html += '</div>';
+            }
+
+            $(".mfooter").replaceWith(Html);
+        }
+    </script>
+
+{% endblock %}

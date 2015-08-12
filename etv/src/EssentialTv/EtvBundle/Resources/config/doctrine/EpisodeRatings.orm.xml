@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\EpisodeRatings" table="episode_ratings" repository-class="EssentialTv\EtvBundle\Entity\EpisodeRatingsRepository">
+    <indexes>
+      <index name="ER_show_id" columns="ER_show_id"/>
+      <index name="ER_episode_id" columns="ER_episode_id"/>
+      <index name="ER_user_id" columns="ER_user_id"/>
+    </indexes>
+    <id name="erId" type="integer" column="ER_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="erShowId" type="integer" column="ER_show_id" nullable="false"/>
+    <field name="erEpisodeId" type="integer" column="ER_episode_id" nullable="false"/>
+    <field name="erUserId" type="integer" column="ER_user_id" nullable="false"/>
+    <field name="erRatingValue" type="string" column="ER_rating_value" nullable="false"/>
+    <field name="erCreatedOn" type="datetime" column="ER_created_on" nullable="false"/>
+    <field name="erCreatedBy" type="integer" column="ER_created_by" nullable="false"/>
+    <field name="erUpdatedOn" type="datetime" column="ER_updated_on" nullable="true"/>
+    <field name="erUpdatedBy" type="integer" column="ER_updated_by" nullable="true"/>
+  </entity>
+</doctrine-mapping>

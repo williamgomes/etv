@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\PostReports" table="post_reports">
+    <id name="prId" type="integer" column="pr_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="prPostId" type="integer" column="pr_post_id" nullable="false"/>
+    <field name="prType" type="text" column="pr_type" nullable="false"/>
+    <field name="prDetails" type="text" column="pr_details" nullable="true"/>
+    <field name="prReportedBy" type="integer" column="pr_reported_by" nullable="false"/>
+    <field name="prReportedOn" type="datetime" column="pr_reported_on" nullable="false"/>
+  </entity>
+</doctrine-mapping>

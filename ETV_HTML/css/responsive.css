@@ -1,0 +1,807 @@
+/* --------------------------------------
+Bootstrap 3 Media Queries
+----------------------------------------- */
+/*==========  Mobile First Method  ==========*/
+ 
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {	
+}
+ 
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+}
+ 
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {	
+}
+ 
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	body {
+	font-size: 15px;
+	line-height: 23px;
+}
+	.container {
+    width: 1024px;
+}
+	p {
+		padding: 0 0 10px 0;
+		margin: 0;
+	}
+	.no-padding-left {
+		padding-left: 0!important;
+	}
+	.no-padding-right {
+		padding-right: 0!important;
+	}
+	.form_area {
+		padding: 0 200px;
+	}
+	.leftside .right_menu {
+		margin-left: -15px;
+	}
+	.episode_search li {
+		width: 23%;
+		margin: 0 1% 20px 1%;
+	}
+.mfooter {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+}
+.mfooter .search_user {
+	display: none;
+}
+.mfooter_menu {
+	padding: 0;
+	position: absolute;
+	width: 100%;
+}
+.mfooter_menu a {
+	background: none repeat scroll 0 0 #115059;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 140px;
+	cursor: pointer;
+/* Safari */
+-webkit-transform: rotate(-90deg);
+
+/* Firefox */
+-moz-transform: rotate(-90deg);
+
+/* IE */
+-ms-transform: rotate(-90deg);
+
+/* Opera */
+-o-transform: rotate(-90deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
+}
+.mfooter_menu a:hover {
+	background: #82b9b7;
+}
+.mfooter_menu a.left_link {
+	left: -50px;
+}
+.mfooter_menu a.right_link {
+	right: -50px;
+}
+.mfooter .search_user {
+	width: 250px;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+}
+.quote_img {
+	float: left;
+	width: 15%;
+	margin-right: 5%;
+}
+.quote_img > img {
+    width: 100%;
+}
+.quote_area {
+	float: right;
+	width: 80%;
+	position: relative;
+}
+.arrow_box {
+	position: relative;
+	background: #FFF;
+	padding: 20px;
+	border: 4px solid #82b9b7;
+	min-height: 100px;
+}
+.arrow_box p {
+		font-size: 18px;
+}
+.arrow_box:after, .arrow_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-right-color: #FFF;
+	border-width: 15px;
+	margin-top: -15px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-right-color: #82b9b7;
+	border-width: 20px;
+	margin-top: -20px;
+}
+}
+ 
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+ 
+ 
+ 
+/*==========  Non-Mobile First Method  ==========*/
+ 
+@media only screen and (max-width : 1200px) and (min-width : 992px){
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+html {
+	font-size: 90%;
+}	
+	
+body {
+	font-size: 15px;
+	line-height: 26px;
+}
+.recent_episodes {
+	display: none;
+}
+.header-nav {
+	padding: 0;
+}
+#header .header-nav .navbar {
+	min-height: 0;
+}
+#header .navbar-nav {
+	padding: 0;
+	margin: 0;
+}
+#header .navbar {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+}
+#header .navbar-brand {
+	padding-top: 10px;
+}
+#header .navbar-toggle {
+	margin: 10px;
+}
+#header .navbar-brand img {
+	height: 52px;
+}
+#header .navbar-nav li {
+	width: 100%;
+}
+#header .header-nav li a {
+	display: block;
+}
+#header .navbar-nav {
+	margin-top: 0;
+}
+.top_post{
+	margin-bottom: 15px;
+}
+.recent_episodes {
+	margin-top: 15px;
+}
+.episode {
+    float: left;
+    margin-bottom: 15px;
+    margin-right: 1.5%;
+    width: 32.33%;
+}
+.episode img {
+	width: 100%;
+}
+.episode:nth-child(4n) {
+	margin-right:0;
+}
+/**.thumb-post**/
+.thumb-post .post_dec {
+    background:none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    height: 30px;
+    position: absolute;
+    text-align: center;
+}
+.thumb-post .post-content .content_img {
+	border: none;
+}
+.thumb-post .post_dec .product-name {
+	line-height: 30px;
+	color:#a00000;
+}
+.thumb-post .product-name a {
+	color: #FFF;
+}
+.thumb-post .product-name a:hover {
+	color:#aaa;
+}
+.thumb-post .post_dec p{
+	display: none;
+}
+.episode-carousel .dec_title h3 {
+	padding: 0 10px;
+}
+.refresh_btn,.row .btn{
+	margin-bottom: 10px;
+}
+.mfooter {
+	background: #0c5059;
+	padding: 10px 0;
+	position: fixed;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	max-height: 82px;
+	z-index: 999;
+}
+#wrapper {
+	padding-bottom: 82px;
+}
+.mfooter_menu {
+    display: table;
+    position: absolute;
+	padding: 0 5px;
+    vertical-align: middle;
+    width: 100%;
+}
+.mfooter_menu > li {
+    display: inline-table;
+    vertical-align: middle;
+}
+.mfooter_menu a {
+	position: absolute;
+	font-size: 22px;
+	color: #FFF;
+	font-weight: bold;
+	width:140px;
+	cursor: pointer;
+}
+.mfooter_menu a.home {
+	line-height: 50px;
+}
+.mfooter_menu a:hover {
+	opacity : 0.7;
+}
+.mfooter_menu a.left_link {
+	background: url(../images/lft_arrow.png) no-repeat left center;
+	padding-left: 15px;
+}
+.mfooter_menu a.right_link {
+	right: 10px;
+	background: url(../images/rt_arrow.png) no-repeat right center;
+	padding-right: 15px;
+	text-align: right;
+}
+.mfooter .search_user {
+	width: 250px;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+}
+.mfooter .user_avater {
+	background:#FFF;
+	border: 3px #FFF solid;
+	border-radius : 50%;
+	overflow: hidden;
+	margin: 0 10px;
+	display: inline-block;
+}
+.mfooter .search_btn,.mfooter .create_post,.mfooter .search_btn, .mfooter .search_user a {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	line-height: 40px;
+	cursor: pointer;
+	color:#777;
+	border-radius : 50%;
+	background-color:#FFF;
+}
+.mfooter a i {
+    float: left;
+    font-size: 24px;
+    padding: 9px 0 0 10px;
+}
+.mfooter .search_btn {
+	background:#FFF url(../images/search_icon_black.png) no-repeat center;
+}
+.mfooter .search_btn:hover {
+	background:#a61717 url(../images/search_icon.png) no-repeat center;
+}
+.mfooter .create_post {
+	background:#FFF url(../images/edit_icon_black.png) no-repeat center;
+}
+.mfooter .create_post:hover {
+	background:#a61717 url(../images/edit_icon.png) no-repeat center;
+}
+.mfooter .search_user a:hover {
+	background-color:#a61717;
+	border-color : #a61717;
+	color:#FFF;
+}
+.footer {
+	display: none;
+}
+.resume_content h2, .resume_content h4 {
+	margin: 0;
+}
+.resume_content h2 {
+	font-size: 44px;
+}
+/**fandom**/
+.fandom.thumb-post .post_dec {
+	height: auto;
+	padding: 0 5px;
+}
+.fandom.thumb-post .post_dec h2,.fandom.thumb-post .post_dec h6 {
+	color: #FFF;
+	line-height: normal;
+	margin: 0;
+}
+.character_img {
+	width: 35%;
+}
+.character_detail {
+	width: 65%;
+}
+.quote_img {
+	float: left;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.quote_img > img {
+    border: 1px solid #82b9b7;
+    border-radius: 50%;
+    overflow: hidden;
+	max-width: 100px;
+}
+.quote_area {
+	float: right;
+	width: 100%;
+	position: relative;
+}
+.arrow_box {
+	position: relative;
+	background: #FFF;
+	border: 3px solid #82b9b7;
+	padding: 10px;
+	text-align: center;
+}
+.arrow_box:after, .arrow_box:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #FFF;
+	border-width: 10px;
+	margin-left: -10px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #82b9b7;
+	border-width: 14px;
+	margin-left: -14px;
+}
+.quote_area ul.social {
+	bottom: 10px;
+}
+.signup_page .form-group .col-md-6{
+	padding: 0;
+}
+}
+ @media only screen and (max-width : 900px) {
+	.episode_search li {
+		width: 25%;
+	}
+	.filter ul li {
+	width: 3%;
+}
+ }
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+html {
+	font-size: 80%;
+}
+h1 {
+	font-size: 30px;
+	line-height: 58px;
+}
+
+h2 {
+	font-size: 26px;
+	line-height: 48px;
+}
+
+h3 {
+	font-size: 22px;
+	line-height: 45px;
+}
+
+h4 {
+	font-size: 18px;
+	line-height: 28px;
+}
+
+h5 {
+	font-size: 16px;
+	line-height: 26px;
+}
+.thumb-post li.item,.thumb-post li.item.last, .thumb-post li.item:nth-child(3n) {
+	width: 49%;
+	margin: 0 2% 15px 0;
+}
+.thumb-post li.item:nth-child(2n) {
+	margin-right: 0;
+}
+.chooseshow .mainbody .container {
+	padding: 0;
+}
+.filter ul li {
+	width: 2%;
+}
+.filter ul li a {
+	font-size: 14px;
+}
+.episode_search li {
+	width: 33.334%;
+}
+
+h6.title {
+	font-size: 13px;
+	padding: 2PX;
+}
+
+.playbtn {
+    font-size: 20px;
+}
+.episode-carousel .dec_title h3 {
+	padding: 0;
+	font-size: 32px;
+	line-height: 33px;
+}
+.addbtn {
+    border: 2px solid #fff;
+    font-size: 13px;
+    height: 20px;
+    line-height: 16px;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+}
+.show_controls p {
+	padding: 5px 10px;
+}
+.api_img .images a {
+    bottom: 5px;
+    font-size: 18px;
+    right: 5px;
+}
+.mfooter .search_user {
+	width: 170px;
+}
+.episode_contant {
+	padding: 0 10px;
+}
+.episode_contant h3, .episode_contant h5 {
+	margin: 0;
+	line-height: normal;
+}
+.arrow_box {
+	min-height: auto;
+}
+.character_detail h3, .character_detail h4, .character_detail p {
+	margin:0;
+}
+.edit_btn {
+	font-size: 30px;
+}
+.BarChart ul li a,.BarChart ul li span {
+	width: 95%;
+}
+#spoiler .modal-dialog {
+    left: 0;
+    margin: 0 10%;
+    position: absolute;
+    top: 50%;
+    width: 80%;
+}
+.add_img .images {
+	width: 32.334%;
+	margin-bottom: 5px;
+}
+}
+ @media only screen and (max-width : 520px) {
+	 .playbtn {
+    font-size: 16px;
+}
+.episode-carousel .dec_title h3 {
+	padding: 0;
+	font-size: 23px;
+	line-height: 23px;
+}
+.yesbtn, .nobtn {
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    width: 50px;
+}
+.arrow_box {
+	padding: 10px;
+}
+.view_title span {
+    font-size: 13px;
+    padding: 0 5px;
+}
+.social_link2 {
+    margin: -6px 0 0 -65px;
+    width: 130px;
+}
+.social_link2 li {
+    padding: 0 5px 0 0;
+}
+.social_link2 li a {
+    border: 2px solid #fff;
+    font-size: 19px;
+    padding: 4px;
+}
+.view_title img.avater {
+    margin-left: 5px;
+    top: -9px;
+    width: 45px;
+}
+.view_title a.name {
+    margin-left: 45px;
+}
+.profileview .firstname, .profileview .lastname, .profileview .profile_img_area {
+	height: 150px;
+	line-height: 150px;
+}
+.profileview .profile_img {
+	width: 150px;
+	height: 150px;
+ }
+ .profileview .profile_img .fileinput-button {
+    font-size: 14px;
+    right: -10px;
+}
+ }
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	
+html {
+	font-size: 65%;
+}
+h3 {
+    font-size: 22px;
+    line-height: 45px;
+}
+#header .navbar-brand {
+	margin-right: 0;
+}
+.thumb-post .product-name a {
+	font-size: 13px;
+	font-weight: normal;
+	line-height: normal;
+}
+.new,.hot {
+	height: auto;
+	padding:2px;
+	font-size: 12px;
+	line-height: normal;
+}
+.episode-carousel .owl-theme .owl-controls .owl-buttons div {
+	height: 100px;
+	margin-top: -50px;
+}
+.add_img .images {
+	width: 49%;
+	margin-bottom: 5px;
+}
+/** mfooter **/
+mfooter .search_user {
+    margin-left: -70px;
+    width: 140px;
+}
+.mfooter .search_btn,.mfooter .create_post,.mfooter .search_btn, .mfooter .search_user a {
+	width: 30px;
+	height: 30px;
+	background-size : cover;
+	border: 5px #FFF solid;
+}
+.mfooter .search_btn:hover,.mfooter .create_post:hover {
+	background-size : cover;
+	border-color: #a61717;
+}
+ .mfooter .user_avater {
+	 width: 40px;
+ }
+ .mfooter_menu a {
+	 font-size: 16px;
+	 width: 100px;
+	 line-height: 16px;
+ }
+ .mfooter_menu a.home {
+	line-height: 30px;
+}
+ .mfooter a i {
+    font-size: 20px;
+    padding: 2px 0 0 2px;
+}
+h6.title {
+	display: none;
+}
+.resume_content h2 {
+    font-size: 30px;
+    line-height: 24px;
+}
+.episode_contant h5 {
+	font-size: 15px;
+}
+.nav-tabs > li > a {
+	padding: 5px 0;
+	font-size: 16px;
+}
+.hadding_title ul.social {
+	position: relative;
+	text-align: center;
+	right: auto;
+	bottom: auto;
+}
+.social li {
+    padding: 0 0 0 2px;
+}
+.social li a {
+	padding: 0 5px;
+	font-size: 13px;
+}
+.panel-title {
+	font-size: 23px;
+}
+.BarChart ul {
+	height: 100px;
+}
+.BarChart ul li a, .BarChart ul li span {
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0;
+}
+.count span {
+    font-size: 13px;
+    padding: 0;
+}
+.episode_list {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	border: none;
+}
+.episode_img,.episode_contant {
+	width: 100%;
+}
+.episode_contant {
+	padding: 5px 0;
+}
+.character_detail {
+	padding: 5px 10px;
+}
+}
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 380px) {
+	.header-logo img {
+		width: 100%;
+	}
+	.container,section > .container, section > .container-fluid {
+		padding: 10px 15px;
+	}
+	.episode_search li {
+		width:33.333%;
+	}
+	.episode-carousel .dec_title h3 {
+	padding: 0;
+	font-size: 14px;
+	line-height: 14px;
+}
+.yesbtn, .nobtn {
+    font-size: 10px;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+}
+.season h4 {
+	font-size: 14px;
+	line-height: 15px;
+}
+.quotes {
+	padding: 0 15px 15px 15px;
+}
+ul.epi-carousel4 {
+	margin-bottom: 15px;
+}
+.createpost_page .form-group > div {
+	padding:0;
+}
+.createpost_page .form-group label {
+    display: block;
+    text-align: center;
+}
+.profileview .profile_img {
+    height: 100px;
+    width: 100px;
+}
+.profileview .firstname, .profileview .lastname, .profileview .profile_img_area {
+	width: 33.33%;
+}
+.profileview .firstname, .profileview .lastname, .profileview .profile_img_area {
+    height: 100px;
+    line-height: 100px;
+}
+.profileview .profile_img .fileinput-button {
+    font-size: 13px;
+    padding: 4px;
+    right: -12px;
+}
+.myprofile .dec {
+	font-size: 16px;
+}
+.mm-menu .userdec {
+	width: 130px;
+}
+.userdec h4 {
+	font-size: 14px;
+	line-height: 15px;
+}
+}
+@media only screen and (max-width : 360px) {
+	.character_img,.character_detail {
+		width: 100%;
+	}
+}
+@media only screen and (max-width : 320px) {
+
+html {
+	font-size: 60.5%;
+}
+.mfooter_menu a {
+    font-size: 14px;
+    line-height: 16px;
+    width: 85px;
+}
+}

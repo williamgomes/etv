@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block content %}
+
+    {#{{ dump(episodeInfo) }}#}
+    {#{{ dump(reactionInfo) }}#}
+    <div class="hadding_title">
+        <div class="container">
+            <h1 class="">{{ episodeInfo.episodeTitle }}</h1>
+            <ul class="list-inline social">
+                <li><a class="share" href="#" title=""><i class="fa fa-share-alt"></i></a></li>
+                <li><a class="facebook" href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                <li><a class="twitter" href="#" title=""><i class="fa fa-twitter"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% if episodeInfo.episodeVideoUrl != "" %}
+                    <iframe width="100%" height="100%" src="{{episodeInfo.episodeVideoUrl}}"></iframe>
+                {% else %}
+                    <h5>No video found.</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block mfooter %}
+    {#<div class="mfooter">
+        <ul class="mfooter_menu">
+            <li><a class="left_link" href="{{ url('episode_details', { 'id': episodeInfo.episodeId, 'name': episodeInfo.episodeTitle|replace(' ','-') }) }}">GO BACK</a></li>
+            {% if isLoggedIn %}
+            <li><a class="right_link reaction" data-toggle="modal" data-target="#responses">ADD RESPONSE</a></li>
+            {% else %}
+            <li><a class="right_link reaction" href="{{ url('user_signup') }}">ADD RESPONSE</a></li>
+            {% endif %}
+        </ul>
+        <div class="search_user">
+            <a class="search_btn"></a>
+            <div class="user_avater"><img src="{{asset('assets/images/avater.png')}}" alt="" /></div>
+            <a href="#" class="maddbtn"><i class="fa fa-plus"></i></a>
+        </div>
+    </div>#}
+{% endblock %}
+

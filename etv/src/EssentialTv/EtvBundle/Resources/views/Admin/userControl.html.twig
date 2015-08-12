@@ -1,0 +1,118 @@
+{% extends 'admin.html.twig' %}
+{% block mainbody %}
+    {#{{ dump(newArrSortedMaxView) }}#}
+
+    <h1 class="admin_hadding">Admin - User Controls</h1>
+    <div class="container">
+        <div class="toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" method="post">
+                        <input name="keyword" placeholder="Search.." type="text">
+                        <input class="btn" type="submit" value="Go" />
+                    </form>
+                </div>
+                <div class="col-md-6 text-right">
+                    <form action="#">
+                        <label>User Type : </label>
+                        <select name="UserType" onchange="javascript:sortUsers(this.value);">
+                            <option value="All">All</option>
+                            <option value="ROLE_ADMIN">Admin</option>
+                            <option value="ROLE_MOD">Moderators</option>
+                            <option value="ROLE_USER">General Users</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="usercontrol_area" id="userParentDiv">
+
+            {% for User in userInfo %}
+                <div class="usercontrol {{User.userRole}}">
+                    <div class="reactions">
+                        {% if User.userProfilePicture == "" %}
+                            <img alt="{{User.userFirstName ~ " " ~ User.userMiddleName ~ " " ~ User.userLastName}}" src="{{ app.request.getBaseURL() }}/images/uploads/users/default.gif">
+                        {% else %}
+                            <img alt="{{User.userFirstName ~ " " ~ User.userMiddleName ~ " " ~ User.userLastName}}" src="{{ app.request.getBaseURL() }}{{User.userProfilePicture}}">
+                        {% endif %}    
+                        <h4><a title="{{User.userFirstName}}" href="{{ url('admin_user_Details', { 'id': User.userId }) }}">{{User.userFirstName ~ " " ~ User.userMiddleName ~ " " ~ User.userLastName}}</a></h4>
+                        <p><strong>User Type :</strong>
+                            {% if User.userRole == "ROLE_ADMIN" %}
+                                <span>Admin</span>
+                            {% elseif User.userRole == "ROLE_MOD" %}
+                                <span>Moderator</span>
+                            {% elseif User.userRole == "ROLE_USER" %}
+                                <span>User</span>
+                            {% endif %}   
+                        </p>
+                        <p>
+                            {% for Key,Value in episodeRatingInfo %}
+                                {#{{Episode[User.UserId]}}#}
+                                {% if Key == User.UserId %}
+                                    <span>{{Value}} Episodes Rated</span>
+                                {% else %}
+                                    <span>{{0}} Episode Rated</span>
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                        <p>
+                            {% if User.UserId in newArrSortedMaxView|keys  %}
+                                <strong>Most Watched :</strong> {{attribute(newArrSortedMaxView, User.UserId)['showTitle'] }}
+                            {% else %}
+                                <strong>Most Watched :</strong> N/A
+                            {% endif %}
+                        </p>
+                        <p>
+                            {% if User.UserId in newArrSortedMaxReview|keys %}
+                                <strong>Highest Rated :</strong> {{attribute(newArrSortedMaxReview, User.UserId)['showTitle'] }}
+                            {% else %}
+                                <strong>Highest Rated :</strong> N/A
+                            {% endif %}  
+                        </p>
+                    </div>
+                    <ul class="list-inline episode_search epi-carousel4">
+                        {% set count = 0 %}
+                        {% for Key,Value in arrUserWiseShowInfo %}
+                            {% if Key == User.UserId %}
+                                {% for userShow in Value %}
+                                    {% if count < 10 %}
+                                        <li class="item">
+                                            <a href="ShowSelected.html"><img src="{{ app.request.getBaseURL() }}{{ userShow["showBannerImage"] }}" class="img-responsive" alt=""></a>
+
+                                            <h6 class="title">{{ userShow["showTitle"] }}</h6>
+                                        </li>
+                                    {% endif %}
+                                    {% set count = count+1 %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}  
+
+{% block mfooter %}
+    <section class="mfooter">
+        <ul class="mfooter_menu">
+            <li><a class="left_link" href="{{ url('admin_home') }}">ADMIN</a></li>
+        </ul>
+        <div class="search_user">
+            <a class="search_btn"></a>
+            <div class="btmsearch closed">
+                <form class="form-inline" action="#" method="post">
+                    <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
+                    <input type="text" class="form-control pull-left" placeholder="Search..">
+                </form>
+            </div>
+            <div class="user_avater"><img src="{{asset('assets/admin/images/avater.png')}}" alt="" /></div>
+            <a class="maddbtn" href="#"><i class="fa fa-plus"></i></a>
+        </div>
+    </section>
+{% endblock %}        
+
+{% block customJs %}
+
+{% endblock %}    

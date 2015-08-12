@@ -1,0 +1,160 @@
+{% extends 'admin.html.twig' %}
+{% block sidemenu %}
+    <li><a class="right_link" href="{{ app.request.getBaseURL() }}/admin/season/{{episodesInfo.showId}}/{{episodesInfo.showTitle|replace(' ','-')}}">SEASONS</a></li>
+    <li><a class="left_link" href="{{ app.request.getBaseURL() }}/admin/characters/show/{{episodesInfo.showId}}">CHARACTERS</a></li>
+    {% endblock %}
+    {% block mainbody %}
+    <h1 class="admin_hadding">Admin {{episodesInfo.showTitle}}</h1>
+    <div class="container">
+        {{ form_start(form) }}
+
+        <div class="container">
+            <div class="show_controls">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="refresh_btn text-center">
+                            <a class="btn btn-block" href="{{ url('admin_show_season', { 'id': showId , 'name': episodesInfo.showTitle|replace(" ","-") }) }}">Seasons</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="refresh_btn text-center">
+                            <a class="btn btn-block" href="{{ url('admin_show_characters', { 'id': showId }) }}">Characters</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="title">
+                            {{ form_label(form.showStatus) }}
+                            {{ form_errors(form.showStatus) }}
+                            {{ form_widget(form.showStatus) }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="title">
+
+                            {{ form_label(form.showOriginalDataSupersede) }}
+                            {{ form_errors(form.showOriginalDataSupersede) }}
+                            {{ form_widget(form.showOriginalDataSupersede) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="title">
+
+                            {{ form_label(form.showAutoDataRefresh) }}
+                            {{ form_errors(form.showAutoDataRefresh) }}
+                            {{ form_widget(form.showAutoDataRefresh) }}
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="refresh_btn text-center">
+                            <a class="btn btn-block btn-blue" href="{{ app.request.getBaseURL() }}/admin/show/refreshDataNow/{{showId}}"><i class="fa fa-paper-plane"></i>Refresh Data Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box text-center">
+                            {{ form_label(form.showApiSummary) }}
+                            {{ form_errors(form.showApiSummary) }}
+                            {{ form_widget(form.showApiSummary) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box text-center">
+                            {{ form_label(form.showOriginalSummary) }}
+                            {{ form_errors(form.showOriginalSummary) }}
+                            {{ form_widget(form.showOriginalSummary) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box no-padding text-center">
+                            <h4>API Images</h4>
+                            <div class="api_img clearfix">
+                                 {% for key,image in apiImages %}
+                                    <div class="col-md-4">
+                                        <div class="images">
+                                            <img src="{{ app.request.getBaseURL() }}{{asset(image)}}" />
+                                            <a data-placement="bottom" data-toggle="tooltip" href="javascript:void(0)" class="set_icon" data-original-title="Set Banner" onclick="setBanner('{{asset(image)}}',{{showId}} , this)"><i class="fa fa-check"></i></a>
+                                        </div>
+                                    </div>
+                                {% endfor %}   
+                                
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box no-padding text-center">
+                            <h4>Original Images</h4>
+                            <div class="api_img clearfix">
+
+                                {% for key,image in images %}
+                                    <div class="col-md-4">
+                                        <div class="images">
+                                            <img src="{{ app.request.getBaseURL() }}{{asset(image)}}" />
+                                            <a data-placement="bottom" data-toggle="tooltip" href="javascript:void(0)" class="set_icon" data-original-title="Set Banner" onclick="setBanner('{{asset(image)}}',{{showId}} , this)"><i class="fa fa-check"></i></a>
+                                            <a href="javascript:void(0)" onclick="removeImage({{ key }},{{showId}} , this)"><i class="fa fa-times"></i></a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>     
+                        </div>
+                        <span class="fileinput-button btn btn-block">
+                            <i class="fa fa-upload"></i> Upload Images
+                            {{ form_errors(form.file) }}
+                            {{ form_widget(form.file) }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box no-padding text-center">
+                            <div class="alias_box clearfix">
+                                <div class="col-md-6">
+                                    {{ form_label(form.showAliasOne) }}
+                                    {{ form_errors(form.showAliasOne) }}
+                                    {{ form_widget(form.showAliasOne) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_label(form.showAliasTwo) }}
+                                    {{ form_errors(form.showAliasTwo) }}
+                                    {{ form_widget(form.showAliasTwo) }}
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center">
+                   {{form_widget(form.save,{ 'attr': {'class': 'btn btn-blue btn-large'} })}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+{% block customJs %}
+{% if updateMessage!="" %}    
+<script type="text/javascript">
+   $(document).ready(function(){
+       notify('success',"{{updateMessage}}");
+   }); 
+ 
+</script>
+{% endif %}
+{% endblock %}    

@@ -1,0 +1,536 @@
+<?php
+
+namespace EssentialTv\EtvBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Posts
+ */
+class Posts
+{
+    /**
+     * @var string
+     */
+    private $postTitle;
+
+    /**
+     * @var string
+     */
+    private $postCoverImage;
+
+    /**
+     * @var string
+     */
+    private $postContent;
+
+    /**
+     * @var string
+     */
+    private $postAbout;
+
+    /**
+     * @var string
+     */
+    private $postType;
+
+    /**
+     * @var string
+     */
+    private $postShowIds;
+
+    /**
+     * @var string
+     */
+    private $postEpisodeIds;
+
+    /**
+     * @var string
+     */
+    private $postCharacterIds;
+
+    /**
+     * @var string
+     */
+    private $postTags;
+
+    /**
+     * @var string
+     */
+    private $postPrimaryType;
+
+    /**
+     * @var string
+     */
+    private $postSecondaryType;
+
+    /**
+     * @var integer
+     */
+    private $postPopularity;
+
+    /**
+     * @var string
+     */
+    private $postStatus;
+
+    /**
+     * @var \DateTime
+     */
+    private $postCreatedOn;
+
+    /**
+     * @var \DateTime
+     */
+    private $postUpdatedOn;
+
+    /**
+     * @var integer
+     */
+    private $postUpdatedBy;
+
+    /**
+     * @var integer
+     */
+    private $postId;
+
+    /**
+     * @var integer
+     */
+    private $postCreatedBy;
+
+    private $postImages;
+    
+    private $postOriginallyCreatedBy;
+    /**
+     * Set postTitle
+     *
+     * @param string $postTitle
+     * @return Posts
+     */
+    public function setPostTitle($postTitle)
+    {
+        $this->postTitle = $postTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get postTitle
+     *
+     * @return string 
+     */
+    public function getPostTitle()
+    {
+        return $this->postTitle;
+    }
+
+    /**
+     * Set postCoverImage
+     *
+     * @param string $postCoverImage
+     * @return Posts
+     */
+    public function setPostCoverImage($postCoverImage)
+    {
+        $this->postCoverImage = $postCoverImage;
+
+        return $this;
+    }
+
+    /**
+     * Get postCoverImage
+     *
+     * @return string 
+     */
+    public function getPostCoverImage()
+    {
+        return $this->postCoverImage;
+    }
+
+    /**
+     * Set postContent
+     *
+     * @param string $postContent
+     * @return Posts
+     */
+    public function setPostContent($postContent)
+    {
+        $this->postContent = $postContent;
+
+        return $this;
+    }
+
+    /**
+     * Get postContent
+     *
+     * @return string 
+     */
+    public function getPostContent()
+    {
+        return $this->postContent;
+    }
+
+    /**
+     * Set postAbout
+     *
+     * @param string $postAbout
+     * @return Posts
+     */
+    public function setPostAbout($postAbout)
+    {
+        $this->postAbout = $postAbout;
+
+        return $this;
+    }
+
+    /**
+     * Get postAbout
+     *
+     * @return string 
+     */
+    public function getPostAbout()
+    {
+        return $this->postAbout;
+    }
+
+    /**
+     * Set postType
+     *
+     * @param string $postType
+     * @return Posts
+     */
+    public function setPostType($postType)
+    {
+        $this->postType = $postType;
+
+        return $this;
+    }
+
+    /**
+     * Get postType
+     *
+     * @return string 
+     */
+    public function getPostType()
+    {
+        return $this->postType;
+    }
+
+    /**
+     * Set postShowIds
+     *
+     * @param string $postShowIds
+     * @return Posts
+     */
+    public function setPostShowIds($postShowIds)
+    {
+        $this->postShowIds = $postShowIds;
+
+        return $this;
+    }
+
+    /**
+     * Get postShowIds
+     *
+     * @return string 
+     */
+    public function getPostShowIds()
+    {
+        return $this->postShowIds;
+    }
+
+    /**
+     * Set postEpisodeIds
+     *
+     * @param string $postEpisodeIds
+     * @return Posts
+     */
+    public function setPostEpisodeIds($postEpisodeIds)
+    {
+        $this->postEpisodeIds = $postEpisodeIds;
+
+        return $this;
+    }
+
+    /**
+     * Get postEpisodeIds
+     *
+     * @return string 
+     */
+    public function getPostEpisodeIds()
+    {
+        return $this->postEpisodeIds;
+    }
+
+    /**
+     * Set postCharacterIds
+     *
+     * @param string $postCharacterIds
+     * @return Posts
+     */
+    public function setPostCharacterIds($postCharacterIds)
+    {
+        $this->postCharacterIds = $postCharacterIds;
+
+        return $this;
+    }
+
+    /**
+     * Get postCharacterIds
+     *
+     * @return string 
+     */
+    public function getPostCharacterIds()
+    {
+        return $this->postCharacterIds;
+    }
+
+    /**
+     * Set postTags
+     *
+     * @param string $postTags
+     * @return Posts
+     */
+    public function setPostTags($postTags)
+    {
+        $this->postTags = $postTags;
+
+        return $this;
+    }
+
+    /**
+     * Get postTags
+     *
+     * @return string 
+     */
+    public function getPostTags()
+    {
+        return $this->postTags;
+    }
+
+    /**
+     * Set postPrimaryType
+     *
+     * @param string $postPrimaryType
+     * @return Posts
+     */
+    public function setPostPrimaryType($postPrimaryType)
+    {
+        $this->postPrimaryType = $postPrimaryType;
+
+        return $this;
+    }
+
+    /**
+     * Get postPrimaryType
+     *
+     * @return string 
+     */
+    public function getPostPrimaryType()
+    {
+        return $this->postPrimaryType;
+    }
+
+    /**
+     * Set postSecondaryType
+     *
+     * @param string $postSecondaryType
+     * @return Posts
+     */
+    public function setPostSecondaryType($postSecondaryType)
+    {
+        $this->postSecondaryType = $postSecondaryType;
+
+        return $this;
+    }
+
+    /**
+     * Get postSecondaryType
+     *
+     * @return string 
+     */
+    public function getPostSecondaryType()
+    {
+        return $this->postSecondaryType;
+    }
+
+    /**
+     * Set postPopularity
+     *
+     * @param integer $postPopularity
+     * @return Posts
+     */
+    public function setPostPopularity($postPopularity)
+    {
+        $this->postPopularity = $postPopularity;
+
+        return $this;
+    }
+
+    /**
+     * Get postPopularity
+     *
+     * @return integer 
+     */
+    public function getPostPopularity()
+    {
+        return $this->postPopularity;
+    }
+
+    /**
+     * Set postStatus
+     *
+     * @param string $postStatus
+     * @return Posts
+     */
+    public function setPostStatus($postStatus)
+    {
+        $this->postStatus = $postStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get postStatus
+     *
+     * @return string 
+     */
+    public function getPostStatus()
+    {
+        return $this->postStatus;
+    }
+
+    /**
+     * Set postCreatedOn
+     *
+     * @param \DateTime $postCreatedOn
+     * @return Posts
+     */
+    public function setPostCreatedOn($postCreatedOn)
+    {
+        $this->postCreatedOn = $postCreatedOn;
+
+        return $this;
+    }
+
+    /**
+     * Get postCreatedOn
+     *
+     * @return \DateTime 
+     */
+    public function getPostCreatedOn()
+    {
+        return $this->postCreatedOn;
+    }
+
+    /**
+     * Set postUpdatedOn
+     *
+     * @param \DateTime $postUpdatedOn
+     * @return Posts
+     */
+    public function setPostUpdatedOn($postUpdatedOn)
+    {
+        $this->postUpdatedOn = $postUpdatedOn;
+
+        return $this;
+    }
+
+    /**
+     * Get postUpdatedOn
+     *
+     * @return \DateTime 
+     */
+    public function getPostUpdatedOn()
+    {
+        return $this->postUpdatedOn;
+    }
+
+    /**
+     * Set postUpdatedBy
+     *
+     * @param integer $postUpdatedBy
+     * @return Posts
+     */
+    public function setPostUpdatedBy($postUpdatedBy)
+    {
+        $this->postUpdatedBy = $postUpdatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get postUpdatedBy
+     *
+     * @return integer 
+     */
+    public function getPostUpdatedBy()
+    {
+        return $this->postUpdatedBy;
+    }
+
+    /**
+     * Get postId
+     *
+     * @return integer 
+     */
+    public function getPostId()
+    {
+        return $this->postId;
+    }
+
+    /**
+     * Set postCreatedBy
+     *
+     * @param \EssentialTv\EtvBundle\Entity\Users $postCreatedBy
+     * @return Posts
+     */
+    public function setPostCreatedBy($postCreatedBy)
+    {
+        $this->postCreatedBy = $postCreatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get postCreatedBy
+     *
+     * @return \EssentialTv\EtvBundle\Entity\Users 
+     */
+    public function getPostCreatedBy()
+    {
+        return $this->postCreatedBy;
+    }
+    
+    
+      public function setPostImages($postImages)
+    {
+        $this->postImages = $postImages;
+
+        return $this;
+    }
+
+    /**
+     * Get postCreatedBy
+     *
+     * @return \EssentialTv\EtvBundle\Entity\Users 
+     */
+    public function getPostImages()
+    {
+        return $this->postImages;
+    }
+    
+    
+public function setPostOriginallyCreatedBy($postOriginallyCreatedBy)
+    {
+        $this->postOriginallyCreatedBy = $postOriginallyCreatedBy;
+
+        return $this;
+    }
+
+public function getPostOriginallyCreatedBy()
+    {
+        return $this->postOriginallyCreatedBy;
+    }
+}

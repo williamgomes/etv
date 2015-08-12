@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\Shows" table="shows" repository-class="EssentialTv\EtvBundle\Entity\ShowRepository">
+    <id name="showId" type="integer" column="show_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="showTmsId" type="string" column="show_tms_id" length="255" nullable="false"/>
+    <field name="showApiId" type="integer" column="show_api_id" nullable="false"/>
+    <field name="showSeasonTotal" type="integer" column="show_season_total" nullable="false"/>
+    <field name="showEpisodeTotal" type="integer" column="show_episode_total" nullable="false"/>
+    <field name="showGenres" type="text" column="show_genres" nullable="false"/>
+    <field name="showTheme" type="text" column="show_theme" nullable="false"/>
+    <field name="showTitle" type="text" column="show_title" nullable="false"/>
+    <field name="showOriginalSummary" type="text" column="show_original_summary" nullable="false"/>
+    <field name="showApiSummary" type="text" column="show_api_summary" nullable="false"/>
+    <field name="showOriginalImages" type="text" column="show_original_images" nullable="false"/>
+    <field name="showApiImages" type="text" column="show_api_images" nullable="false"/>
+    <field name="showBannerImage" type="text" column="show_banner_image" nullable="false"/>
+    <field name="showAliasOne" type="string" column="show_alias_one" length="255" nullable="false"/>
+    <field name="showAliasTwo" type="string" column="show_alias_two" length="255" nullable="false"/>
+    <field name="showStatus" type="string" column="show_status" nullable="false"/>
+    <field name="showOriginalDataSupersede" type="string" column="show_original_data_supersede" nullable="false"/>
+    <field name="showAutoDataRefresh" type="string" column="show_auto_data_refresh" nullable="false"/>
+    <field name="showPopularity" type="decimal" column="show_popularity" precision="8" scale="2" nullable="false"/>
+    <field name="showsCreatedOn" type="datetime" column="shows_created_on" nullable="false"/>
+    <field name="showsCreatedBy" type="integer" column="shows_created_by" nullable="false"/>
+    <field name="showsUpdatedOn" type="datetime" column="shows_updated_on" nullable="false"/>
+    <field name="showsUpdatedBy" type="integer" column="shows_updated_by" nullable="false"/>
+  </entity>
+</doctrine-mapping>

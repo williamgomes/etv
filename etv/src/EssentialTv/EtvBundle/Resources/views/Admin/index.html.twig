@@ -1,0 +1,70 @@
+{% extends 'admin.html.twig' %}
+{% block mainbody %}
+    {#{{ dump(allConfigSettings) }}#}
+    <h1 class="admin_hadding">Admin Panel</h1>
+    <div class="container">
+        <div class="RatingsControls text-center">
+            <h2>Ratings Controls</h2>
+            <p class="text-left">Weight Essential Ratings to account for Fan bias. Only calculated data will be impacted; integrity of original data will remain.</p>
+            <p>Essential Yes = <span>{{ allConfigSettings['ESSENTIAL_YES_VALUE'] }}</span></p>
+            <p>Essential No = <span>{{ allConfigSettings['ESSENTIAL_NO_VALUE'] }}</span></p>
+            <p>Spoiler/Quote Dispute Limit = <span>{{ allConfigSettings['DISPUTE_LIMIT'] }}</span></p>
+            <a class="btn" data-toggle="modal" data-target="#RatingsControls"><i class="fa fa-edit"></i>Edit</a>
+        </div>
+    </div>
+
+
+
+    <!-- Modal Update Admin Option -->
+    <div class="modal fade" id="RatingsControls" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Ratings Controls</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Weight Essential Ratings to account for Fan bias. Only calculated data will be impacted; integrity of original data will remain.</p>
+                    <form method="post" id="form_settings">
+                        <div class="form-group">
+                            <label>Essential Yes = </label>
+                            <input type="text" name="essential_yes" placeholder="Essential Yes" class="" value="{{ allConfigSettings['ESSENTIAL_YES_VALUE'] }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Essential No = </label>
+                            <input type="text" name="essential_no" placeholder="Essential No" class="" value="{{ allConfigSettings['ESSENTIAL_NO_VALUE'] }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Spoiler/Quote Dispute Limit = </label>
+                            <input type="text" name="dispute_limit" placeholder="Dispute Limit" class="" value="{{ allConfigSettings['DISPUTE_LIMIT'] }}">
+                        </div>
+                        <div class="form-group">
+                            <label></label>
+                            <input type="button" class="btn" value="Update" onclick="javascript:submitSettings();" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block mfooter %}
+    <section class="mfooter">
+        <ul class="mfooter_menu">
+            <li><a class="left_link" href="{{ url('admin_show_select') }}">Show Controls</a></li>
+            <li><a class="right_link" href="{{ url('admin_user_control') }}">User Controls</a></li>
+        </ul>
+        <div class="search_user">
+            <a class="search_btn"></a>
+            <div class="btmsearch closed">
+                <form class="form-inline" action="#" method="post">
+                    <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
+                    <input type="text" class="form-control pull-left" placeholder="Search..">
+                </form>
+            </div>
+            <div class="user_avater"><img src="images/avater.png" alt="" /></div>
+            <a class="maddbtn" href="#"><i class="fa fa-plus"></i></a>
+        </div>
+    </section>
+{% endblock %}        

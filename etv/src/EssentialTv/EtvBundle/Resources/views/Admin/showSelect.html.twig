@@ -1,0 +1,28 @@
+{% extends 'admin.html.twig' %}
+{% block searchblock %}
+ <form name="input" action="" method="post" class="form-inline">
+     <button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>
+     <input type="text" name="query" value = "{{query}}" placeholder="Search.." class="form-control pull-left">
+   </form>
+{% endblock %}
+{% block mainbody %}
+<h1 class="admin_hadding">Admin Show Select</h1>
+	<div class="container">
+            <ul class="list-inline episode_search">
+  {% for shows in showList %}
+      <li class="item">
+                  {% if query is not null %}
+                      <a href="javascript:void(0)"><img alt="" class="img-responsive" src="{{shows.showBannerImage}}"></a>
+                      <a class="addbtn" href="{{ app.request.getBaseURL() }}/admin/show/addToSystem/{{shows.showId}}"><i class="fa fa-plus"></i></a>
+                      <h6 class="title">{{shows.showTitle}}</h6>
+                  {% else %} 
+                     <a href="{{ app.request.getBaseURL() }}/admin/show/control/{{shows.showId}}"><img alt="" class="img-responsive" src="{{ app.request.getBaseURL() }}{{asset(shows.showBannerImage)}}"></a>
+                     <h6 class="title">{{shows.showTitle}}</h6>
+                  {% endif %}
+                 
+              </li>
+     
+  {% endfor %}
+            </ul>
+        </div>
+  {% endblock %}

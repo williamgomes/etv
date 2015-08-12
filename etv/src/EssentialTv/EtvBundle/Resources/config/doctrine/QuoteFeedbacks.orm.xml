@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\QuoteFeedbacks" table="quote_feedbacks" repository-class="EssentialTv\EtvBundle\Entity\QuoteFeedbacksRepository">
+    <indexes>
+      <index name="quote_feedback_user_id" columns="quote_feedback_user_id"/>
+      <index name="quote_feedback_spoiler_id" columns="quote_feedback_spoiler_id"/>
+    </indexes>
+    <id name="quoteFeedbackId" type="integer" column="quote_feedback_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="quoteFeedbackUserId" type="integer" column="quote_feedback_user_id" nullable="false"/>
+    <field name="quoteFeedbackSpoilerId" type="integer" column="quote_feedback_spoiler_id" nullable="false"/>
+    <field name="quoteFeedbackFeedback" type="string" column="quote_feedback_feedback" nullable="false"/>
+    <field name="quoteFeedbackCreatedOn" type="datetime" column="quote_feedback_created_on" nullable="false"/>
+    <field name="quoteFeedbackCreatedBy" type="integer" column="quote_feedback_created_by" nullable="false"/>
+    <field name="quoteFeedbackUpdatedOn" type="datetime" column="quote_feedback_updated_on" nullable="false"/>
+    <field name="quoteFeedbackUpdatedBy" type="integer" column="quote_feedback_updated_by" nullable="false"/>
+  </entity>
+</doctrine-mapping>

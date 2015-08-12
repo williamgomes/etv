@@ -1,0 +1,327 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block toprow %}
+{% endblock %}
+{% block sidemenu %}
+    <li><a class="left_link" href="{{ app.request.getBaseURL() }}/user/signup">Register</a></li>
+    <li><a class="right_link" href="javascript:void(0)" disabled>EPISODE GUIDE</a></li>
+    {% endblock %}
+    {% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="login-card">
+                    <div class="col-md-12">
+                        <h3 class="text-center">Connect Via</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slide-social">
+                                    <div class="button"> 
+                                        <a href="javascript:void(0);" onclick="javascript:facebookLogin();">Facebook Signin</a>
+                                    </div>
+                                    <div class="facebook icon">
+                                        <i class="fa fa-facebook"></i>
+                                    </div>
+                                    <div class="facebook slide"><p>Signin with Facebook</p></div>
+                                </div>
+                            </div>
+                            {#<div class="col-md-12">
+                                <div class="slide-social">
+                                    <div class="button">
+                                        <a href="javascript:void(0);" onclick="javascript:doTWSignIn();">Twitter Signin</a>
+                                    </div>
+                                    <div class="twitter icon">
+                                        <i class="fa fa-twitter"></i>
+                                    </div>
+                                    <div class="twitter slide"><p>Signin with Twitter</p></div>
+                                </div>
+                            </div>#}
+                            <div class="col-md-12">
+                                <div class="slide-social">
+                                    <div class="button"> 
+                                        <a href="javascript:void(0);" onclick="javascript:googleLogin();">Google Signin</a>
+                                    </div>
+                                    <div class="google-plus icon">
+                                        <i class="fa fa-google-plus"></i>
+                                    </div>
+                                    <div class="google-plus slide"><p>Signin with Google</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1>Sign-In</h1>
+                    <br/>
+                    {{ form_start(form,{ 'attr': {'class': 'singin'} })}}
+                    {% if message is defined %}
+                        {{message|raw}}
+                    {% endif %}
+                    <div class="form-group">
+                        {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'Enter Your Email'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(form.password,{ 'attr': {'class': 'form-control','placeholder':'Enter Your Password'} }) }}
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="1"> Remember Password
+                            </label>
+                        </div>
+                    </div>
+                    <input type="submit" name="login" class="btn btn-block btn-large" value="Login">
+                    {{form_end(form)}}
+
+                    <div class="login-help">
+                        <a href="Signup.html">Register</a> • <a href="#">Forgot Password</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom_js %}
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            var appId = '';
+        {#if (baseUrl == "http://ticketchai.com/" || baseUrl == "http://www.ticketchai.com/") {
+            appId = '419921891492167';
+        } else {#}
+                appId = '841801075860278';
+        {#            }#}
+                FB.init({
+                    appId: appId,
+                    oauth: true,
+                    status: true, // check login status
+                    cookie: true, // enable cookies to allow the server to access the session
+                    xfbml: true // parse XFBML
+                });
+
+            };
+
+            function facebookLogin() {
+                FB.login(function (response) {
+
+                    if (response.authResponse) {
+
+                        FB.api('/me', function (response) {
+                            console.log(response);
+                            var data = new Object();
+                            data.user_first_name = response.first_name;
+                            data.user_middle_name = response.middle_name;
+                            data.user_last_name = response.last_name;
+                            data.user_email = response.email;
+                            data.user_social_id = response.id;
+                            data.user_gender = response.gender;
+                            data.user_social_type = 'facebook';
+                            data.user_verification = 'yes';
+                            data.birthday = response.birthday;
+                            data.fb_link = response.link;
+        {#                        console.log(data);#}
+                            var url = window.siteUrl + '/user/facebook/login';
+                            $.ajax({
+                                type: 'post',
+                                url: url,
+                                data: data,
+                                dataType: "json",
+                                success: function (response) {
+                                    var obj = response;
+                                    if (obj.isPosted == true) {
+                                        notify('success', obj.message);
+
+                                        if (obj.userRole == "ROLE_ADMIN") {
+                                            setTimeout(function () {
+                                                window.location.replace(window.siteUrl + "/admin/home");
+                                            }, 3000);
+                                        } else if (obj.userRole == "ROLE_MOD") {
+                                            setTimeout(function () {
+                                                window.location.replace(window.siteUrl + "/admin/show/select");
+                                            }, 3000);
+                                        } else if (obj.userRole == "ROLE_USER") {
+                                            setTimeout(function () {
+                                                window.location.replace(window.siteUrl + "/");
+                                            }, 3000);
+                                        }
+                                    } else {
+                                        notify('error', obj.message);
+                                    }
+
+                                },
+                                error: function (output) {
+                                    alert("Process Working Stopped");
+                                }
+
+                            });
+
+                        });
+                        access_token = response.authResponse.accessToken; //get access token
+                        user_id = response.authResponse.userID; //get FB UID
+
+                    } else {
+                        //user hit cancel button
+                        console.log('User cancelled login or did not fully authorize.');
+
+                    }
+                }, {
+                    scope: 'email'
+                });
+            }
+            (function () {
+                var e = document.createElement('script');
+                e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+                e.async = true;
+                document.getElementById('fb-root').appendChild(e);
+            }());
+    </script>
+
+    <!--Google Login API Javascript functions-->
+    <script type="text/javascript">
+
+        function logout()
+        {
+            gapi.auth.signOut();
+            location.reload();
+        }
+
+
+        function googleLogin()
+        {
+            var myParams = {
+                'clientid': '948155867752-6kae5etea0qjpcpo2lcftkorv1kccgn3.apps.googleusercontent.com',
+                'cookiepolicy': 'single_host_origin',
+                'callback': 'loginCallback',
+                'approvalprompt': 'force',
+                'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
+            };
+            gapi.auth.signIn(myParams);
+        }
+
+
+        //loginCallback() function is to check whether user is successfully logged in or not and if do then get response
+        function loginCallback(result)
+        {
+            if (result['status']['signed_in'])
+            {
+                var request = gapi.client.plus.people.get(
+                        {
+                            'userId': 'me'
+                        });
+                request.execute(function (resp)
+                {
+                    var email = '';
+                    if (resp['emails'])
+                    {
+                        for (i = 0; i < resp['emails'].length; i++)
+                        {
+                            if (resp['emails'][i]['type'] == 'account')
+                            {
+                                email = resp['emails'][i]['value'];
+                            }
+                        }
+                    }
+
+                    var data = new Object();
+                    data.user_first_name = resp['name']['givenName'];
+                    data.user_last_name = resp['name']['familyName'];
+                    data.user_email = email;
+                    data.user_social_id = resp['id'];
+                    data.user_gender = resp['gender'];
+                    data.user_social_type = 'google';
+                    data.user_verification = 'yes';
+                    data.google_url = resp['url'];
+
+                    var url = window.siteUrl + '/user/google/login';
+                    $.ajax({
+                        type: 'post',
+                        url: url,
+                        data: data,
+                        dataType: "json",
+                        success: function (response) {
+                            var obj = response;
+                            if (obj.isPosted == true) {
+                                notify('success', obj.message);
+
+                                if (obj.userRole == "ROLE_ADMIN") {
+                                    setTimeout(function () {
+                                        window.location.replace(window.siteUrl + "/admin/home");
+                                    }, 3000);
+                                } else if (obj.userRole == "ROLE_MOD") {
+                                    setTimeout(function () {
+                                        window.location.replace(window.siteUrl + "/admin/show/select");
+                                    }, 3000);
+                                } else if (obj.userRole == "ROLE_USER") {
+                                    setTimeout(function () {
+                                        window.location.replace(window.siteUrl + "/");
+                                    }, 3000);
+                                }
+                            } else {
+                                notify('error', obj.message);
+                            }
+
+
+                        },
+                        error: function (output) {
+                            alert("not working whole process");
+                        }
+
+                    });
+                });
+
+            }
+
+        }
+        function onLoadCallback()
+        {
+            gapi.client.setApiKey('AIzaSyD53EmYL-9Tj9d6_jgcOHNHxYSEKPpYUaU');
+            gapi.client.load('plus', 'v1', function () {
+            });
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+        //      Asynchronous call to google client api
+
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+    <!--//Google Login API Javascript functions-->
+
+
+
+    <script type="text/javascript">
+        !function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "http://platform.twitter.com/anywhere.js?id=" + gTWApplicationId;
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, "script", 'twitter-anywhere');
+//describe the login actions
+        twttr.anywhere(function (T) {
+            T.bind("authComplete", function (e, user) {
+                var token = user.attributes._identity;
+                console.log(token);
+                //define the login function on your client through Twitter
+            });
+        });
+//function we link to the click on the custom login button through Twitter
+        function doTWSignIn() {
+            twttr.anywhere(function (T) {
+                T.signIn();
+            });
+        }
+    </script>
+{% endblock %}

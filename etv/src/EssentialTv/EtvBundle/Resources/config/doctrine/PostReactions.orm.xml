@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\PostReactions" table="post_reactions" repository-class="EssentialTv\EtvBundle\Entity\PostReactionsRepository">
+    <indexes>
+      <index name="reaction_post_id" columns="reaction_post_id"/>
+      <index name="reaction_user_id" columns="reaction_user_id"/>
+      <index name="reaction_parent_id" columns="reaction_parent_id"/>
+    </indexes>
+    <id name="reactionId" type="integer" column="reaction_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="reactionPostId" type="integer" column="reaction_post_id" nullable="true"/>
+    <field name="reactionUserId" type="integer" column="reaction_user_id" nullable="true"/>
+    <field name="reactionParentId" type="integer" column="reaction_parent_id" nullable="true"/>
+    <field name="reactionText" type="text" column="reaction_text" nullable="false"/>
+    <field name="reactionCreatedOn" type="datetime" column="reaction_created_on" nullable="true"/>
+    <field name="reactionCreatedBy" type="integer" column="reaction_created_by" nullable="false"/>
+    <field name="reactionUpdatedOn" type="datetime" column="reaction_updated_on" nullable="false"/>
+    <field name="reactionUpdatedBy" type="integer" column="reaction_updated_by" nullable="false"/>
+  </entity>
+</doctrine-mapping>

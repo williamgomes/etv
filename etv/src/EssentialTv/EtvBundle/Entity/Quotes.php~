@@ -1,0 +1,314 @@
+<?php
+
+namespace EssentialTv\EtvBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Quotes
+ *
+ * @ORM\Table(name="quotes", indexes={@ORM\Index(name="quote_user_id", columns={"quote_user_id"}), @ORM\Index(name="quote_character_id", columns={"quote_character_id"}), @ORM\Index(name="quote_episode_id", columns={"quote_episode_id"})})
+ * @ORM\Entity
+ */
+class Quotes
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quote_text", type="text", nullable=true)
+     */
+    private $quoteText;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="quote_created_on", type="datetime", nullable=true)
+     */
+    private $quoteCreatedOn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quote_created_by", type="integer", nullable=false)
+     */
+    private $quoteCreatedBy;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="quote_updated_on", type="datetime", nullable=false)
+     */
+    private $quoteUpdatedOn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quote_update_by", type="integer", nullable=false)
+     */
+    private $quoteUpdateBy;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quote_status", type="string", nullable=false)
+     */
+    private $quoteStatus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quote_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $quoteId;
+
+    /**
+     * @var \EssentialTv\EtvBundle\Entity\Episodes
+     *
+     * @ORM\ManyToOne(targetEntity="EssentialTv\EtvBundle\Entity\Episodes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="quote_episode_id", referencedColumnName="episode_id")
+     * })
+     */
+    private $quoteEpisode;
+
+    /**
+     * @var \EssentialTv\EtvBundle\Entity\Characters
+     *
+     * @ORM\ManyToOne(targetEntity="EssentialTv\EtvBundle\Entity\Characters")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="quote_character_id", referencedColumnName="character_id")
+     * })
+     */
+    private $quoteCharacter;
+
+    /**
+     * @var \EssentialTv\EtvBundle\Entity\Users
+     *
+     * @ORM\ManyToOne(targetEntity="EssentialTv\EtvBundle\Entity\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="quote_user_id", referencedColumnName="user_id")
+     * })
+     */
+    private $quoteUser;
+
+
+
+    /**
+     * Set quoteText
+     *
+     * @param string $quoteText
+     * @return Quotes
+     */
+    public function setQuoteText($quoteText)
+    {
+        $this->quoteText = $quoteText;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteText
+     *
+     * @return string 
+     */
+    public function getQuoteText()
+    {
+        return $this->quoteText;
+    }
+
+    /**
+     * Set quoteCreatedOn
+     *
+     * @param \DateTime $quoteCreatedOn
+     * @return Quotes
+     */
+    public function setQuoteCreatedOn($quoteCreatedOn)
+    {
+        $this->quoteCreatedOn = $quoteCreatedOn;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteCreatedOn
+     *
+     * @return \DateTime 
+     */
+    public function getQuoteCreatedOn()
+    {
+        return $this->quoteCreatedOn;
+    }
+
+    /**
+     * Set quoteCreatedBy
+     *
+     * @param integer $quoteCreatedBy
+     * @return Quotes
+     */
+    public function setQuoteCreatedBy($quoteCreatedBy)
+    {
+        $this->quoteCreatedBy = $quoteCreatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteCreatedBy
+     *
+     * @return integer 
+     */
+    public function getQuoteCreatedBy()
+    {
+        return $this->quoteCreatedBy;
+    }
+
+    /**
+     * Set quoteUpdatedOn
+     *
+     * @param \DateTime $quoteUpdatedOn
+     * @return Quotes
+     */
+    public function setQuoteUpdatedOn($quoteUpdatedOn)
+    {
+        $this->quoteUpdatedOn = $quoteUpdatedOn;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteUpdatedOn
+     *
+     * @return \DateTime 
+     */
+    public function getQuoteUpdatedOn()
+    {
+        return $this->quoteUpdatedOn;
+    }
+
+    /**
+     * Set quoteUpdateBy
+     *
+     * @param integer $quoteUpdateBy
+     * @return Quotes
+     */
+    public function setQuoteUpdateBy($quoteUpdateBy)
+    {
+        $this->quoteUpdateBy = $quoteUpdateBy;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteUpdateBy
+     *
+     * @return integer 
+     */
+    public function getQuoteUpdateBy()
+    {
+        return $this->quoteUpdateBy;
+    }
+
+    /**
+     * Set quoteStatus
+     *
+     * @param string $quoteStatus
+     * @return Quotes
+     */
+    public function setQuoteStatus($quoteStatus)
+    {
+        $this->quoteStatus = $quoteStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteStatus
+     *
+     * @return string 
+     */
+    public function getQuoteStatus()
+    {
+        return $this->quoteStatus;
+    }
+
+    /**
+     * Get quoteId
+     *
+     * @return integer 
+     */
+    public function getQuoteId()
+    {
+        return $this->quoteId;
+    }
+
+    /**
+     * Set quoteEpisode
+     *
+     * @param \EssentialTv\EtvBundle\Entity\Episodes $quoteEpisode
+     * @return Quotes
+     */
+    public function setQuoteEpisode(\EssentialTv\EtvBundle\Entity\Episodes $quoteEpisode = null)
+    {
+        $this->quoteEpisode = $quoteEpisode;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteEpisode
+     *
+     * @return \EssentialTv\EtvBundle\Entity\Episodes 
+     */
+    public function getQuoteEpisode()
+    {
+        return $this->quoteEpisode;
+    }
+
+    /**
+     * Set quoteCharacter
+     *
+     * @param \EssentialTv\EtvBundle\Entity\Characters $quoteCharacter
+     * @return Quotes
+     */
+    public function setQuoteCharacter(\EssentialTv\EtvBundle\Entity\Characters $quoteCharacter = null)
+    {
+        $this->quoteCharacter = $quoteCharacter;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteCharacter
+     *
+     * @return \EssentialTv\EtvBundle\Entity\Characters 
+     */
+    public function getQuoteCharacter()
+    {
+        return $this->quoteCharacter;
+    }
+
+    /**
+     * Set quoteUser
+     *
+     * @param \EssentialTv\EtvBundle\Entity\Users $quoteUser
+     * @return Quotes
+     */
+    public function setQuoteUser(\EssentialTv\EtvBundle\Entity\Users $quoteUser = null)
+    {
+        $this->quoteUser = $quoteUser;
+
+        return $this;
+    }
+
+    /**
+     * Get quoteUser
+     *
+     * @return \EssentialTv\EtvBundle\Entity\Users 
+     */
+    public function getQuoteUser()
+    {
+        return $this->quoteUser;
+    }
+}

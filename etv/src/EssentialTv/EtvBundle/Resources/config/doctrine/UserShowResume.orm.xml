@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\UserShowResume" table="user_show_resume">
+    <indexes>
+      <index name="USR_user" columns="USR_user_id"/>
+      <index name="USR_show" columns="USR_show_id"/>
+      <index name="USR_episode" columns="USR_episode_id"/>
+    </indexes>
+    <id name="usrId" type="integer" column="USR_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="usrCreatedOn" type="datetime" column="USR_created_on" nullable="true"/>
+    <field name="usrCreatedBy" type="integer" column="USR_created_by" nullable="true"/>
+    <field name="usrUpdatedOn" type="datetime" column="USR_updated_on" nullable="true"/>
+    <field name="usrUpdatedBy" type="integer" column="USR_updated_by" nullable="true"/>
+    <many-to-one field="usrUser" target-entity="Users">
+      <join-columns>
+        <join-column name="USR_user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="usrShow" target-entity="Shows">
+      <join-columns>
+        <join-column name="USR_show_id" referenced-column-name="show_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="usrEpisode" target-entity="Episodes">
+      <join-columns>
+        <join-column name="USR_episode_id" referenced-column-name="episode_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

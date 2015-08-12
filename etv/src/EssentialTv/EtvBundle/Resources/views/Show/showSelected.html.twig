@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block sidemenu %}
+<li><a class="left_link" href="{{ app.request.getBaseURL() }}/">Home</a></li>
+<li><a class="right_link" href="{{ app.request.getBaseURL() }}/season/{{show.showId}}/{{show.showTitle|replace(' ','-')}}" disabled>EPISODE GUIDE</a></li>
+{% endblock %}
+{% block content %}
+<div class="container">
+    
+     <div class="row">
+        	<div class="col-md-12">
+            <div class="episode-carousel">
+            <ul class="list-inline epi-carousel">
+                
+            {% if episodes is not null%}
+            {% if "now"|date('Y-m-d') < episodes[0].episodeScreeningDate|date('Y-m-d') %}    
+            <li class="item upcoming_epi">
+              <a href="{{ app.request.getBaseURL()}}/episode/{{episodes[0].episodeId}}/{{episodes[0].episodeTitle|replace(' ','-')}}"><img src="{{ app.request.getBaseURL() }}{{episodes[0].episodeBannerImage}}" alt="" /></a>
+              <div class="dec_title">
+                <div class="question">
+                    <h3>New episode in<span>{{episodes[0].episodeScreeningDate|date('M d,Y')}}</span></h3>
+                </div>
+                <div class="answer">
+                    <span id="episodeCountdown"></span>
+                </div>
+                <div class="season">
+                    <h4><span>Season {{episodes[0].episodeSeason}}</span>ep{{episodes[0].episodeNumber}}: {{episodes[0].episodeTitle}}</h4>
+                </div>
+            </div>
+            </li>
+            {% endif %}{% endif %}
+            {% for episode in episodes|slice(0,5) %}
+            <li class="item">
+              <a href="{{ app.request.getBaseURL()}}/episode/{{episode.episodeId}}/{{episode.episodeTitle|replace(' ','-')}}"><img src="{{ app.request.getBaseURL() }}{{episode.episodeBannerImage}}" alt="" /></a>
+              <div class="dec_title">
+                <div class="question">
+                    <h3>is this episode<span>essential?</span></h3>
+                </div>
+                 {%if isLoggedIn %} 
+                <div class="answer" id="yes-no{{episode.episodeId}}">
+                    <a class="yesbtn" onclick = "submitEpisodeEssential({{episode.episodeId}},'yes',{{showId}})">YES</a>
+                    <a class="yesbtn nobtn" onclick = "submitEpisodeEssential({{episode.episodeId}},'no',{{showId}})">NO</a>
+                </div>
+                {%else%}
+                    <div class="answer">
+                    <a class="yesbtn loginPrompt" >{{episode.percent|round}}% </a>
+                    <a class="yesbtn nobtn loginPrompt">{{100-episode.percent|round}}%</a>
+                </div>
+                {% endif %}
+                <div class="season">
+                    <h4><span>Season {{episode.episodeSeason}}</span>ep{{episode.episodeNumber}}: {{episode.episodeTitle}}</h4>
+                </div>
+            </div>
+            </li>
+            {% endfor %}
+            </ul>
+                <div class="short_dec"><p>{% if show.showOriginalDataSupersede=="active" %}{{show.showOriginalSummary}}{% else %}{{show.showApiSummary}}{% endif %}</p></div>
+              </div>
+            </div>
+        </div>
+     
+    
+        <div class="row ">
+        	<div class="col-md-12 scrollLoader">
+                <ul class="thumb-post">
+                    {% for episode in episodes %}
+                        <li class="item">
+                            <div class="post-content">
+                                <div class="content_img">
+                                  <div class="new">New</div>
+                                    <a class="post-image" title="{{episode.episodeTitle}}" href="{{ app.request.getBaseURL()}}/episode/{{episode.episodeId}}/{{episode.episodeTitle|replace(' ','-')}}">
+                                    <img src="{{ app.request.getBaseURL() }}{{episode.episodeBannerImage}}" title="" alt=""/>
+                                    </a>
+                                </div>
+                                <div class="post_dec">
+                                    <h2 class="product-name"><a title="{{episode.episodeTitle}}" href="{{ app.request.getBaseURL()}}/episode/{{episode.episodeId}}/{{episode.episodeTitle|replace(' ','-')}}">{{episode.episodeTitle}}</a></h2>
+                                    <p class="date">{{episode.episodeScreeningDate|date('M d, Y')}}</p>
+                                    <p>{% if episode.originalDataSupersede=="active" %}{{episode.episodeOriginalSummary[:100]}}... {% else %}{{episode.episodeApiSummary[:110]}}...{% endif %} </p>
+                                </div>
+                            </div>
+                        </li>
+                  {% endfor %}
+                  <div class="next" style="display: none"><a class="infinite-more-link" href="{{ app.request.getBaseURL() }}/show/loadMoreEpisodes/{{showId}}/12">next</a></div> 
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom_js %}
+<script src="{{asset('assets/js/jquery.countdown.js')}}"></script>
+<script type="text/javascript">
+	(function($) {
+  "use strict";
+  //windows load event
+  $(window).load(function() {
+	$(function () {
+		var austDay = new Date("{{episodes[0].episodeScreeningDate|date('Y-m-d')}}");
+		//austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
+                //console.log(austDay);
+		$('#episodeCountdown').countdown({until: austDay});
+		$('#year').text(austDay.getFullYear());
+	});
+ });
+ $(document).ready(function(){
+ $(".loginPrompt").click(function(){
+    notify('error','Login to Rate.'); 
+ });
+ });
+ 
+})(jQuery);
+</script>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+ {% block headerNav %}
+{% endblock %}
+{% block toprow %}
+{% endblock %}
+
+{% block content %}
+    <div class="hadding_title">
+    	<div class="container">
+        	<h1 class="">Click Post Type Below</h1>
+        </div>
+    </div>
+	<div class="container">
+        <div class="row text-center">
+        	<div class="col-md-6">
+                <a href="{{app.request.getBaseURL()}}/post/create/Text" class="a-btn">
+                    <span class="a-btn-slide-text"><img src="{{app.request.getBaseURL()}}/assets/images/click.png" alt="click"></span>
+                    <img src="{{app.request.getBaseURL()}}/assets/images/1.png" alt="Photos">
+                    <span class="a-btn-text"><small>Choose Template</small> Text</span> 
+                    <span class="a-btn-icon-right"><span><i class="fa fa-arrow-right"></i>
+</span></span>
+                </a>
+            </div>
+            <div class="col-md-6">
+            	<a href="{{ app.request.getBaseURL()}}/post/create/Link" class="a-btn">
+						<span class="a-btn-slide-text"><img src="{{app.request.getBaseURL()}}/assets/images/click.png" alt="click"></span>
+						<img src="{{app.request.getBaseURL()}}/assets/images/2.png" alt="Maps">
+						<span class="a-btn-text"><small>Choose Template</small> Link</span> 
+						<span class="a-btn-icon-right"><span><i class="fa fa-arrow-right"></i>
+</span></span>
+					</a>
+            </div>
+            <div class="col-md-6">
+            	<a href="{{ app.request.getBaseURL() }}/post/create/Video" class="a-btn">
+						<span class="a-btn-slide-text"><img src="{{app.request.getBaseURL()}}/assets/images/click.png" alt="click"></span>
+						<img src="{{app.request.getBaseURL()}}/assets/images/3.png" alt="Settings">
+						<span class="a-btn-text"><small>Choose Template</small> Video</span> 
+						<span class="a-btn-icon-right"><span><i class="fa fa-arrow-right"></i>
+</span></span>
+					</a>
+            </div>
+            <div class="col-md-6">
+            	<a href="{{ app.request.getBaseURL() }}/post/create/Image" class="a-btn">
+						<span class="a-btn-slide-text"><img src="{{app.request.getBaseURL()}}/assets/images/click.png" alt="click"></span>
+						<img src="{{app.request.getBaseURL()}}/assets/images/4.png" alt="Wireless">
+						<span class="a-btn-text"><small>Choose Template</small>Image</span> 
+						<span class="a-btn-icon-right"><span><i class="fa fa-arrow-right"></i>
+</span></span>
+					</a>
+            </div>
+            <div class="col-md-12">
+            <a href="{{ app.request.getBaseURL()}}/post/draft" class="a-btn">
+						<span class="a-btn-slide-text"><img src="{{app.request.getBaseURL()}}/assets/images/click.png" alt="click"></span>
+						<img src="{{app.request.getBaseURL()}}/assets/images/5.png" alt="Drafts">
+						<span class="a-btn-text"><small>&nbsp;</small> Drafts</span> 
+						<span class="a-btn-icon-right"><span><i class="fa fa-arrow-right"></i>
+</span></span>
+					</a>
+                    </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+{% if message != ""%}
+<script type="text/javascript">
+$(document).ready(function(){
+    notify('success',"{{message}}");
+});
+</script>
+{%endif%}
+{% endblock %}

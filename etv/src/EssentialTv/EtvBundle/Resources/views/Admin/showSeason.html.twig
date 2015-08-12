@@ -1,0 +1,135 @@
+{% extends 'admin.html.twig' %}
+{% block mainbody %}
+
+    {#{{ dump(arrSeasonOriginalImage) }}#}
+    <section class="mainbody">
+        <h1 class="admin_hadding">{{ showInfo.showTitle }}</h1>
+        <div class="container">
+            <div class="accordion">
+                <div class="panel-group" id="accordion">
+                    {% if countSeason > 0 %}
+                        {% for Season in seasonInfo %}
+
+                            <form id="season_form_{{ Season.seasonId }}" method="post" enctype="multipart/form-data">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ Season.seasonId }}">{{ Season.seasonTitle }}<i class="fa fa-angle-double-down"></i></a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse{{ Season.seasonId }}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="show_controls">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box text-center">
+                                                            <label>API Summary</label>
+                                                            <textarea name="season_api_summary">{{ Season.seasonApiSummary }}</textarea>     
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box text-center">
+                                                            <label>Original Summary</label>
+                                                            <textarea name="season_original_summary">{{ Season.seasonOriginalSummary }}</textarea>     
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box no-padding text-center">
+                                                            <h4>API Images</h4>
+                                                            <div class="api_img clearfix">
+                                                                {% set apiImages = Season.seasonApiImages|split(',') %}
+
+                                                                {% if apiImages|length > 0 %}
+                                                                    {% for apiImage in apiImages %}
+                                                                        <div class="col-md-4">
+                                                                            <div class="images">
+                                                                                <img src="{{ apiImage }}" />
+                                                                            </div>
+                                                                        </div>
+                                                                    {% endfor %}
+                                                                {% else %}
+                                                                    <h6>No api image found.</h6>
+                                                                {% endif %}
+                                                            </div>     
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="box no-padding text-center">
+                                                            <h4>Original Images</h4>
+                                                            <div class="api_img clearfix">
+
+                                                                <div class="col-md-4 pull-left">
+                                                                    <h5>Banner Image</h5>
+                                                                    <div class="images" id="banner_div_{{ Season.seasonId }}">
+                                                                        {% if Season.seasonBannerImage != "" %}
+                                                                            <img src="{{ Season.seasonBannerImage }}" alt="Banner Image" id="banner_img_{{ Season.seasonId }}" />
+                                                                            {#<span class="fileinput-button">
+                                                                                <i class="fa fa-camera"></i>
+                                                                                <input type="file" multiple="" name="banner_file" id="fileupload">
+                                                                            </span>#}
+                                                                            <a class="remove_icon" id="banner_btn_{{ Season.seasonId }}" href="javascript:void(0);" onclick="javascript:removeSeasonBanner({{ Season.seasonId }});" title="Remove"><i class="fa fa-times"></i></a>
+                                                                            {% else %}
+                                                                            <h6>No banner image found.</h6>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                    <span class="fileinput-button btn btn-block upload_img">
+                                                                        <i class="fa fa-upload"></i> Upload Banner Image
+                                                                        <input type="file" name="banner_file" id="fileupload">
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="col-md-7 pull-right"> 
+                                                                    <h5>Other Images</h5>
+                                                                    {% set seasonID = Season.seasonId %}
+                                                                    {% if arrSeasonOriginalImage[seasonID][0]|length > 0 %}
+                                                                        {% for originalImage in arrSeasonOriginalImage[seasonID][0] %}
+                                                                            <div class="col-md-6 pull-right" id="other_img_div_{{ loop.index - 1 }}">
+                                                                                <div class="images">
+                                                                                    <img src="{{ originalImage }}" title="Season Other Image {{ loop.index }}" />
+                                                                                    {#<a class="set_icon" href="#" data-toggle="tooltip" data-placement="bottom" title="Set Banner"><i class="fa fa-check"></i></a>#}
+                                                                                    <a onclick="javascript:removeSeasonImage({{ Season.seasonId }}, {{ loop.index - 1 }});" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times"></i></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        {% endfor %}
+                                                                    {% else %}
+                                                                        <h6>No original image found.</h6>
+                                                                    {% endif %}
+                                                                    <span class="fileinput-button btn btn-block upload_img">
+                                                                        <i class="fa fa-upload"></i> Upload Other Images
+                                                                        <input type="file" multiple="" name="files[]" id="fileupload">
+                                                                    </span>
+                                                                </div>
+
+
+                                                            </div>    
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row text-center">
+                                                    <button onclick="javascript:submitSeason({{ Season.seasonId }});" type="button" class="btn btn-blue"><i class="fa fa-paper-plane"></i>Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        {% endfor %}
+                    {% else %}
+                        <h4>No season found under this show.</h4>
+                    {% endif %} 
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

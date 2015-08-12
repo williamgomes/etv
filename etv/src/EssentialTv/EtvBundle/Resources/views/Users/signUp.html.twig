@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block toprow %}
+{% endblock %}
+{% block sidemenu %}
+<li><a class="left_link" href="{{ app.request.getBaseURL() }}/show/chooseShow">CHOOSE SHOW</a></li>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+        <div class="row">
+        	<h3 class="text-center">Create an Account</h3>
+            <p class="text-center">Complete form below to sign up for our service. </p>
+            {% if message is defined %}
+                <p id="error"> {{message}}</p>
+            {% endif %}
+            <p></p>
+            <p></p>
+            {{ form_start(form,{ 'attr': {'class': 'singup','onsubmit':'checkPassword()'} })}}
+            	<div class="col-md-6">
+                	<div class="form-group">
+                       <label for="FirstName">First Name</label>
+                     {{ form_widget(form.userFirstName,{ 'attr': {'class': 'form-control','placeholder':'First Name'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                       <label for="LastName">Last Name</label>
+                    {{ form_widget(form.userLastName,{ 'attr': {'class': 'form-control','placeholder':'Last Name'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                	<div class="form-group">
+                       <label for="Email">Email</label>
+                    {{ form_widget(form.userEmail,{ 'attr': {'class': 'form-control','placeholder':'Email'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                       <label for="Password">Password</label>
+                    {{ form_widget(form.userPassword,{ 'attr': {'class': 'form-control','placeholder':'Password'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                       <label for="Re-Password">Re-Password</label>
+                    <input type="password" class="form-control" id="Re-Password" placeholder="Re-Password..">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group gender">
+                        <label for="Gender">Gender</label>
+                        <div class="radio">
+                       {{ form_widget(form.userGender,{ 'attr': {'class': 'form-gender'} }) }}
+                        </div>
+                        </div>
+                    </div>
+
+                <div class="col-md-6">
+                	<div class="form-group">
+                       <label for="address1">Date of Birth</label>
+                        <div>{{ form_widget(form.userDob) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                    	<label for="address1">Address 1</label>
+                    <div>{{ form_widget(form.userStreetAddress,{ 'attr': {'class': 'form-control','placeholder':'Address 1'} }) }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                    	<label for="address1">Address 2</label>
+                    {{ form_widget(form.userStreetAddress2,{ 'attr': {'class': 'form-control','placeholder':'Address 2'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                    	<label for="City">City</label>
+                    	{{ form_widget(form.userCity,{ 'attr': {'class': 'form-control','placeholder':'City'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                    	<label for="City">State</label>
+                    	{{ form_widget(form.userState,{ 'attr': {'class': 'form-control','placeholder':'State'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                    	<label for="City">Zip Code</label>
+                    	{{ form_widget(form.userZip,{ 'attr': {'class': 'form-control','placeholder':'Zip Code'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                    	<label for="City">Country</label>
+                    {{ form_widget(form.userCountry,{ 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                	<div class="form-group text-center">
+                    	{{form_widget(form.save,{ 'attr': {'class': 'btn'} }) }}
+                    </div>
+                </div>
+            <div class="login-help">
+            	Have an Account? <a href="{{ url('user_signin')}}">Login</a>
+            </div>
+            </form>
+            
+        </div>
+    </div>
+{{form_end(form)}}
+{% endblock %}
+{% block custom_js %}
+<script type="text/javascript">
+$(".singup").submit(function()
+{
+    if($('#form_userPassword').val()!=$('#Re-Password').val())
+    {
+        notify('error', 'Password and Confirm Password Does Not Match');
+        $('#Re-Password').focus();
+        return false;
+    }
+    else 
+        return true;
+});
+</script>
+{% endblock %}

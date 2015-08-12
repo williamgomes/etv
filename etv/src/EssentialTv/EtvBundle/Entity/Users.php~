@@ -1,0 +1,575 @@
+<?php
+
+namespace EssentialTv\EtvBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Users
+ *
+ * @ORM\Table(name="users")
+ * @ORM\Entity
+ */
+class Users
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_email", type="string", length=100, nullable=false)
+     */
+    private $userEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_password", type="string", length=50, nullable=false)
+     */
+    private $userPassword;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="google_user_id", type="integer", nullable=false)
+     */
+    private $googleUserId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_hash", type="string", length=200, nullable=false)
+     */
+    private $userHash;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_status", type="string", nullable=false)
+     */
+    private $userStatus;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_verification", type="string", nullable=false)
+     */
+    private $userVerification;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_first_name", type="string", length=50, nullable=false)
+     */
+    private $userFirstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_middle_name", type="string", length=50, nullable=false)
+     */
+    private $userMiddleName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_last_name", type="string", length=50, nullable=false)
+     */
+    private $userLastName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="user_DOB", type="date", nullable=false)
+     */
+    private $userDob;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_gender", type="string", nullable=false)
+     */
+    private $userGender;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_aboutme", type="string", length=500, nullable=false)
+     */
+    private $userAboutme;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_street_address", type="text", nullable=false)
+     */
+    private $userStreetAddress;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_country", type="integer", nullable=false)
+     */
+    private $userCountry;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_city", type="integer", nullable=false)
+     */
+    private $userCity;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_zip", type="integer", nullable=false)
+     */
+    private $userZip;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_phone", type="string", length=20, nullable=false)
+     */
+    private $userPhone;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="user_last_login", type="datetime", nullable=false)
+     */
+    private $userLastLogin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $userId;
+
+
+
+    /**
+     * Set userEmail
+     *
+     * @param string $userEmail
+     * @return Users
+     */
+    public function setUserEmail($userEmail)
+    {
+        $this->userEmail = $userEmail;
+
+        return $this;
+    }
+
+    /**
+     * Get userEmail
+     *
+     * @return string 
+     */
+    public function getUserEmail()
+    {
+        return $this->userEmail;
+    }
+
+    /**
+     * Set userPassword
+     *
+     * @param string $userPassword
+     * @return Users
+     */
+    public function setUserPassword($userPassword)
+    {
+        $this->userPassword = $userPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get userPassword
+     *
+     * @return string 
+     */
+    public function getUserPassword()
+    {
+        return $this->userPassword;
+    }
+
+    /**
+     * Set googleUserId
+     *
+     * @param integer $googleUserId
+     * @return Users
+     */
+    public function setGoogleUserId($googleUserId)
+    {
+        $this->googleUserId = $googleUserId;
+
+        return $this;
+    }
+
+    /**
+     * Get googleUserId
+     *
+     * @return integer 
+     */
+    public function getGoogleUserId()
+    {
+        return $this->googleUserId;
+    }
+
+    /**
+     * Set userHash
+     *
+     * @param string $userHash
+     * @return Users
+     */
+    public function setUserHash($userHash)
+    {
+        $this->userHash = $userHash;
+
+        return $this;
+    }
+
+    /**
+     * Get userHash
+     *
+     * @return string 
+     */
+    public function getUserHash()
+    {
+        return $this->userHash;
+    }
+
+    /**
+     * Set userStatus
+     *
+     * @param string $userStatus
+     * @return Users
+     */
+    public function setUserStatus($userStatus)
+    {
+        $this->userStatus = $userStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get userStatus
+     *
+     * @return string 
+     */
+    public function getUserStatus()
+    {
+        return $this->userStatus;
+    }
+
+    /**
+     * Set userVerification
+     *
+     * @param string $userVerification
+     * @return Users
+     */
+    public function setUserVerification($userVerification)
+    {
+        $this->userVerification = $userVerification;
+
+        return $this;
+    }
+
+    /**
+     * Get userVerification
+     *
+     * @return string 
+     */
+    public function getUserVerification()
+    {
+        return $this->userVerification;
+    }
+
+    /**
+     * Set userFirstName
+     *
+     * @param string $userFirstName
+     * @return Users
+     */
+    public function setUserFirstName($userFirstName)
+    {
+        $this->userFirstName = $userFirstName;
+
+        return $this;
+    }
+
+    /**
+     * Get userFirstName
+     *
+     * @return string 
+     */
+    public function getUserFirstName()
+    {
+        return $this->userFirstName;
+    }
+
+    /**
+     * Set userMiddleName
+     *
+     * @param string $userMiddleName
+     * @return Users
+     */
+    public function setUserMiddleName($userMiddleName)
+    {
+        $this->userMiddleName = $userMiddleName;
+
+        return $this;
+    }
+
+    /**
+     * Get userMiddleName
+     *
+     * @return string 
+     */
+    public function getUserMiddleName()
+    {
+        return $this->userMiddleName;
+    }
+
+    /**
+     * Set userLastName
+     *
+     * @param string $userLastName
+     * @return Users
+     */
+    public function setUserLastName($userLastName)
+    {
+        $this->userLastName = $userLastName;
+
+        return $this;
+    }
+
+    /**
+     * Get userLastName
+     *
+     * @return string 
+     */
+    public function getUserLastName()
+    {
+        return $this->userLastName;
+    }
+
+    /**
+     * Set userDob
+     *
+     * @param \DateTime $userDob
+     * @return Users
+     */
+    public function setUserDob($userDob)
+    {
+        $this->userDob = $userDob;
+
+        return $this;
+    }
+
+    /**
+     * Get userDob
+     *
+     * @return \DateTime 
+     */
+    public function getUserDob()
+    {
+        return $this->userDob;
+    }
+
+    /**
+     * Set userGender
+     *
+     * @param string $userGender
+     * @return Users
+     */
+    public function setUserGender($userGender)
+    {
+        $this->userGender = $userGender;
+
+        return $this;
+    }
+
+    /**
+     * Get userGender
+     *
+     * @return string 
+     */
+    public function getUserGender()
+    {
+        return $this->userGender;
+    }
+
+    /**
+     * Set userAboutme
+     *
+     * @param string $userAboutme
+     * @return Users
+     */
+    public function setUserAboutme($userAboutme)
+    {
+        $this->userAboutme = $userAboutme;
+
+        return $this;
+    }
+
+    /**
+     * Get userAboutme
+     *
+     * @return string 
+     */
+    public function getUserAboutme()
+    {
+        return $this->userAboutme;
+    }
+
+    /**
+     * Set userStreetAddress
+     *
+     * @param string $userStreetAddress
+     * @return Users
+     */
+    public function setUserStreetAddress($userStreetAddress)
+    {
+        $this->userStreetAddress = $userStreetAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get userStreetAddress
+     *
+     * @return string 
+     */
+    public function getUserStreetAddress()
+    {
+        return $this->userStreetAddress;
+    }
+
+    /**
+     * Set userCountry
+     *
+     * @param integer $userCountry
+     * @return Users
+     */
+    public function setUserCountry($userCountry)
+    {
+        $this->userCountry = $userCountry;
+
+        return $this;
+    }
+
+    /**
+     * Get userCountry
+     *
+     * @return integer 
+     */
+    public function getUserCountry()
+    {
+        return $this->userCountry;
+    }
+
+    /**
+     * Set userCity
+     *
+     * @param integer $userCity
+     * @return Users
+     */
+    public function setUserCity($userCity)
+    {
+        $this->userCity = $userCity;
+
+        return $this;
+    }
+
+    /**
+     * Get userCity
+     *
+     * @return integer 
+     */
+    public function getUserCity()
+    {
+        return $this->userCity;
+    }
+
+    /**
+     * Set userZip
+     *
+     * @param integer $userZip
+     * @return Users
+     */
+    public function setUserZip($userZip)
+    {
+        $this->userZip = $userZip;
+
+        return $this;
+    }
+
+    /**
+     * Get userZip
+     *
+     * @return integer 
+     */
+    public function getUserZip()
+    {
+        return $this->userZip;
+    }
+
+    /**
+     * Set userPhone
+     *
+     * @param string $userPhone
+     * @return Users
+     */
+    public function setUserPhone($userPhone)
+    {
+        $this->userPhone = $userPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get userPhone
+     *
+     * @return string 
+     */
+    public function getUserPhone()
+    {
+        return $this->userPhone;
+    }
+
+    /**
+     * Set userLastLogin
+     *
+     * @param \DateTime $userLastLogin
+     * @return Users
+     */
+    public function setUserLastLogin($userLastLogin)
+    {
+        $this->userLastLogin = $userLastLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get userLastLogin
+     *
+     * @return \DateTime 
+     */
+    public function getUserLastLogin()
+    {
+        return $this->userLastLogin;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+}

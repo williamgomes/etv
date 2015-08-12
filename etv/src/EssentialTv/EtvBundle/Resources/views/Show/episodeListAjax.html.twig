@@ -1,0 +1,25 @@
+ <ul class="thumb-post infinite-item">
+     {% if episodes is not empty %}
+                    {% for episode in episodes %}
+                        <li class="item">
+                            <div class="post-content">
+                                <div class="content_img">
+                                  <div class="new">New</div>
+                                    <a class="post-image" title="" href="{{ app.request.getBaseURL()}}/episode/{{episode.episodeId}}/{{episode.episodeTitle|replace(' ','-')}}">
+                                    <img src="{{app.request.getBaseURL()}}{{episode.episodeBannerImage}}" title="" alt=""/>
+                                    </a>
+                                </div>
+                                <div class="post_dec">
+                                    <h2 class="product-name"><a title="{{episode.episodeTitle}}" href="{{ app.request.getBaseURL()}}/episode/{{episode.episodeId}}/{{episode.episodeTitle|replace(' ','-')}}">{{episode.episodeTitle}}</a></h2>
+                                    <p class="date">{{episode.episodeScreeningDate|date('M d, Y')}}</p>
+                                    <p>{% if episode.originalDataSupersede=="active" %}{{episode.episodeOriginalSummary[:100]}}... {% else %}{{episode.episodeApiSummary[:110]}}...{% endif %} </p>
+                                </div>
+                            </div>
+                        </li>
+                  {% endfor %}
+                   <div style="display:none"><a class="infinite-more-link" href="{{ app.request.getBaseURL() }}/show/loadMoreEpisodes/{{showId}}/{{filter}}">next</a></div> 
+         {% else %}
+        <div class="col-md-2 col-md-offset-5">No More Episodes..</div>
+    {% endif %}
+ </ul>
+

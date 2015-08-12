@@ -1,0 +1,309 @@
+home_page:
+    path:     /
+    defaults: { _controller: EssentialTvEtvBundle:Post:index }
+
+home_page_show_selected:
+    path:     /{showTitle}
+    defaults: { _controller: EssentialTvEtvBundle:Show:showDetails }
+
+home_page_with_filter:
+    path:     /post/filter/{filter}
+    defaults: { _controller: EssentialTvEtvBundle:Show:index }
+
+home_page_ajax_loader:
+    path:     /post/moreposts/{firstResult}/{filter}
+    defaults: { _controller: EssentialTvEtvBundle:Post:loadMore }
+    
+home_page_show_selected:
+    path:     /show/selected/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Show:showSelected }    
+    
+load_more_episode_list:
+    path:     /show/loadMoreEpisodes/{id}/{offset}
+    defaults: { _controller: EssentialTvEtvBundle:Show:loadMoreEpisodes }
+        
+character_details:
+    path:     /character/{id}/{name}/{showid}
+    defaults: { _controller: EssentialTvEtvBundle:Character:details }    
+    
+character_details_without_showid:
+    path:     /character/{id}/{name}
+    defaults: { _controller: EssentialTvEtvBundle:Character:charDetails }    
+    
+character_edit:
+    path:     edit/character/{id}/{name}
+    defaults: { _controller: EssentialTvEtvBundle:Character:edit }
+    
+character_prevalence:
+    path:     /prevalence/character
+    defaults: { _controller: EssentialTvEtvBundle:Character:characterPrevalence }    
+
+ajax_character_update:
+    path:     /update/character/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Character:update }
+    requirements: { _method: post|get }   
+    
+ajax_character_img_upload:
+    path:     /upload/character/image
+    defaults: { _controller: EssentialTvEtvBundle:Character:uploadImage }
+    requirements: { _method: post }    
+    
+ajax_add_spoiler:
+    path:     /spoiler/add
+    defaults: { _controller: EssentialTvEtvBundle:Spoiler:add }
+    requirements: { _method: post|get }        
+    
+ajax_add_quote:
+    path:     /quote/add
+    defaults: { _controller: EssentialTvEtvBundle:Quote:add }
+    requirements: { _method: post|get }        
+        
+        
+    
+show_episode_season:
+    path:     /season/{id}/{name}
+    defaults: { _controller: EssentialTvEtvBundle:Show:season }
+    
+episode_video:
+    path:     /episode/show/video/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Episode:viewVideo }
+    
+ajax_episode_reaction:
+    path:     /episode/episodeReactions
+    defaults: { _controller: EssentialTvEtvBundle:Episode:episodeReactions}
+    requirements: { _method: post }
+    
+ajax_spoiler_approve:
+    path:     /spoiler/approve
+    defaults: { _controller: EssentialTvEtvBundle:Spoiler:approve }
+    requirements: { _method: post }
+    
+ajax_spoiler_dispute:
+    path:     /spoiler/dispute
+    defaults: { _controller: EssentialTvEtvBundle:Spoiler:dispute }
+    requirements: { _method: post }
+    
+ajax_quote_approve:
+    path:     /quote/approve
+    defaults: { _controller: EssentialTvEtvBundle:Quote:approve }
+    requirements: { _method: post }
+    
+ajax_quote_dispute:
+    path:     /quote/dispute
+    defaults: { _controller: EssentialTvEtvBundle:Quote:dispute }
+    requirements: { _method: post }
+
+ajax_character_suggestion:
+    path:     /character/suggest
+    defaults: { _controller: EssentialTvEtvBundle:Character:suggest }
+    requirements: { _method: post }
+    
+ajax_episode_suggestion:
+    path:     /episode/suggest/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Episode:suggest }
+    requirements: { _method: post }
+    
+ajax_add_reaction:
+    path:     /create/reaction
+    defaults: { _controller: EssentialTvEtvBundle:Reaction:addReaction }
+    requirements: { _method: post|get }
+    
+ajax_add_post_reaction:
+    path:     /create/postsReaction
+    defaults: { _controller: EssentialTvEtvBundle:Reaction:addPostsReaction }
+    requirements: { _method: post|get }
+    
+ajax_add_response:
+    path:     /create/response
+    defaults: { _controller: EssentialTvEtvBundle:Reaction:addResponse }
+    requirements: { _method: post|get }
+    
+ajax_post_report:
+    path:     /post/report
+    defaults: { _controller: EssentialTvEtvBundle:Post:postReport }
+    requirements: { _method: post|get }
+
+ajax_users_notifications:
+    path:     /user/notification
+    defaults: { _controller: EssentialTvEtvBundle:User:notification }
+    
+ajax_users_fb_login:
+    path:     /user/facebook/login
+    defaults: { _controller: EssentialTvEtvBundle:User:facebookLogin }  
+    requirements: { _method: post|get }
+    
+ajax_users_google_login:
+    path:     /user/google/login
+    defaults: { _controller: EssentialTvEtvBundle:User:googleLogin }  
+    requirements: { _method: post|get }
+    
+
+
+
+
+
+show_choose_show:
+    path:     /show/chooseShow
+    defaults: { _controller: EssentialTvEtvBundle:Show:chooseShow }
+    
+    
+show_list_ajax:
+    path:     /show/showListAjax/{filter}/{offset}
+    defaults: { _controller: EssentialTvEtvBundle:Show:showListAjax }
+    
+show_choose_show_alphabet:
+    path:     /show/chooseShow/{filter}
+    defaults: { _controller: EssentialTvEtvBundle:Show:chooseShow }
+    
+episode_details:
+    path:     /episode/{id}/{name}
+    defaults: { _controller: EssentialTvEtvBundle:Episode:index }
+    
+episode_reaction_details:
+    path:     /reaction/{id}/{episodeid}
+    defaults: { _controller: EssentialTvEtvBundle:Episode:reactiondetails }
+   
+episode_reaction_details:
+    path:     /postReactions/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Reaction:postReactiondetails }
+
+post_choose_template:
+    path:     /post/chooseTemplate
+    defaults: { _controller: EssentialTvEtvBundle:Post:chooseTemplate }
+
+post_create_post:
+    path:     /post/create/{type}
+    defaults: { _controller: EssentialTvEtvBundle:Post:createPost }
+    
+post_get_episode_list_for_shows:
+    path:     /episode/getEpisodeList
+    defaults: { _controller: EssentialTvEtvBundle:Episode:getEpisodeListAjax }
+    
+post_ajax_character_shows:
+    path:     /character/getCharacterList
+    defaults: { _controller: EssentialTvEtvBundle:Character:getCharacterListAjax}
+    
+post_view:
+    path:     /post/view/{postId}
+    defaults: { _controller: EssentialTvEtvBundle:Post:viewPost }
+    
+post_drafts:
+   path:     /post/draft
+   defaults: { _controller: EssentialTvEtvBundle:Post:draftPosts}
+   
+post_edit:
+    path:     /post/edit/{postId}
+    defaults: { _controller: EssentialTvEtvBundle:Post:editPosts }
+    
+user_signup:
+    path:     /user/signup
+    defaults: { _controller: EssentialTvEtvBundle:User:signUp }
+
+user_signin:
+    path:     /user/signin
+    defaults: { _controller: EssentialTvEtvBundle:User:signIn }
+    
+    
+user_profile:
+    path:     /user/profile
+    defaults: { _controller: EssentialTvEtvBundle:User:userProfile }
+    
+user_signout:
+    path:     /user/signout
+    defaults: { _controller: EssentialTvEtvBundle:User:signOut }    
+    
+user_forgot_password:
+    path:     /user/forgotPassowrd
+    defaults: { _controller: EssentialTvEtvBundle:User:forgotPassowrd }
+    
+common_search:
+    path:     /site/search
+    defaults: { _controller: EssentialTvEtvBundle:Search:search }
+    
+#ALL ADMIN ROUTES    
+
+admin_home:
+    path:     /admin/home
+    defaults: { _controller: EssentialTvEtvBundle:Admin:index }
+    
+ajax_update_settings:
+    path:     /admin/update/settings
+    defaults: { _controller: EssentialTvEtvBundle:Admin:updateSettings }
+    requirements: { _method: post }    
+    
+admin_show_select:
+    path:     /admin/show/select
+    defaults: { _controller: EssentialTvEtvBundle:Admin:selectShow }
+    
+admin_show_control:
+    path:     /admin/show/control/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:showControl}
+    
+
+admin_show_characters:
+    path:     /admin/characters/show/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:showCharacters}  
+    requirements: { _method: post|get }    
+    
+admin_characters_details:
+    path:     /admin/character/details/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:charactersDetails}  
+    requirements: { _method: post|get }  
+
+admin_show_remove_pictures:
+    path:     /admin/show/removePicture
+    defaults: { _controller: EssentialTvEtvBundle:Admin:showRemovePicture}
+
+admin_show_set_banner:
+    path:     /admin/show/setBanner
+    defaults: { _controller: EssentialTvEtvBundle:Admin:showSetBanner}
+    
+admin_show_season:
+    path:     /admin/season/{id}/{name}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:showSeason}
+    
+    
+admin_update_season:
+    path:     /admin/update/season/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:seasonUpdate }
+    requirements: { _method: post|get } 
+    
+    
+admin_delete_season_banner:
+    path:     /admin/deletebanner/season/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:deleteSeasonBanner }
+    requirements: { _method: post|get }      
+    
+admin_delete_season_other:
+    path:     /admin/deleteother/season/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:deleteOtherImage }
+    requirements: { _method: post|get }    
+    
+admin_user_control:
+    path:     /admin/user/control
+    defaults: { _controller: EssentialTvEtvBundle:Admin:userControl}  
+    requirements: { _method: post|get }    
+    
+admin_user_Details:
+    path:     /admin/user/details/{id}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:userDetails}    
+    
+admin_ajax_user_set_type:
+    path:     /admin/user/type/{id}
+    defaults: { _controller: EssentialTvEtvBundle:User:setType}    
+
+admin_ajax_user_suspend:
+    path:     /admin/user/suspend/{id}
+    defaults: { _controller: EssentialTvEtvBundle:User:suspend} 
+    
+admin_ajax_user_delete:
+    path:     /admin/user/delete/{id}
+    defaults: { _controller: EssentialTvEtvBundle:User:delete}
+    
+admin_addShowToSystem:
+    path:     /admin/show/addToSystem/{showId}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:addToSystem}
+    
+admin_refreshApiDataSystem:
+    path:     /admin/show/refreshDataNow/{showId}
+    defaults: { _controller: EssentialTvEtvBundle:Admin:refreshDataNow}

@@ -1,0 +1,115 @@
+{% extends 'admin.html.twig' %}
+
+{% block mainbody %}
+
+    {#{{ dump(form) }}
+    {{ dump(characterInfo) }}
+    {% if mainActor != "" %}
+        {% set mainActor = mainActor|split(',') %}
+        {{ dump(mainActor) }}
+    {% endif %}#}
+
+
+    {# {% if mainActor is iterable %}
+         {% if mainActor[0] != "" %}
+             {{ mainActor[0] }}
+         {% endif %}
+         {% if mainActor[1] != "" %}
+             {{ mainActor[1] }}
+         {% endif %}
+     {% endif %}#}
+
+    <h1 class="admin_hadding">Admin Game of Thrones Characters</h1>
+    <div class="container">
+        <div class="character_box clearfix">
+            <form id="character_form_upload" method="post" enctype="multipart/form-data">
+                <div class="character_img">
+                    {% if characterInfo.characterOriginalDataSupersede == 'active' %}
+                        <img src="{{ app.request.getBaseURL() }}/{{ characterInfo.characterBannerImage }}" alt="{{ characterInfo.characterTitle }}" />
+                    {% else %}
+                        <img src="{{ app.request.getBaseURL() }}/{{ characterInfo.characterApiImages }}" alt="{{ characterInfo.characterTitle }}" />
+                    {% endif %}
+                    <span class="fileinput-button">
+                        <i class="fa fa-upload"></i>
+                        <input type="file" name="char_img" id="fileupload">
+                        <input type="hidden" value="{{ app.request.get('id') }}" name="charId">
+                    </span>
+                </div>
+
+                <div class="character_detail">
+                    <h3>{{ characterInfo.characterTitle }}</h3>
+                    <h4>21 Recorded Appearances</h4>
+                    <p>Most Appearances in Season 3</p>
+                    <p>Portrayed by: {{ characterInfo.characterActors }}</p>
+                    <p>Aliases: 
+                        {% if characterInfo.characterAliasOne %} {{ characterInfo.characterAliasOne }}, {% endif %}
+                        {% if characterInfo.characterAliasTwo %} {{ characterInfo.characterAliasTwo }}, {% endif %}
+                        {% if characterInfo.characterAliasThree %} {{ characterInfo.characterAliasThree }}, {% endif %}
+                        {% if characterInfo.characterAliasFour %} {{ characterInfo.characterAliasFour }}, {% endif %}
+                    </p>
+                    {#<a class="btn" href="#">Revert</a>#}
+                    <button onclick="javascript:uploadCharImg();" type="button" class="btn btn-blue"><i class="fa fa-paper-plane"></i>Upload</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="character_box clearfix">
+            {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+            <div class="form-group">
+                <label for="defaultname" class="col-md-2 control-label">{{ form_label(form.characterTitle) }}</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.characterTitle, { 'attr': {'class': 'form-control', 'id': 'characterTitle'} }) }}
+                    {{ form_errors(form.characterTitle) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="defaultname" class="col-md-2 control-label">{{ form_label(form.characterAliasOne) }}</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.characterAliasOne, { 'attr': {'class': 'form-control', 'id': 'characterAliasOne'} }) }}
+                    {{ form_errors(form.characterAliasOne) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="defaultname" class="col-md-2 control-label">{{ form_label(form.characterAliasTwo) }}</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.characterAliasTwo, { 'attr': {'class': 'form-control', 'id': 'characterAliasTwo'} }) }}
+                    {{ form_errors(form.characterAliasTwo) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="defaultname" class="col-md-2 control-label">{{ form_label(form.characterAliasThree) }}</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.characterAliasThree, { 'attr': {'class': 'form-control', 'id': 'characterAliasThree'} }) }}
+                    {{ form_errors(form.characterAliasThree) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="defaultname" class="col-md-2 control-label">{{ form_label(form.characterAliasFour) }}</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.characterAliasFour, { 'attr': {'class': 'form-control', 'id': 'characterAliasFour'} }) }}
+                    {{ form_errors(form.characterAliasFour) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="defaultname" class="col-md-2 control-label">{{ form_label(form.actorOne) }}</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.actorOne, { 'attr': {'class': 'form-control', 'id': 'actorOne'} }) }}
+                    {{ form_errors(form.actorOne) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="defaultname" class="col-md-2 control-label">{{ form_label(form.actorTwo) }}</label>
+                <div class="col-md-10">
+                    {{ form_widget(form.actorTwo, { 'attr': {'class': 'form-control', 'id': 'actorTwo'} }) }}
+                    {{ form_errors(form.actorTwo) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button onclick="javascript:updateCharacter({{ app.request.get('id') }});" type="button" class="btn btn-danger">Submit</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

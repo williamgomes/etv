@@ -1,0 +1,9 @@
+<div class="notify">
+<h3>Notifications</h3>
+{% for curse in notifications%}
+<div class="reactions">
+                    <h4><a title="" href="{{ app.request.getBaseURL()}}/episode/{{curse.reactionEpisodeId}}/{{curse.episodeTitle | replace(' ','-')}}">{{curse.userFirstName}}</a> commented on <a title="" href="{{ app.request.getBaseURL()}}/episode/{{curse.reactionEpisodeId}}/{{curse.episodeTitle | replace(' ','-')}}">{{curse.episodeTitle}}</a></h4>
+                    <p>{{curse.reactionText}}</p>
+</div>
+{% endfor %}
+</div>

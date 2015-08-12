@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\Users" table="users" repository-class="EssentialTv\EtvBundle\Entity\UsersRepository">
+    <id name="userId" type="integer" column="user_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="userEmail" type="string" column="user_email" length="100" nullable="false"/>
+    <field name="userPassword" type="string" column="user_password" length="50" nullable="false"/>
+    <field name="userSocialId" type="string" column="user_social_id" nullable="true"/>
+    <field name="userSocialType" type="string" column="user_social_type" nullable="true"/>
+    <field name="userHash" type="string" column="user_hash" length="200" nullable="false"/>
+    <field name="userStatus" type="string" column="user_status" nullable="false"/>
+    <field name="userVerification" type="string" column="user_verification" nullable="false"/>
+    <field name="userFirstName" type="string" column="user_first_name" length="50" nullable="false"/>
+    <field name="userMiddleName" type="string" column="user_middle_name" length="50" nullable="true"/>
+    <field name="userLastName" type="string" column="user_last_name" length="50" nullable="false"/>
+    <field name="userProfilePicture" type="text" column="user_profile_picture" nullable="true"/>
+    <field name="userDob" type="date" column="user_DOB" nullable="false"/>
+    <field name="userGender" type="string" column="user_gender" nullable="false"/>
+    <field name="userAboutme" type="string" column="user_aboutme" length="500" nullable="true"/>
+    <field name="userStreetAddress" type="text" column="user_street_address" nullable="false"/>
+    <field name="userStreetAddress2" type="text" column="user_street_address2" nullable="true"/>
+    <field name="userCountry" type="string" column="user_country" length="100" nullable="false"/>
+    <field name="userCity" type="string" column="user_city" length="500" nullable="false"/>
+    <field name="userZip" type="integer" column="user_zip" nullable="false"/>
+    <field name="userState" type="string" column="user_state" nullable="true"/>
+    <field name="userPhone" type="string" column="user_phone" length="20" nullable="true"/>
+    <field name="userLastLogin" type="datetime" column="user_last_login" nullable="false"/>
+    <field name="userRole" type="string" column="user_role" nullable="false"/>
+    <field name="userLastViewedEpisodeId" type="integer" column="user_last_viewed_episode_id" nullable="true"/>
+    <field name="userLastViewedEpisodeDatetime" type="datetime" column="user_last_viewed_episode_datetime" nullable="true"/>
+    <field name="userFacebookLink" type="string" column="user_facebook_link" nullable="true"/>
+    <field name="userTwitterLink" type="string" column="user_twitter_link" nullable="true"/>
+    <field name="userGoogleLink" type="string" column="user_google_link" nullable="true"/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\CharacterShow" table="character_show" repository-class="EssentialTv\EtvBundle\Entity\CharacterShowRepository">
+    <id name="csId" type="integer" column="CS_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="csCharacterId" type="integer" column="CS_character_id" nullable="false"/>
+    <field name="csShowId" type="integer" column="CS_show_id" nullable="false"/>
+    <field name="csCreatedOn" type="datetime" column="CS_created_on" nullable="false"/>
+    <field name="csCreatedBy" type="integer" column="CS_created_by" nullable="false"/>
+    <field name="csUpdatedOn" type="datetime" column="CS_updated_on" nullable="false"/>
+    <field name="csUpdatedBy" type="integer" column="CS_updated_by" nullable="false"/>
+  </entity>
+</doctrine-mapping>

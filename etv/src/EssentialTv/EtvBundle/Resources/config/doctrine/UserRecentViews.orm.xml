@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\UserRecentViews" table="user_recent_views">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="urvUserId" type="integer" column="urv_user_id" nullable="false"/>
+    <field name="urvElementId" type="integer" column="urv_element_id" nullable="false"/>
+    <field name="urvElementType" type="string" column="urv_element_type" nullable="false"/>
+    <field name="urvViewedOn" type="datetime" column="urv_viewed_on" nullable="false"/>
+  </entity>
+</doctrine-mapping>

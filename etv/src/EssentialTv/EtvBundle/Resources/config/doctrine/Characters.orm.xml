@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\Characters" table="characters" repository-class="EssentialTv\EtvBundle\Entity\CharactersRepository">
+    <id name="characterId" type="integer" column="character_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="characterTmsId" type="string" column="character_tms_id" length="255" nullable="true"/>
+    <field name="characterApiId" type="integer" column="character_api_id" nullable="true"/>
+    <field name="characterTitle" type="string" column="character_title" length="150" nullable="true"/>
+    <field name="characterApiSummary" type="text" column="character_api_summary" nullable="true"/>
+    <field name="characterOriginalSummary" type="text" column="character_original_summary" nullable="true"/>
+    <field name="characterApiImages" type="text" column="character_api_images" nullable="true"/>
+    <field name="characterOriginalImages" type="text" column="character_original_images" nullable="true"/>
+    <field name="characterBannerImage" type="text" column="character_banner_image" nullable="true"/>
+    <field name="characterAliasOne" type="string" column="character_alias_one" length="100" nullable="true"/>
+    <field name="characterAliasTwo" type="string" column="character_alias_two" length="100" nullable="true"/>
+    <field name="characterAliasThree" type="string" column="character_alias_three" length="100" nullable="true"/>
+    <field name="characterAliasFour" type="string" column="character_alias_four" length="100" nullable="true"/>
+    <field name="characterBio" type="text" column="character_bio" nullable="true"/>
+    <field name="characterActors" type="text" column="character_actors" nullable="true"/>
+    <field name="characterOriginalDataSupersede" type="string" column="character_original_data_supersede" nullable="false"/>
+    <field name="characterStatus" type="string" column="character_status" nullable="true"/>
+    <field name="characterCreatedOn" type="datetime" column="character_created_on" nullable="false"/>
+    <field name="characterCreatedBy" type="integer" column="character_created_by" nullable="true"/>
+    <field name="characterUpdatedOn" type="datetime" column="character_updated_on" nullable="false"/>
+    <field name="characterUpdatedBy" type="integer" column="character_updated_by" nullable="true"/>
+  </entity>
+</doctrine-mapping>

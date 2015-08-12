@@ -1,0 +1,89 @@
+{% extends 'admin.html.twig' %}
+{% block mainbody %}
+
+        {#{{ dump(showInfo) }}#}
+
+
+    <h1 class="admin_hadding">Admin - {{ showInfo.showTitle }} Characters</h1>
+    <div class="container">
+
+        {{ form_start(form) }}
+        <div class="col-md-9">
+            <span class="fileinput-button btn btn-block upload_csv">
+                <i class="fa fa-upload"></i>
+                {{ form_label(form.csv) }}
+                {{ form_errors(form.csv) }}
+                {{ form_widget(form.csv) }}
+            </span>
+        </div>
+        <div class="col-md-3">
+            {{ form_widget(form.upload) }}
+        </div>
+        {{ form_end(form) }}
+
+        <div class="clearfix"></div>
+
+        {#{{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    {{ form_label(form.csv) }}
+                    {{ form_errors(form.csv) }}
+                    {{ form_widget(form.csv) }}
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}#}
+
+
+        {#<form action="#">
+            <div class="col-md-9">
+                <span class="fileinput-button btn btn-block upload_csv">
+                    <i class="fa fa-upload"></i> UPLOAD CSV
+                    <input type="file" multiple="" name="files[]" id="fileupload">
+                </span>
+            </div>
+            <div class="col-md-3">
+                <input class="btn btn-block btn-blue" type="button" value="SUBMIT">
+            </div>
+        </form>#}
+
+
+        {% if countShowCharacters > 0 %}
+            {% for Character in characterShowInfo %}
+                <div class="character_box clearfix">
+                    <div class="character_img">
+                        {% if Character.characterOriginalDataSupersede == 'active' %}
+                            <img src="{{ app.request.getBaseURL() }}/{{ Character.characterOriginalImages }}" alt="{{ Character.characterTitle }}" />
+                        {% else %}
+                            <img src="{{ app.request.getBaseURL() }}/{{ Character.characterApiImages }}" alt="{{ Character.characterTitle }}" />
+                        {% endif %}
+                        <span class="fileinput-button">
+                            <i class="fa fa-upload"></i>
+                            <input type="file" multiple="" name="files[]" id="fileupload">
+                        </span>
+                    </div>
+                    <div class="character_detail">
+                        <h3><a href="{{ url('character_edit', { 'id': Character.characterId, 'name': Character.characterTitle|replace(' ','-') }) }}" title="">{{ Character.characterTitle }}</a></h3>
+                            {% if Character.characterActors != "null" %}
+                                {% set arrayActor = Character.characterActors|split(',') %} 
+
+                            {% for Actor in arrayActor %}
+                                <h4><strong>Portrayed by:</strong>{{ Actor }}</h4>
+                            {% endfor %}
+                        {% endif %}
+                        <p><strong>Aliases:</strong> Jon</p>
+                        {% if Character.characterOriginalDataSupersede == 'active' %}
+                            <p><strong>About:</strong> {{ Character.characterOriginalSummary }}</p>
+                        {% else %}
+                            <p><strong>About:</strong> {{ Character.characterApiSummary }}</p>
+                        {% endif %} 
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        {% endif %}
+
+    </div>
+
+{% endblock %}

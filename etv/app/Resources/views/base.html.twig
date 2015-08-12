@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Meta Tags -->
+        {% block meta %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+            <meta name="description" content="essential.tv - Responsive" />
+            <meta name="keywords" content="essential.tv," />
+            <meta name="author" content="essential.tv" />
+        {% endblock %}
+        <title>{% block title %}essential.tv{% endblock %}</title>
+        {% block stylesheets %}
+            <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+            <link href="{{ asset('assets/css/screen.css') }}" type="text/css" rel="stylesheet" />
+
+            <link href="{{asset('images/favicon.png')}}" rel="shortcut icon" type="image/png">
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+            <script src="{{asset('assets/js/jquery-2.1.1.min.js')}}"></script> 
+
+
+            <!-- Stylesheet -->
+            <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+            <link href="{{asset('assets/fonts/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+            <link href="{{asset('assets/js/owl-carousel/owl.carousel.css')}}" rel="stylesheet" type="text/css">
+            <link href="{{asset('assets/js/owl-carousel/owl.theme.css')}}" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-select.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/simply-toast.css')}}">
+            <link href="{{asset('assets/css/owl-carousel/owl.carousel.css')}}" rel="stylesheet" type="text/css">
+            <link href="{{asset('assets/css/owl-carousel/owl.theme.css')}}" rel="stylesheet" type="text/css">
+            <!-- CSS | main style file -->
+        {% block custom_css %}{% endblock %}
+        <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="{{asset('assets/css/mmenu.css')}}" />
+        <link href="{{asset('assets/css/refreshing.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet" type="text/css">
+    {% endblock %}
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="indexpage">
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5575d10a3a875cd0" async="async"></script>
+
+    <div id="preloader" style="">
+        <div id="spinner"></div>
+    </div>
+
+    <div class="mheader" style="display: none;">
+        <a href="#menu"></a>
+        <a href="{{ app.request.getBaseURL() }}/" class="mlogo"><img alt="" src="{{ app.request.getBaseURL() }}{{asset('/assets/images/logo.png')}}"></a>
+    </div>
+
+    <!-- Navigation Block Starts -->   
+
+    <nav id="menu" style="display: none;">
+        {% block menu %}
+            
+            <ul>
+                <li class="mm-selected"><a href="{{ app.request.getBaseURL() }}/"><span class="home_icon"></span>Home</a></li>
+                <li><a href="{{ app.request.getBaseURL() }}/show/chooseShow"><span class="choose_icon"></span>Choose Show</a></li>
+                {{ render(controller('EssentialTvEtvBundle:User:showUserMenu')) }}
+                
+            </ul>
+        {% endblock %}
+        <div class="userinfo">
+            {% block userInfo %}
+                {{ render(controller('EssentialTvEtvBundle:User:showUserInfoHeader')) }}
+            {% endblock %}
+        </div>
+
+    </nav>
+
+
+    <!-- Navigation Block Ends -->           
+
+    <div id="wrapper">
+
+        <header id="header">
+            {% block header %}
+                <div class="topheader"> 
+                    <div class="container">
+                        <div class="logo">
+                            <!-- logo -->
+                            <a href="{{ app.request.getBaseURL()}}/" class="navbar-brand">ENKA</a>
+                        </div>
+                        <div class="search_top">
+                            <form method="get" action="{{ app.request.getBaseURL()}}/site/search"  class="form-inline">
+                                <button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>
+                                <input type="text" name="query" placeholder="Search.." class="form-control pull-left">
+                            </form>
+                        </div>
+                        {{ render(controller('EssentialTvEtvBundle:User:showUserInfoHeader')) }}
+                        <!--/.nav-collapse --> 
+                    </div>
+                </div>
+                <div class="header-nav"> 
+                    <!-- menu -->
+                    {% block headerNav %}
+                        <nav role="navigation" class="navbar navbar-default">
+                            <div class="container">
+                                <div id="navbar" aria-expanded="false" role="menu">
+                                    <ul class="nav navbar-nav header-nav">
+                                        {% block topmenu %}
+
+                                        {% endblock %}
+                                    </ul>
+                                </div>
+                                <a class="post_btn" href="{{ app.request.getBaseURL() }}/post/chooseTemplate"><span>Create Post</span></a>
+                                <!--/.nav-collapse --> 
+                            </div>
+                        </nav>
+                    {% endblock %}
+                    <!-- end nav --> 
+                </div>
+            {% endblock %}
+        </header>
+        <section class="mainbody">
+            {% block toprow %}
+
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
+
+        </section>
+        {% block mfooter %}
+            <section class="mfooter">
+                <ul class="mfooter_menu">
+                    {% block sidemenu %}
+                        <li><a class="left_link" href="{{ app.request.getBaseURL() }}/show/chooseShow">CHOOSE SHOW</a></li>
+                        <li><a class="right_link" href="javascript:void(0)" disabled>EPISODE GUIDE</a></li>
+                        {% endblock %}
+                </ul>
+                <div class="search_user">
+                    <a class="search_btn"></a>
+                    <div class="btmsearch closed">
+                        <form method="get" action="{{ app.request.getBaseURL()}}/site/search"  class="form-inline">
+                            <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
+                            <input type="text" name="query" class="form-control pull-left" placeholder="Search..">
+                        </form>
+                    </div>
+                    {{ render(controller('EssentialTvEtvBundle:User:showUserInfoImage')) }}
+                    <a class="create_post" href="{{ app.request.getBaseURL() }}/post/chooseTemplate" title="Create Post"></a>
+                </div>
+            </section>
+        {% endblock %}
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">Copyright 2014 Essential TV. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <ul class="social_link list-inline">
+                            <li data-wow-duration=".8s" data-wow-delay=".1s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.1s; animation-name: fadeIn;">
+                                <a title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                                <a title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                                <a title="youtube" href="#"><i class="fa fa-youtube"></i></a>
+                            </li>
+                            <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                                <a title="linkedin" href="#"><i class="fa fa-linkedin-square"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a href="#" class="scrollToTop"><i class="fa fa-angle-up"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>   
+
+    {% block modal %}
+
+    {% endblock %}
+    <script type="text/javascript">
+        window.siteUrl = "{{ app.request.getBaseURL() }}";
+    </script>
+    <script src="{{asset('assets/js/smoothscroll/smoothscroll.js')}}"></script> 
+    <script src="{{asset('assets/js/scrollTo/jquery.scrollTo.min.js')}}"></script> 
+    <script src="{{asset('assets/js/sticky/jquery.sticky.js')}}"></script> 
+    <script src="{{asset('assets/js/simply-toast.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl-carousel/owl.carousel.js')}}"></script>  
+    <script src="{{asset('assets/js/nivo-lightbox/nivo-lightbox.min.js')}}"></script>
+    <script src="{{asset('assets/js/wow/wow.min.js')}}"></script> 
+    <script src="{{asset('assets/js/YTPlayer/inc/jquery.mb.YTPlayer.js')}}"></script>
+    <script src="{{asset('assets/js/fitvids/jquery.fitvids.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-select.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/mmenu.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/mapmarker.jquery.js')}}"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false" ></script>
+    <script src="{{asset('assets/js/jscroll/jquery.waypoints.min.js')}}"></script>
+    <script src="{{asset('assets/js/jscroll/infinite.js')}}"></script>
+    <script src="{{asset('assets/js/owl.carousel.js')}}"></script>
+{% block custom_js %}{% endblock %}
+<script src="{{asset('assets/js/custom.js')}}"></script>
+<script src="{{asset('assets/js/custom.javascript.js')}}"></script>
+</body>

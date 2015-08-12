@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\Quotes" table="quotes"  repository-class="EssentialTv\EtvBundle\Entity\QuotesRepository">
+    <indexes>
+      <index name="quote_user_id" columns="quote_user_id"/>
+      <index name="quote_character_id" columns="quote_character_id"/>
+      <index name="quote_episode_id" columns="quote_episode_id"/>
+    </indexes>
+    <id name="quoteId" type="integer" column="quote_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="quoteUserId" type="integer" column="quote_user_id" nullable="false"/>
+    <field name="quoteCharacterId" type="integer" column="quote_character_id" nullable="false"/>
+    <field name="quoteEpisodeId" type="integer" column="quote_episode_id" nullable="true"/>
+    <field name="quoteText" type="text" column="quote_text" nullable="true"/>
+    <field name="quoteCreatedOn" type="datetime" column="quote_created_on" nullable="true"/>
+    <field name="quoteCreatedBy" type="integer" column="quote_created_by" nullable="false"/>
+    <field name="quoteUpdatedOn" type="datetime" column="quote_updated_on" nullable="false"/>
+    <field name="quoteUpdateBy" type="integer" column="quote_update_by" nullable="false"/>
+    <field name="quoteStatus" type="string" column="quote_status" nullable="false"/>
+  </entity>
+</doctrine-mapping>

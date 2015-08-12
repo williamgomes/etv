@@ -1,0 +1,270 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block content %}
+
+    {#{{ dump(charMostApperedSeason) }}#}
+    {#{{ dump(showInfo) }}#}
+
+    <section class="mainbody">
+        <div class="hadding_title">
+            <div class="container">
+                <h1 class="">{{ showInfo.showTitle }}</h1>
+                <ul class="list-inline social">
+                    <li><a class="share" href="#" title=""><i class="fa fa-share-alt"></i></a></li>
+                    <li><a class="facebook" href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="character_box clearfix">
+                        {% if userRole == 'ROLE_ADMIN' or userRole == 'ROLE_MOD' %}
+                            <a class="edit_btn" href="{{ url('character_edit', { 'id': characterInfo.characterId , 'name': characterInfo.characterTitle|replace(' ','-') }) }}"><i class="fa fa-pencil-square-o"></i></a>
+                            {% endif %}
+                        <div class="character_img">
+                            {% if characterInfo.characterOriginalDataSupersede == 'active' %}
+                                <img src="{{ app.request.getBaseURL() }}{{ characterInfo.characterBannerImage }}" alt="{{ characterInfo.characterTitle }}" />
+                            {% else %}
+                                <img src="{{ app.request.getBaseURL() }}{{ characterInfo.characterApiImages }}" alt="{{ characterInfo.characterTitle }}" />
+                            {% endif %}
+                        </div>
+                        <div class="character_detail">
+                            <h3>{{ characterInfo.characterTitle }}</h3>
+                            <h4>{{countCharAppearance}} Recorded Appearances</h4>
+                            {% if charMostApperedSeason[0].cseSeasonId %}
+                                <p>Most Appearances in Season {{charMostApperedSeason[0].cseSeasonId}}</p>
+                            {% endif %}
+                            {% if characterInfo.characterActors %}
+                                <p>Portrayed by: {{ characterInfo.characterActors }}</p>
+                            {% endif %}
+                            <p>Aliases: 
+                                {% if characterInfo.characterAliasOne %} {{ characterInfo.characterAliasOne }}, {% endif %}
+                                {% if characterInfo.characterAliasTwo %} {{ characterInfo.characterAliasTwo }}, {% endif %}
+                                {% if characterInfo.characterAliasThree %} {{ characterInfo.characterAliasThree }}, {% endif %}
+                                {% if characterInfo.characterAliasFour %} {{ characterInfo.characterAliasFour }}, {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel">
+            <div class="container">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs tab3" role="tablist">
+                    <li role="presentation" class="active"><a href="#episodes" aria-controls="episodes" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Episodes</a></li>
+                    <li role="presentation"><a href="#fandom" aria-controls="fandom" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Fandom</a></li>
+                    <li role="presentation"><a href="#quotes" aria-controls="quotes" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Quotes</a></li>
+                </ul>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="episodes">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                {% if countEpisode > 0 %}
+                                    {% for Episode in episodesInfo %}
+
+                                        <div class="episode_list">
+                                            <div class="episode_img"><img alt="" src="{{ app.request.getBaseURL() }}{{ Episode.episodeBannerImage }}"></div>
+                                            <div class="episode_contant">
+                                                <h3>S1E1: {{ Episode.episodeTitle }}</h3>
+                                                <h5>Essential: {{ Episode.episodeEssentialCountTotal }}% Yes | {{ Episode.episodeNotEssentialCountTotal }}% No</h5>
+                                                <p>{{ Episode.episodeApiSummary }}</p>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %} 
+                                {% else %}
+                                    <h5>No episode found.</h5>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    {% block mfooter %}
+                        <div class="mfooter">
+                            <ul class="mfooter_menu">
+                                <li><a class="left_link" href="{{ url('show_episode_season', { 'id': showId , 'name': showInfo.showTitle|replace(' ','-') }) }}">EPISODE GUIDE</a></li>
+                            </ul>
+                            <div class="search_user">
+                                <a class="search_btn"></a>
+                                <div class="user_avater"><img src="images/avater.png" alt="" /></div>
+                                <a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="fandom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="thumb-post fandom">
+                                    {% if countFandom > 0 %}
+                                        {% for Fandom in fandomInfo %}
+                                            <li class="item">
+                                                <div class="post-content">
+                                                    <div class="content_img">
+                                                        <div class="new">New</div>
+                                                        <a class="post-image" title="" href="#">
+                                                            <img src="{{ app.request.getBaseURL() }}/{{ Fandom['postCoverImage'] }}" title="{{ Fandom['postTitle'] }}" alt="{{ Fandom['postTitle'] }}"/>
+                                                        </a>
+                                                    </div>
+                                                    <div class="post_dec">
+                                                        <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">{{ Fandom['showTitle'] }}</a></h2>
+                                                        <h6>{{ Fandom['postPrimaryType'] }} : {{ Fandom['postTitle']|slice(0,15) }}</h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        {% endfor %} 
+                                    {% else %}
+                                        <h5>No post found.</h5>
+                                    {% endif %}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="quotes">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12" id="showQuotes">
+                                {% if countQuote > 0 %}
+                                    {% for Quote in quoteInfo %}
+
+                                        <div class="quotes">
+                                            <div class="quote_img">
+                                                {% if Quote['characterOriginalDataSupersede'] == 'active' %}
+                                                    <img src="{{ app.request.getBaseURL() }}{{ Quote['characterBannerImage'] }}" alt="{{ Quote['characterTitle'] }}" />
+                                                {% else %}
+                                                    <img src="{{ app.request.getBaseURL() }}{{ Quote['characterApiImages'] }}" alt="{{ Quote['characterTitle'] }}" />
+                                                {% endif %}
+                                            </div>
+                                            <div class="quote_area">
+                                                <div class="quote arrow_box">
+                                                    <p>"{{ Quote[0].quoteText }}"</p>
+                                                </div>
+                                                <h5 class="name">- {{ Quote['characterTitle'] }}</h5>
+                                                <ul class="list-inline social">
+                                                    <li><a class="facebook" href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a class="twitter" href="#" title=""><i class="fa fa-twitter"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% endfor %} 
+                                {% else %}
+                                    <h5>No quote found.</h5>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block modal %}
+    <!-- Modal ADD QUOTE -->
+    <div class="modal fade" id="addquote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ADD QUOTE</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="addquote_submit">
+                        <p>ADD QUOTES</p>
+                        <form name="QUOTES">
+                            <input list="datalistChar" name="character" id="character" placeholder="Episode Name" onkeyup="javascript:episodeSuggestion(this.value,{{showId}} );">
+                            <datalist id="datalistChar">
+                            </datalist> 
+                            <br><br>
+                            <input type="hidden" name="charId" id="charId" value="{{ characterInfo.characterId }}">
+                            <input id="episodeIdQuote" value="0" type="hidden">
+                            <textarea name="limitedtextarea" onKeyDown="limitText(this.form.limitedtextarea, this.form.countdown, 100);" 
+                                      onKeyUp="limitText(this.form.limitedtextarea, this.form.countdown, 500);" id="txtQuote">
+                            </textarea><br>
+                            <font size="1">(Maximum characters: 500)<br>
+                            You have <input readonly type="text" name="countdown" size="3" value="500"> characters left.</font><br>
+                            <input onclick="javascript:addQuote('Char');" type="button" class="btn" value="Submit" />
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block custom_js %}
+    <script>
+        function checkId(ancId) {
+            var myArr = ancId.split("#");
+            anchorId = myArr[1];
+            var Html = "";
+
+            if (anchorId == "fandom" || anchorId == "episodes") {
+                Html += '<div class="mfooter">';
+                Html += '<ul class="mfooter_menu">';
+                Html += '<li><a class="left_link" href="{{ url('show_episode_season', { 'id': showId , 'name': showInfo.showTitle|replace(' ','-') }) }}">EPISODE GUIDE</a></li>';
+                Html += '</ul>';
+                Html += '<div class="search_user">';
+                Html += '<a class="search_btn"></a>';
+                Html += '<div class="btmsearch closed">';
+                Html += '<form method="post" action="#" class="form-inline">';
+                Html += '<button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>';
+                Html += '<input type="text" placeholder="Search.." class="form-control pull-left">';
+                Html += '</form>';
+                Html += '</div>';
+                Html += '<div class="user_avater"><img alt="" src=""></div>';
+                Html += '<a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>';
+                Html += '</div>';
+                Html += '</div>';
+            } else if (anchorId == "quotes") {
+                Html += '<div class="mfooter">';
+                Html += '<ul class="mfooter_menu">';
+                Html += '<li><a class="left_link" href="{{ url('show_episode_season', { 'id': showId , 'name': showInfo.showTitle, }) }}">EPISODE GUIDE</a></li>';
+                {% if app.session.get('user') is not null%}
+                Html += '<li><a class="right_link addquote" data-toggle="modal" data-target="#addquote">&nbsp;&nbsp;ADD QUOTE&nbsp;&nbsp;</a></li>';
+                {% else %}
+                    Html += '<li><a class="right_link addquote" href="{{ url('user_signin')}}">&nbsp;&nbsp;ADD QUOTE&nbsp;&nbsp;</a></li>';
+                {% endif %}
+                Html += '</ul>';
+                Html += '<div class="search_user">';
+                Html += '<a class="search_btn"></a>';
+                Html += '<div class="btmsearch closed">';
+                Html += '<form method="post" action="#" class="form-inline">';
+                Html += '<button class="btn btn-default pull-right" type="submit"><i class="fa fa-search"></i></button>';
+                Html += '<input type="text" placeholder="Search.." class="form-control pull-left">';
+                Html += '</form>';
+                Html += '</div>';
+                Html += '<div class="user_avater"><img alt="" src=""></div>';
+                Html += '<a class="maddbtn" href="#"><i class="fa fa-plus"></i></a>';
+                Html += '</div>';
+                Html += '</div>';
+            }
+
+            $(".mfooter").replaceWith(Html);
+        }
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+    
+{% endblock %}
+{% block toprow %}
+
+{% endblock %}
+	{% block content %}
+            {% if result  is not empty %}
+            <div class="container scrollLoader">
+               <ul class="list-inline episode_search">
+               {% for element in result %}
+                    <li class="item">
+                        <a href="{{ app.request.getBaseURL() }}{{element.url}}"><img alt="" class="img-responsive" src="{{ app.request.getBaseURL() }}{{asset(element.image)}}"></a>
+                        <a class="playbtn" href="ShowSelected.html"><i class="fa fa-play"></i></a>
+                              <h6 class="title">{{element.title}}</h6>
+                    </li>
+             {% endfor %}
+                   </ul>
+                   
+            </div>
+             {% else %}
+                  <div class="container scrollLoader">
+                       <div class="col-md-2 col-md-offset-5">No Results Found..</div>
+                  </div>
+                   {% endif %}
+{% endblock %}

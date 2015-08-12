@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\Spoilers" table="spoilers" repository-class="EssentialTv\EtvBundle\Entity\SpoilersRepository">
+    <indexes>
+      <index name="spoiler_episode_id" columns="spoiler_episode_id"/>
+      <index name="spoiler_user_id" columns="spoiler_user_id"/>
+    </indexes>
+    <id name="spoilerId" type="integer" column="spoiler_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="spoilerEpisodeId" type="integer" column="spoiler_episode_id" nullable="true"/>
+    <field name="spoilerUserId" type="integer" column="spoiler_user_id" nullable="true"/>
+    <field name="spoilerCharacterIds" type="text" column="spoiler_character_ids" nullable="true"/>
+    <field name="spoilerText" type="text" column="spoiler_text" nullable="false"/>
+    <field name="spoilerCreatedOn" type="datetime" column="spoiler_created_on" nullable="true"/>
+    <field name="spoilerCreatedBy" type="integer" column="spoiler_created_by" nullable="false"/>
+    <field name="spoilerUpdatedOn" type="datetime" column="spoiler_updated_on" nullable="false"/>
+    <field name="spoilerUpdatedBy" type="integer" column="spoiler_updated_by" nullable="false"/>
+    <field name="spoilerStatus" type="string" column="spoiler_status" nullable="false"/>
+  </entity>
+</doctrine-mapping>

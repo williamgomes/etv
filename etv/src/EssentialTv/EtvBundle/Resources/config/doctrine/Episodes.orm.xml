@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\Episodes" table="episodes" repository-class="EssentialTv\EtvBundle\Entity\EpisodesRepository">
+    <indexes>
+      <index name="episode_show_id" columns="episode_show_id"/>
+      <index name="episode_season_id" columns="episode_season_id"/>
+    </indexes>
+    <id name="episodeId" type="integer" column="episode_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="episodeTmsId" type="string" column="episode_tms_id" length="255" nullable="false"/>
+    <field name="episodeApiId" type="integer" column="episode_api_id" nullable="false"/>
+    <field name="episodeShowId" type="integer" column="episode_show_id" nullable="true"/>
+    <field name="episodeSeasonId" type="integer" column="episode_season_id" nullable="false"/>
+    <field name="episodeNumber" type="integer" column="episode_number" nullable="true"/>
+    <field name="episodeTitle" type="string" column="episode_title" length="255" nullable="false"/>
+    <field name="episodeOriginalSummary" type="text" column="episode_original_summary" nullable="true"/>
+    <field name="episodeApiSummary" type="text" column="episode_api_summary" nullable="false"/>
+    <field name="episodeOriginalImages" type="text" column="episode_original_images" nullable="false"/>
+    <field name="episodeApiImages" type="text" column="episode_api_images" nullable="false"/>
+    <field name="episodeBannerImage" type="text" column="episode_banner_image" nullable="false"/>
+    <field name="episodeScreeningDate" type="datetime" column="episode_screening_date" nullable="true"/>
+    <field name="originalDataSupersede" type="string" column="original_data_supersede" nullable="false"/>
+    <field name="episodeEssentialCountTotal" type="float" column="episode_essential_count_total" precision="10" scale="0" nullable="true"/>
+    <field name="episodeNotEssentialCountTotal" type="float" column="episode_not_essential_count_total" precision="10" scale="0" nullable="true"/>
+    <field name="episodeVideoUrl" type="text" column="episode_video_url" nullable="true"/>
+    <field name="episodeStatus" type="string" column="episode_status" nullable="false"/>
+    <field name="episodeCreateBy" type="integer" column="episode_create_by" nullable="true"/>
+    <field name="episodeCreatedOn" type="datetime" column="episode_created_on" nullable="true"/>
+    <field name="episodeUpdatedBy" type="integer" column="episode_updated_by" nullable="true"/>
+    <field name="episodeUpdatedOn" type="datetime" column="episode_updated_on" nullable="true"/>
+  </entity>
+</doctrine-mapping>

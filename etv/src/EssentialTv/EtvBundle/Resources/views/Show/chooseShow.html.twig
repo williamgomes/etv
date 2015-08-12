@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block sidemenu %}
+<li><a class="left_link" href="{{ app.request.getBaseURL() }}/">Home</a></li>
+<li><a class="right_link" href="javascript:void(0)" disabled>EPISODE GUIDE</a></li>
+{% endblock %}
+{% block toprow %}
+<div class="filter">
+    <div class="container">
+            <ul class="list-inline text-center">
+                 {% for alphabet in alphabets %}
+                     <li><a href="javascript:void(0)" onclick = "chooseShowAjax('{{alphabet}}',this)">{{alphabet}}</a></li>
+                 {% endfor %}
+            </ul>
+    </div>
+</div>
+{% endblock %}
+	{% block content %}
+            <div class="container scrollLoader">
+		<ul class="list-inline episode_search">
+               {% for show in shows %}
+                    <li class="item">
+                        <a href="{{ app.request.getBaseURL() }}/{{show.showTitle | replace({" " : ""})}}"><img alt="" class="img-responsive" src="{{ app.request.getBaseURL() }}{{asset(show.showBannerImage)}}"></a>
+                        <!--<a class="playbtn" href="{{ app.request.getBaseURL() }}/{{show.showTitle | replace({" " : ""})}}"><i class="fa fa-play"></i></a>-->
+                              <h6 class="title">{{show.showTitle}}</h6>
+                    </li>
+             {% endfor %}
+                   </ul>
+            </div>
+{% endblock %}

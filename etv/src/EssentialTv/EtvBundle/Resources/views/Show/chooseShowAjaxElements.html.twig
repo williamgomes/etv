@@ -1,0 +1,15 @@
+<ul class="list-inline episode_search">
+    {% if shows is not empty %}
+               {% for show in shows %}
+                    <li class="item">
+                        <a href="{{ app.request.getBaseURL() }}/show/selected/{{show.showId}}"><img alt="" class="img-responsive" src="{{ app.request.getBaseURL() }}{{asset(show.showBannerImage)}}"></a>
+                        <!--<a class="playbtn" href="ShowSelected.html"><i class="fa fa-play"></i></a>-->
+                              <h6 class="title">{{show.showTitle}}</h6>
+                    </li>
+             {% endfor %}
+                <div class="next" style="display: none"><a href="{{ app.request.getBaseURL() }}/show/showListAjax/{{filter}}/{{offset}}">next</a></div>     
+             {% endif %}
+             {% if shows is empty %}
+                 <div class="col-md-2 col-md-offset-5">No Match Found..</div>
+                 {% endif %}
+                   </ul>

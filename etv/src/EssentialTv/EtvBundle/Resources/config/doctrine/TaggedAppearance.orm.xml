@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\TaggedAppearance" table="tagged_appearance">
+    <indexes>
+      <index name="TA_character_id" columns="TA_character_id,TA_episode_id"/>
+      <index name="TA_episode_id" columns="TA_episode_id"/>
+      <index name="TA_show_id" columns="TA_show_id"/>
+    </indexes>
+    <id name="taId" type="integer" column="TA_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="taShowId" type="integer" column="TA_show_id" nullable="false"/>
+    <field name="taCharacterId" type="integer" column="TA_character_id" nullable="false"/>
+    <field name="taEpisodeId" type="integer" column="TA_episode_id" nullable="false"/>
+    <field name="taApperanceCount" type="integer" column="TA_apperance_count" nullable="false"/>
+  </entity>
+</doctrine-mapping>

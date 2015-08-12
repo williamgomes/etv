@@ -1,0 +1,3 @@
+essential_tv_etv:
+    resource: "@EssentialTvEtvBundle/Resources/config/routing.yml"
+    prefix:   /

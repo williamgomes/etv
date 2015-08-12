@@ -1,0 +1,772 @@
+<?php
+
+namespace EssentialTv\EtvBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Characters
+ *
+ * @ORM\Table(name="characters", indexes={@ORM\Index(name="character_show_id", columns={"character_show_id"})})
+ * @ORM\Entity
+ */
+class Characters {
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_tms_id", type="string", length=255, nullable=false)
+     */
+    private $characterTmsId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="character_api_id", type="integer", nullable=false)
+     */
+    private $characterApiId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_title", type="string", length=150, nullable=true)
+     */
+    private $characterTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_api_summary", type="text", nullable=false)
+     */
+    private $characterApiSummary;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_original_summary", type="text", nullable=false)
+     */
+    private $characterOriginalSummary;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_api_images", type="text", nullable=false)
+     */
+    private $characterApiImages;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_original_images", type="text", nullable=false)
+     */
+    private $characterOriginalImages;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_banner_image", type="text", nullable=false)
+     */
+    private $characterBannerImage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_alias_one", type="string", length=100, nullable=false)
+     */
+    private $characterAliasOne;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_alias_two", type="string", length=100, nullable=false)
+     */
+    private $characterAliasTwo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_alias_three", type="string", length=100, nullable=false)
+     */
+    private $characterAliasThree;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_alias_four", type="string", length=100, nullable=false)
+     */
+    private $characterAliasFour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_bio", type="text", nullable=false)
+     */
+    private $characterBio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_actors", type="text", nullable=false)
+     */
+    private $characterActors;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_original_data_supersede", type="string", nullable=false)
+     */
+    private $characterOriginalDataSupersede;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="character_status", type="string", nullable=false)
+     */
+    private $characterStatus;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="character_created_on", type="datetime", nullable=false)
+     */
+    private $characterCreatedOn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="character_created_by", type="integer", nullable=false)
+     */
+    private $characterCreatedBy;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="character_updated_on", type="datetime", nullable=false)
+     */
+    private $characterUpdatedOn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="character_updated_by", type="integer", nullable=false)
+     */
+    private $characterUpdatedBy;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="character_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $characterId;
+
+    /**
+     * @var \EssentialTv\EtvBundle\Entity\Shows
+     *
+     * @ORM\ManyToOne(targetEntity="EssentialTv\EtvBundle\Entity\Shows")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="character_show_id", referencedColumnName="show_id")
+     * })
+     */
+    private $characterShow;
+
+    /**
+     * Set characterTmsId
+     *
+     * @param string $characterTmsId
+     * @return Characters
+     */
+    
+    
+    /*
+     * This is a path variable used for uploading CSV files
+     */
+
+    public $path;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
+
+    
+    
+    public function setCharacterTmsId($characterTmsId) {
+        $this->characterTmsId = $characterTmsId;
+
+        return $this;
+    }
+
+    /**
+     * Get characterTmsId
+     *
+     * @return string 
+     */
+    public function getCharacterTmsId() {
+        return $this->characterTmsId;
+    }
+
+    /**
+     * Set characterApiId
+     *
+     * @param integer $characterApiId
+     * @return Characters
+     */
+    public function setCharacterApiId($characterApiId) {
+        $this->characterApiId = $characterApiId;
+
+        return $this;
+    }
+
+    /**
+     * Get characterApiId
+     *
+     * @return integer 
+     */
+    public function getCharacterApiId() {
+        return $this->characterApiId;
+    }
+
+    /**
+     * Set characterTitle
+     *
+     * @param string $characterTitle
+     * @return Characters
+     */
+    public function setCharacterTitle($characterTitle) {
+        $this->characterTitle = $characterTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get characterTitle
+     *
+     * @return string 
+     */
+    public function getCharacterTitle() {
+        return $this->characterTitle;
+    }
+
+    /**
+     * Set characterApiSummary
+     *
+     * @param string $characterApiSummary
+     * @return Characters
+     */
+    public function setCharacterApiSummary($characterApiSummary) {
+        $this->characterApiSummary = $characterApiSummary;
+
+        return $this;
+    }
+
+    /**
+     * Get characterApiSummary
+     *
+     * @return string 
+     */
+    public function getCharacterApiSummary() {
+        return $this->characterApiSummary;
+    }
+
+    /**
+     * Set characterOriginalSummary
+     *
+     * @param string $characterOriginalSummary
+     * @return Characters
+     */
+    public function setCharacterOriginalSummary($characterOriginalSummary) {
+        $this->characterOriginalSummary = $characterOriginalSummary;
+
+        return $this;
+    }
+
+    /**
+     * Get characterOriginalSummary
+     *
+     * @return string 
+     */
+    public function getCharacterOriginalSummary() {
+        return $this->characterOriginalSummary;
+    }
+
+    /**
+     * Set characterApiImages
+     *
+     * @param string $characterApiImages
+     * @return Characters
+     */
+    public function setCharacterApiImages($characterApiImages) {
+        $this->characterApiImages = $characterApiImages;
+
+        return $this;
+    }
+
+    /**
+     * Get characterApiImages
+     *
+     * @return string 
+     */
+    public function getCharacterApiImages() {
+        return $this->characterApiImages;
+    }
+
+    /**
+     * Set characterOriginalImages
+     *
+     * @param string $characterOriginalImages
+     * @return Characters
+     */
+    public function setCharacterOriginalImages($characterOriginalImages) {
+        $this->characterOriginalImages = $characterOriginalImages;
+
+        return $this;
+    }
+
+    /**
+     * Get characterOriginalImages
+     *
+     * @return string 
+     */
+    public function getCharacterOriginalImages() {
+        return $this->characterOriginalImages;
+    }
+
+    /**
+     * Set characterBannerImage
+     *
+     * @param string $characterBannerImage
+     * @return Characters
+     */
+    public function setCharacterBannerImage($characterBannerImage) {
+        $this->characterBannerImage = $characterBannerImage;
+
+        return $this;
+    }
+
+    /**
+     * Get characterBannerImage
+     *
+     * @return string 
+     */
+    public function getCharacterBannerImage() {
+        return $this->characterBannerImage;
+    }
+
+    /**
+     * Set characterAliasOne
+     *
+     * @param string $characterAliasOne
+     * @return Characters
+     */
+    public function setCharacterAliasOne($characterAliasOne) {
+        $this->characterAliasOne = $characterAliasOne;
+
+        return $this;
+    }
+
+    /**
+     * Get characterAliasOne
+     *
+     * @return string 
+     */
+    public function getCharacterAliasOne() {
+        return $this->characterAliasOne;
+    }
+
+    /**
+     * Set characterAliasTwo
+     *
+     * @param string $characterAliasTwo
+     * @return Characters
+     */
+    public function setCharacterAliasTwo($characterAliasTwo) {
+        $this->characterAliasTwo = $characterAliasTwo;
+
+        return $this;
+    }
+
+    /**
+     * Get characterAliasTwo
+     *
+     * @return string 
+     */
+    public function getCharacterAliasTwo() {
+        return $this->characterAliasTwo;
+    }
+
+    /**
+     * Set characterAliasThree
+     *
+     * @param string $characterAliasThree
+     * @return Characters
+     */
+    public function setCharacterAliasThree($characterAliasThree) {
+        $this->characterAliasThree = $characterAliasThree;
+
+        return $this;
+    }
+
+    /**
+     * Get characterAliasThree
+     *
+     * @return string 
+     */
+    public function getCharacterAliasThree() {
+        return $this->characterAliasThree;
+    }
+
+    /**
+     * Set characterAliasFour
+     *
+     * @param string $characterAliasFour
+     * @return Characters
+     */
+    public function setCharacterAliasFour($characterAliasFour) {
+        $this->characterAliasFour = $characterAliasFour;
+
+        return $this;
+    }
+
+    /**
+     * Get characterAliasFour
+     *
+     * @return string 
+     */
+    public function getCharacterAliasFour() {
+        return $this->characterAliasFour;
+    }
+
+    /**
+     * Set characterBio
+     *
+     * @param string $characterBio
+     * @return Characters
+     */
+    public function setCharacterBio($characterBio) {
+        $this->characterBio = $characterBio;
+
+        return $this;
+    }
+
+    /**
+     * Get characterBio
+     *
+     * @return string 
+     */
+    public function getCharacterBio() {
+        return $this->characterBio;
+    }
+
+    /**
+     * Set characterActors
+     *
+     * @param string $characterActors
+     * @return Characters
+     */
+    public function setCharacterActors($characterActors) {
+        $this->characterActors = $characterActors;
+
+        return $this;
+    }
+
+    /**
+     * Get characterActors
+     *
+     * @return string 
+     */
+    public function getCharacterActors() {
+        return $this->characterActors;
+    }
+
+    /**
+     * Set characterOriginalDataSupersede
+     *
+     * @param string $characterOriginalDataSupersede
+     * @return Characters
+     */
+    public function setCharacterOriginalDataSupersede($characterOriginalDataSupersede) {
+        $this->characterOriginalDataSupersede = $characterOriginalDataSupersede;
+
+        return $this;
+    }
+
+    /**
+     * Get characterOriginalDataSupersede
+     *
+     * @return string 
+     */
+    public function getCharacterOriginalDataSupersede() {
+        return $this->characterOriginalDataSupersede;
+    }
+
+    /**
+     * Set characterStatus
+     *
+     * @param string $characterStatus
+     * @return Characters
+     */
+    public function setCharacterStatus($characterStatus) {
+        $this->characterStatus = $characterStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get characterStatus
+     *
+     * @return string 
+     */
+    public function getCharacterStatus() {
+        return $this->characterStatus;
+    }
+
+    /**
+     * Set characterCreatedOn
+     *
+     * @param \DateTime $characterCreatedOn
+     * @return Characters
+     */
+    public function setCharacterCreatedOn($characterCreatedOn) {
+        $this->characterCreatedOn = $characterCreatedOn;
+
+        return $this;
+    }
+
+    /**
+     * Get characterCreatedOn
+     *
+     * @return \DateTime 
+     */
+    public function getCharacterCreatedOn() {
+        return $this->characterCreatedOn;
+    }
+
+    /**
+     * Set characterCreatedBy
+     *
+     * @param integer $characterCreatedBy
+     * @return Characters
+     */
+    public function setCharacterCreatedBy($characterCreatedBy) {
+        $this->characterCreatedBy = $characterCreatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get characterCreatedBy
+     *
+     * @return integer 
+     */
+    public function getCharacterCreatedBy() {
+        return $this->characterCreatedBy;
+    }
+
+    /**
+     * Set characterUpdatedOn
+     *
+     * @param \DateTime $characterUpdatedOn
+     * @return Characters
+     */
+    public function setCharacterUpdatedOn($characterUpdatedOn) {
+        $this->characterUpdatedOn = $characterUpdatedOn;
+
+        return $this;
+    }
+
+    /**
+     * Get characterUpdatedOn
+     *
+     * @return \DateTime 
+     */
+    public function getCharacterUpdatedOn() {
+        return $this->characterUpdatedOn;
+    }
+
+    /**
+     * Set characterUpdatedBy
+     *
+     * @param integer $characterUpdatedBy
+     * @return Characters
+     */
+    public function setCharacterUpdatedBy($characterUpdatedBy) {
+        $this->characterUpdatedBy = $characterUpdatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get characterUpdatedBy
+     *
+     * @return integer 
+     */
+    public function getCharacterUpdatedBy() {
+        return $this->characterUpdatedBy;
+    }
+
+    /**
+     * Get characterId
+     *
+     * @return integer 
+     */
+    public function getCharacterId() {
+        return $this->characterId;
+    }
+
+    /**
+     * Set characterShow
+     *
+     * @param \EssentialTv\EtvBundle\Entity\Shows $characterShow
+     * @return Characters
+     */
+    public function setCharacterShow(\EssentialTv\EtvBundle\Entity\Shows $characterShow = null) {
+        $this->characterShow = $characterShow;
+
+        return $this;
+    }
+
+    /**
+     * Get characterShow
+     *
+     * @return \EssentialTv\EtvBundle\Entity\Shows 
+     */
+    public function getCharacterShow() {
+        return $this->characterShow;
+    }
+
+    
+    
+    
+    
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null) {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile() {
+        return $this->file;
+    }
+
+    public function getAbsolutePath() {
+        return null === $this->path ? null : $this->getUploadRootDir() . '/' . $this->path;
+    }
+
+    public function getWebPath() {
+        return null === $this->path ? null : $this->getUploadDir() . '/' . $this->path;
+    }
+
+    public function getUploadRootDir() {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__ . '/../../../../uploads/' . $this->getUploadDir();
+    }
+
+    public function getUploadDir() {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'csv/characters';
+    }
+
+    /*
+     * This upload function will be used to upload file to destined directory
+     */
+
+    public function upload() {
+        // the file property can be empty if the field is not required
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        //getting upload path and client original path
+        $uploadPath = $this->getUploadRootDir();
+
+        // checking file and renaming the file before upload for security issue
+        $extension = $this->getFile()->guessExtension();
+        if (!$extension) {
+            // extension cannot be guessed
+            $extension = 'bin';
+        }
+        
+        //getting new name of uploaded file
+        $newNameofFile = rand(1, 99999) . '.' . $extension;
+        
+        //moving file to new directory with a new name
+        $this->getFile()->move($dir, $newNameofFile);
+
+
+        // set the path property to the filename where you've saved the file
+        $this->path = $newNameofFile;
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
+    }
+    
+    
+    
+    
+    /**
+     * sets actorOne
+     *
+     */
+    private $actorOne;
+    
+    /**
+     * sets actorTwo
+     *
+     */
+    private $actorTwo;
+    
+    
+    /**
+     * Get actorOne
+     *
+     * @return string 
+     */
+    public function getActorOne() {
+        return $this->actorOne;
+    }
+
+    /**
+     * Set actorOne
+     *
+     */
+    public function setActorOne($actorOne) {
+        $this->actorOne = $actorOne;
+
+        return $this;
+    }
+    
+    /**
+     * Get actorOne
+     *
+     * @return string 
+     */
+    public function getActorTwo() {
+        return $this->actorTwo;
+    }
+
+    /**
+     * Set actorOne
+     *
+     */
+    public function setActorTwo($actorTwo) {
+        $this->actorTwo = $actorTwo;
+
+        return $this;
+    }
+ 
+}

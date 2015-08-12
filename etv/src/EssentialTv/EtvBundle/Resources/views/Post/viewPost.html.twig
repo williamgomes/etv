@@ -1,0 +1,359 @@
+{% extends 'base.html.twig' %}
+ {% block headerNav %}
+{% endblock %}
+{% block toprow %}
+{% endblock %}
+{% block sidemenu %}
+<li><a class="left_link" href="{{ app.request.getBaseURL() }}/">Home</a></li>
+<li><a class="right_link" href="javascript:void(0)" disabled>EPISODE GUIDE</a></li>
+{% endblock %}
+{% block content %}
+<section class="mainbody">
+	<div class="hadding_title">
+    	<div class="container">
+        	<!--<h1 class="">{% for show in showList %}{% if loop.last %}{{show.showTitle}}{%else%}{{show.showTitle}},{% endif %}{% endfor %} {{post.postPrimaryType|capitalize }}</h1>-->
+            <h1>{{post.postTitle}}{% if editable == "true" %}<a href="{{ app.request.getBaseURL() }}/post/edit/{{post.postId}}">&nbsp;(Edit)</a>{% endif %}</h1>
+            
+        </div>
+    </div>
+	<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            	<div class="viewpost coverimage">
+            	<div class="episode-carousel">
+            <ul class="list-inline epi-carousel">
+            <li class="item">
+              <a href="#"><img src="{{ app.request.getBaseURL() }}{{post.postCoverImage}}" alt="" /></a>
+            </li>
+            </ul>
+              </div>
+            	<div class="view_title">
+                <span class="date">{{ post.postCreatedOn|date("M d, Y") }}</span>
+                <ul class="social_link2 list-inline">
+            	<li data-wow-duration=".8s" data-wow-delay=".1s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.1s; animation-name: fadeIn;">
+                	<a title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="youtube" href="#"><i class="fa fa-youtube"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="linkedin" href="#"><i class="fa fa-linkedin-square"></i></a>
+                </li>
+            </ul>
+                <span class="share_count">1,000 Shares</span></div>
+                <h2 class="text-center">{{post.postTitle}}</h2>
+                <div class="view_title">
+                	<img class="avater" src="{{ app.request.getBaseURL()}}{{user.userProfilePicture}}" alt="" /> <a href="#" class="name">{{user.userFirstName}} {{user.userLastName}}</a>|<span>{{post.postOriginallyCreatedBy}}</span>
+                </div>
+                {% if post.postType=="image" %}
+				<div class="episode-carousel">
+					<ul class="list-inline epi-carousel">
+					{%for image in post.postContent%}
+						<li class="item"><img src="{{ app.request.getBaseURL() }}{{image}}" /></li>    
+					{% endfor %}
+					</ul>
+				</div>
+                {% elseif post.postType=="video" %}
+                {% if "youtube" in post.postContent %}
+                <iframe width="420" height="236"
+                    src="{{post.postContent}}">
+                </iframe>
+                {% elseif "youtu.be" in post.postContent%}
+                <iframe width="420" height="236"
+                    src="{{post.postContent|replace({'youtu.be':"youtube.com/embed"})}}">
+                </iframe>
+                {% endif %}
+                {% elseif post.postType=="link" %}
+                    <h3><a href="{{post.postContent}}">Go To Link</a></h3>
+                {% elseif post.postType=="text" %}
+                     <p>{{post.postContent | raw}}</p> 
+                {% else %}
+                <p>{{post.postContent}}</p>    
+                {% endif %}
+                {% if post.postType!="text" %}
+                <p>{{post.postAbout | raw}}</p>
+                {% endif %}
+                <div class="view_title">
+                <a class="report" data-target="#report" data-toggle="modal" ><span>Report</span></a>
+                <ul class="social_link2 social_link3 list-inline">
+                <span class='st_facebook_large' style="padding:5px 0px" displayText='Facebook'></span>
+                <span class='st_twitter_large' style="padding:5px 0px" displayText='Tweet'></span>
+                <span class='st_linkedin_large' style="padding:5px 0px" displayText='LinkedIn'></span>
+                <span class='st_googleplus_large' style="padding:5px 0px" displayText='Google +'></span>
+                </ul>
+               <!-- <ul class="social_link2 social_link3 list-inline">
+            	<li data-wow-duration=".8s" data-wow-delay=".1s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.1s; animation-name: fadeIn;">
+                	<a title="" href="#" class="share "><i class="fa fa-share-alt"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="Facebook" href="#" class="facebook "><i class="fa fa-facebook"></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="twitter" href="#" class="twitter"><i class="fa fa-twitter "></i></a>
+                </li>
+                <li data-wow-duration=".8s" data-wow-delay=".2s" class="wow fadeIn animated" style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.2s; animation-name: fadeIn;">
+                	<a title="linkedin" class="" href="#"><i class="fa fa-inbox"></i></a>
+                </li>
+            </ul>-->
+                </div>
+                <ul class="list-inline recomendedPost episode_search epi-carousel4">
+                    
+                    {% for post in recomendedPost %}
+                        <li class="item">
+                    <a href="{{ app.request.getBaseURL() }}/post/view/{{post.postId}}"><img src="{{ app.request.getBaseURL() }}{{asset(post.postCoverImage)}}" class="img-responsive" alt=""></a>
+                  <a href="{{ app.request.getBaseURL() }}/post/view/{{post.postId}}" class="playbtn"><i class="fa fa-play"></i></a>
+                    <h6 class="title">{{post.postTitle}}</h6>
+                     </li>
+                        {% endfor %}
+                   
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div role="tabpanel">
+<div class="container">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs tab2" role="tablist">
+    <li role="presentation" class="active"><a href="#in_post" aria-controls="in_post" role="tab" data-toggle="tab">in this post</a></li>
+    <li role="presentation"><a href="#reactions" aria-controls="reactions" role="tab" data-toggle="tab" onclick="javascript:checkId(this.href);">Reactions</a></li>
+  </ul>
+</div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="in_post">
+    	<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% for show in showList %}
+                <div class="episode_list">
+                    <div class="episode_img"><a href="{{ app.request.getBaseURL() }}/{{show.showTitle | replace({" " : ""})}}"><img alt="" src="{{ app.request.getBaseURL() }}{{asset(show.showBannerImage)}}"></a></div>
+                    <div class="episode_contant">
+                        <h3><a href="{{ app.request.getBaseURL() }}/{{show.showTitle | replace({" " : ""})}}">{{show.showTitle}}</a></h3>
+                        <p>{{show.showTheme}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% for episode in episodes %}
+                <div class="episode_list">
+                    <div class="episode_img"><a class="post-image" title="{{episode.episodeTitle}}" href="{{ app.request.getBaseURL()}}/episode/{{episode.episodeId}}/{{episode.episodeTitle|replace(' ','-')}}"><img alt="" src="{{ app.request.getBaseURL() }}{{asset(episode.episodeBannerImage)}}"></a></div>
+                    <div class="episode_contant">
+                        <h3><a class="post-image" title="{{episode.episodeTitle}}" href="{{ app.request.getBaseURL()}}/episode/{{episode.episodeId}}/{{episode.episodeTitle|replace(' ','-')}}">S{{episode.episodeSeasonId}}E{{episode.episodeNumber}}: {{episode.episodeTitle}}</a></h3>
+                        <h5>Essential: {{episode.percent}}% Yes | {{100-episode.percent}}% No</h5>
+                        <p>{{episode.episodeApiSummary}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% for character in characters %}
+                <div class="episode_list">
+                    <div class="episode_img"><a href="{{ url('character_details_without_showid', { 'id': character.characterId , 'name': character.characterTitle|replace(" ","-") }) }}"><img alt="" src="{{ app.request.getBaseURL() }}{{asset(character.characterBannerImage)}}"></a></div>
+                    <div class="episode_contant">
+                        <h3><a href="{{ url('character_details_without_showid', { 'id': character.characterId , 'name': character.characterTitle|replace(" ","-") }) }}">{{character.characterTitle}}</a></h3>
+                        <p>{{character.characterApiSummary}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="reactions">
+    <div class="container">
+        <div class="row">
+        	<div class="col-md-12" id="showReaction">
+                {% for Reaction in postReactions %}
+                                        {#                                    {% for ReactionDetails in Reaction %}#}
+
+                                        <div class="reactions">
+                                            {% if Reaction['userProfilePicture'] == "" %}
+                                                <img alt="{{ Reaction['userFirstName'] }}" src="{{ app.request.getBaseURL() }}/images/uploads/users/default.gif">
+                                            {% else %}
+                                                <img alt="{{ Reaction['userFirstName'] }}" src="{{ app.request.getBaseURL() }}{{ Reaction['userProfilePicture'] }}">
+                                            {% endif %}
+                                            <h4><a href="" title="">{{ Reaction['userFirstName'] }}</a> |  
+                                                <a class="responses"  href="">{{ Reaction.ResponseCount }} Responses</a></h4>
+                                            <p>{{ Reaction.reactionText }}</p>
+                                        </div>
+                                        {#                                    {% endfor %}#}
+                                    {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- Modal ADD REACTION -->
+    <div class="modal fade" id="reaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ADD REACTION</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="reaction_submit">
+                        <p>ADD REACTION</p>
+                        <textarea id="txtReaction"></textarea>
+                        <input type="hidden" id="postId" value="{{post.postId}}">
+                        <input onclick="addPostReaction();" class="btn" type="button" value="Submit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+  <!-- Modal ADD REPORT -->                      
+<div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Report</h4>
+      </div>
+      <div class="modal-body">
+      	<p>Please help us understand the problem.</p>
+      	<form action="{{ app.request.getBaseURL() }}/post/report" method="post" id="reportForm">
+            <div class="form-group">
+            <input type="radio"  name="prType" />
+            <label for="spam">It's spam</label>
+            </div>
+            <div class="form-group">
+            <input type="radio" value="sensitive" name="prType"/>
+            <label for="spam">It displays sensitive content</label>
+            </div>
+            <div class="form-group">
+            <input type="radio" value="harmful" name="prType"/>
+            <label for="spam">It's abusive or harmful</label>
+            </div>
+            <div class="form-group">
+            <input type="radio" value="infringes" name="prType"/>
+            <label for="spam">It infringes my rights</label>
+            </div>
+            <div class="form-group">
+            <textarea name="prDetails" required>Please elaborate.</textarea>
+            <input type="hidden" name="prPostId" value="{{post.postId}}">
+            </div>
+            <input class="btn" type="button" value="Cancel" id="cancelBtn" data-dismiss="modal" />
+            <input class="btn" type="submit" value="Submit" />
+            <p>Learn more about our content rules <a href="#">here.</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+                
+<script type="text/javascript">
+    $( "#reportForm" ).submit(function( event ) {
+ 
+    // Stop form from submitting normally
+    event.preventDefault();
+ 
+    // Get some values from elements on the page:
+    var $form = $( this ),
+        url = $form.attr( "action" );
+ 
+    // Send the data using post
+    var posting = $.post( url, $( this ).serialize());
+ 
+    // Put the results in a div
+    posting.done(function( data ) {
+      var response =  JSON.parse(data);
+      if (response.isPosted)
+            {
+                notify('success', response.message);
+                $("#cancelBtn").trigger('click');
+            }
+                else
+                notify('error', response.message);
+    });
+    
+});
+    
+    function checkId(ancId) {
+                var myArr = ancId.split("#");
+                        var isLoggedIn = 1{{isLoggedIn}};
+                        anchorId = myArr[1];
+                        var Html = "";
+                        if (anchorId == "reactions") {
+                Html += '<div class="mfooter">';
+                        Html += '<ul class="mfooter_menu">';
+                        Html += '<li><a class="left_link" href="javascript:void(0)">EPISODE GUIDE</a></li>';
+                        if (isLoggedIn == 11){
+                Html += '<li><a class="right_link reaction" data-toggle="modal" data-target="#reaction">ADD REACTION</a></li>';
+                } else {
+                Html += '<li><a class="right_link reaction" href="{{ url('user_signin') }}">ADD REACTION</a></li>';
+                }
+                Html += '</ul>';
+                        Html += '<div class="search_user">';
+                        Html += '<a class="search_btn"></a>';
+                        Html += '<div class="user_avater"><img src="images/avater.png" alt="" /></div>';
+                        Html += '<a class="create_post" href="CreatePostChooseTemplate.html" title="Create Post"></a>';
+                        Html += '</div>';
+                        Html += '</div>';
+                } 
+
+                $(".mfooter").replaceWith(Html);
+                }
+                
+    function addPostReaction() {
+    var reaction = $('#txtReaction').val();
+    var postId = $('#postId').val();
+    var chkStat = 0;
+
+    if (reaction == "") {
+        chkStat++;
+        notify('error', 'Please write something before submitting.');
+    }
+
+    if (chkStat == 0) {
+        $.ajax({
+            url: window.siteUrl + "/create/postsReaction",
+            type: "POST",
+            data: {reaction: reaction, postId: postId},
+            success: function (data) {
+                var obj = unescape(data);
+                obj = $.parseJSON(obj);
+                if (obj.isPosted == true) {
+                    notify('success', 'Your reaction saved successfully.');
+                    $(".textbox").html('');
+                    $(".close").click();
+                    var htmlReaction = '';
+                    $.each(obj.reactionInfo, function (key, Reaction) {
+//                        var d = new Date();
+//                        var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+//
+//                        var date = d.getDay() + " " + month[d.getMonth()] + ", " + d.getFullYear();
+//                        var time = d.toLocaleTimeString().toLowerCase();
+//
+//                        console.log(date + " at " + time);
+
+                        htmlReaction += '<div class="reactions">';
+                        htmlReaction += '<img src="" alt="" />';
+                        htmlReaction += '<h4><a href="#" title="">' + Reaction.userFirstName + '</a> | ';
+                        htmlReaction += '<a class="responses"  href="' + window.siteUrl + '"/reaction/' + Reaction.reactionId + '/' + Reaction.reactionEpisodeId + '>' + Reaction.ResponseCount + ' Responses</a></h4>';
+                        htmlReaction += '<p>' + Reaction.reactionText + '</p>';
+                        htmlReaction += '</div>';
+                    });
+                    $("#showReaction").html(htmlReaction);
+                    notify('success', 'You reaction saved successfully.');
+                    $('#txtReaction').val('');
+                    $(".close").click();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown)
+            {
+                notify('error', errorThrown);
+            }
+        });
+    }
+}            
+    </script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "269f65ad-29a8-457d-9bf6-e5b100c67f64", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+{% endblock %}

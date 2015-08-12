@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block headerNav %}
+{% endblock %}
+{% block content %}
+
+    {#{{ dump(episodeInfo) }}#}
+    {#{{ dump(reactionInfo) }}#}
+    <div class="hadding_title">
+        <div class="container">
+            <h1 class="">{{ episodeInfo.episodeTitle }}</h1>
+            <ul class="list-inline social">
+                <li><a class="share" href="#" title=""><i class="fa fa-share-alt"></i></a></li>
+                <li><a class="facebook" href="#" title=""><i class="fa fa-facebook"></i></a></li>
+                <li><a class="twitter" href="#" title=""><i class="fa fa-twitter"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="reactions">
+                    <h5>{{ reactionInfo.reactionText }}</h5>
+                    <em><small> - on {{ reactionInfo.reactionUpdatedOn|date("F jS Y \\a\\t g:ia") }}</small></em>
+                </div>
+            </div>
+            {% for Response in reactionResponseInfo %}
+                <div class="col-md-9 pull-right">
+                    <div class="reactions">
+                        <h5>{{ Response.reactionText }}</h5>
+                        <em><small> - on {{ Response.reactionUpdatedOn|date("F jS Y \\a\\t g:ia") }}</small></em>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modal responses-->
+    <div class="modal fade" id="responses" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Responses</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="reaction_submit">
+                        <p>Submit Responses</p>
+                        <textarea id="response"></textarea>
+                        <input type="hidden" id="reactionId" value="{{ reactionId }}">
+                        <input type="hidden" id="episodeId" value="{{ episodeInfo.episodeId }}">
+                        <input onclick="javascript:addResponse();" class="btn" type="submit" value="Submit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block mfooter %}
+    <div class="mfooter">
+        <ul class="mfooter_menu">
+            <li><a class="left_link" href="{{ url('episode_details', { 'id': episodeInfo.episodeId, 'name': episodeInfo.episodeTitle|replace(' ','-') }) }}">GO BACK</a></li>
+            {% if isLoggedIn %}
+            <li><a class="right_link reaction" data-toggle="modal" data-target="#responses">ADD RESPONSE</a></li>
+            {% else %}
+            <li><a class="right_link reaction" href="{{ url('user_signup') }}">ADD RESPONSE</a></li>
+            {% endif %}
+        </ul>
+        <div class="search_user">
+            <a class="search_btn"></a>
+            <div class="user_avater"><img src="{{asset('assets/images/avater.png')}}" alt="" /></div>
+            <a href="#" class="maddbtn"><i class="fa fa-plus"></i></a>
+        </div>
+    </div>
+{% endblock %}
+

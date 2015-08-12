@@ -1,0 +1,592 @@
+/* --------------------------------------
+Bootstrap 3 Media Queries
+----------------------------------------- */
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {	
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {	
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    body {
+        font-size: 15px;
+        line-height: 23px;
+    }
+    .container {
+        width: 1024px;
+    }
+    p {
+        padding: 0 0 10px 0;
+        margin: 0;
+    }
+    .no-padding-left {
+        padding-left: 0!important;
+    }
+    .no-padding-right {
+        padding-right: 0!important;
+    }
+    .form_area {
+        padding: 0 200px;
+    }
+    .leftside .right_menu {
+        margin-left: -15px;
+    }
+    .episode_search li {
+        width: 23%;
+        margin: 0 1% 20px 1%;
+    }
+    .mfooter {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+    }
+    .mfooter .search_user {
+        display: none;
+    }
+    .mfooter_menu {
+        padding: 0;
+        position: absolute;
+        width: 100%;
+    }
+    .mfooter_menu a {
+        background: none repeat scroll 0 0 #115059;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        width: 140px;
+        cursor: pointer;
+        /* Safari */
+        -webkit-transform: rotate(-90deg);
+
+        /* Firefox */
+        -moz-transform: rotate(-90deg);
+
+        /* IE */
+        -ms-transform: rotate(-90deg);
+
+        /* Opera */
+        -o-transform: rotate(-90deg);
+
+        /* Internet Explorer */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
+    }
+    .mfooter_menu a:hover {
+        background: #82b9b7;
+    }
+    .mfooter_menu a.left_link {
+        left: -50px;
+    }
+    .mfooter_menu a.right_link {
+        right: -50px;
+    }
+    .mfooter .search_user {
+        width: 250px;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+
+
+/*==========  Non-Mobile First Method  ==========*/
+
+@media only screen and (max-width : 1200px) and (min-width : 992px){
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+    html {
+        font-size: 90%;
+    }	
+
+    body {
+        font-size: 15px;
+        line-height: 26px;
+    }
+    .recent_episodes {
+        display: none;
+    }
+    .header-nav {
+        padding: 0;
+    }
+    #header .header-nav .navbar {
+        min-height: 0;
+    }
+    #header .navbar-nav {
+        padding: 0;
+        margin: 0;
+    }
+    #header .navbar {
+        background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    }
+    #header .navbar-brand {
+        padding-top: 10px;
+    }
+    #header .navbar-toggle {
+        margin: 10px;
+    }
+    #header .navbar-brand img {
+        height: 52px;
+    }
+    #header .navbar-nav li {
+        width: 100%;
+    }
+    #header .header-nav li a {
+        display: block;
+    }
+    #header .navbar-nav {
+        margin-top: 0;
+    }
+    .top_post{
+        margin-bottom: 15px;
+    }
+    .recent_episodes {
+        margin-top: 15px;
+    }
+    .episode {
+        float: left;
+        margin-bottom: 15px;
+        margin-right: 1.5%;
+        width: 32.33%;
+    }
+    .episode img {
+        width: 100%;
+    }
+    .episode:nth-child(4n) {
+        margin-right:0;
+    }
+    /**.thumb-post**/
+    .thumb-post .post_dec {
+        background:none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+        bottom: 0;
+        height: 30px;
+        position: absolute;
+        text-align: center;
+    }
+    .thumb-post .post-content .content_img {
+        border: none;
+    }
+    .thumb-post .post_dec .product-name {
+        line-height: 30px;
+        color:#a00000;
+    }
+    .thumb-post .product-name a {
+        color: #FFF;
+    }
+    .thumb-post .product-name a:hover {
+        color:#aaa;
+    }
+    .thumb-post .post_dec p{
+        display: none;
+    }
+    .episode-carousel .dec_title h3 {
+        padding: 0 10px;
+    }
+    .refresh_btn,.row .btn{
+        margin-bottom: 10px;
+    }
+    .mfooter {
+        background: #0c5059;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        max-height: 82px;
+        z-index: 999;
+    }
+    #wrapper {
+        padding-bottom: 65px;
+    }
+    .mfooter_menu {
+        display: table;
+        position: absolute;
+        padding: 0 5px;
+        vertical-align: middle;
+        width: 100%;
+    }
+    .mfooter_menu > li {
+        display: inline-table;
+        vertical-align: middle;
+    }
+    .mfooter_menu a {
+        position: absolute;
+        font-size: 22px;
+        color: #FFF;
+        font-weight: bold;
+        width:140px;
+        cursor: pointer;
+    }
+    .AdminShowControls .mfooter_menu a {
+        line-height: 40px;
+    }
+    .mfooter_menu a.home {
+        line-height: 50px;
+    }
+    .mfooter_menu a:hover {
+        opacity : 0.7;
+    }
+    .mfooter_menu a.left_link {
+        background: url(../images/lft_arrow.png) no-repeat left center;
+        padding-left: 15px;
+    }
+    .mfooter_menu a.right_link {
+        right: 10px;
+        background: url(../images/rt_arrow.png) no-repeat right center;
+        padding-right: 15px;
+        text-align: right;
+    }
+    .mfooter .search_user {
+        width: 250px;
+        margin: 0 auto;
+        position: relative;
+        text-align: center;
+    }
+    .mfooter .user_avater {
+        background:#FFF;
+        border: 3px #FFF solid;
+        border-radius : 50%;
+        overflow: hidden;
+        margin: 0 10px;
+        display: inline-block;
+    }
+	.mfooter .user_avater img {
+		width: 50px;
+		height: 50px;
+	}
+    .mfooter .search_btn,.mfooter .create_post,.mfooter .search_btn, .mfooter .search_user a {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        line-height: 40px;
+        cursor: pointer;
+        color:#777;
+        border-radius : 50%;
+        background-color:#FFF;
+    }
+    .mfooter a i {
+        float: left;
+        font-size: 24px;
+        padding: 9px 0 0 10px;
+    }
+    .mfooter .search_btn {
+        background:#FFF url(../images/search_icon_black.png) no-repeat center;
+    }
+    .mfooter .search_btn:hover {
+        background:#a61717 url(../images/search_icon.png) no-repeat center;
+    }
+    .mfooter .create_post {
+        background:#FFF url(../images/edit_icon_black.png) no-repeat center;
+    }
+    .mfooter .create_post:hover {
+        background:#a61717 url(../images/edit_icon.png) no-repeat center;
+    }
+    .mfooter .search_user a:hover {
+        background-color:#a61717;
+        border-color : #a61717;
+        color:#FFF;
+    }
+    .footer {
+        display: none;
+    }
+    .resume_content h2, .resume_content h4 {
+        margin: 0;
+    }
+    .resume_content h2 {
+        font-size: 44px;
+    }
+    .character_img {
+        width: 35%;
+    }
+    .character_detail {
+        width: 65%;
+    }
+}
+@media only screen and (max-width : 900px) {
+    .episode_search li {
+        width: 25%;
+    }
+    .filter ul li {
+        width: 3%;
+    }
+}
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+    html {
+        font-size: 80%;
+    }
+    h1 {
+        font-size: 30px;
+        line-height: 58px;
+    }
+
+    h2 {
+        font-size: 26px;
+        line-height: 48px;
+    }
+
+    h3 {
+        font-size: 22px;
+        line-height: 45px;
+    }
+
+    h4 {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    h5 {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .thumb-post li.item,.thumb-post li.item.last, .thumb-post li.item:nth-child(3n) {
+        width: 49%;
+        margin: 0 2% 15px 0;
+    }
+    .thumb-post li.item:nth-child(2n) {
+        margin-right: 0;
+    }
+    .chooseshow .mainbody .container {
+        padding: 0;
+    }
+    .filter ul li {
+        width: 2%;
+    }
+    .filter ul li a {
+        font-size: 14px;
+    }
+    .episode_search li {
+        width: 33.334%;
+    }
+	.episode_search li img {
+		height: 130px;
+    }
+    h6.title {
+        font-size: 13px;
+        padding: 2PX;
+    }
+
+    .playbtn {
+        font-size: 20px;
+    }
+    .episode-carousel .dec_title h3 {
+        padding: 0;
+        font-size: 33px;
+        line-height: 33px;
+    }
+    .addbtn {
+        border: 2px solid #fff;
+        font-size: 13px;
+        height: 20px;
+        line-height: 16px;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+    }
+    .show_controls p {
+        padding: 5px 10px;
+    }
+    .api_img .images a {
+        bottom: 5px;
+        font-size: 18px;
+        right: 5px;
+    }
+    .mfooter .search_user {
+        width: 170px;
+    }
+    .episode_contant {
+        padding: 0 10px;
+    }
+    .episode_contant h3, .episode_contant h5 {
+        margin: 0;
+        line-height: normal;
+    }
+    .arrow_box {
+        min-height: auto;
+    }
+    .character_detail h3, .character_detail h4, .character_detail p {
+        margin:0;
+    }
+}
+@media only screen and (max-width : 520px) {
+    .playbtn {
+        font-size: 16px;
+    }
+    .episode-carousel .dec_title h3 {
+        padding: 0;
+        font-size: 23px;
+        line-height: 23px;
+    }
+    .yesbtn, .nobtn {
+        font-size: 16px;
+        height: 50px;
+        line-height: 50px;
+        width: 50px;
+    }
+    .arrow_box {
+        padding: 10px;
+    }
+}
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+    html {
+        font-size: 65%;
+    }
+    h3 {
+        font-size: 22px;
+        line-height: 45px;
+    }
+    #header .navbar-brand {
+        margin-right: 0;
+    }
+    .thumb-post .product-name a {
+        font-size: 13px;
+        font-weight: normal;
+        line-height: normal;
+    }
+    .new,.hot {
+        height: auto;
+        padding:2px;
+        font-size: 12px;
+        line-height: normal;
+    }
+    .episode-carousel .owl-theme .owl-controls .owl-buttons div {
+        height: 100px;
+        margin-top: -50px;
+    }
+    /** mfooter **/
+    mfooter .search_user {
+        margin-left: -70px;
+        width: 140px;
+    }
+    .mfooter .search_btn,.mfooter .create_post,.mfooter .search_btn, .mfooter .search_user a {
+        width: 30px;
+        height: 30px;
+        background-size : cover;
+        border: 5px #FFF solid;
+    }
+    .mfooter .search_btn:hover,.mfooter .create_post:hover {
+        background-size : cover;
+        border-color: #a61717;
+    }
+    .mfooter .user_avater {
+        width: 40px;
+    }
+    .mfooter_menu a {
+        font-size: 16px;
+        width: 100px;
+        line-height: 16px;
+    }
+    .mfooter_menu a.home {
+        line-height: 30px;
+    }
+    .mfooter a i {
+        font-size: 20px;
+        padding: 2px 0 0 2px;
+    }
+    h6.title {
+        display: none;
+    }
+    .resume_content h2 {
+        font-size: 30px;
+        line-height: 24px;
+    }
+    .episode_contant h5 {
+        font-size: 15px;
+    }
+    .nav-tabs > li > a {
+        padding: 5px 0;
+        font-size: 16px;
+    }
+    .character_detail {
+        padding:0 5px;
+    }
+    .character_detail h3, .character_detail h4{
+        font-size: 14px;
+    }
+    .character_detail p {
+        font-size: 13px;
+        line-height: 16px;
+    }
+    .character_detail a.btn {
+        margin: 0 5px 0 0;
+        padding:5px 10px;
+    }
+    .api_img .col-md-4 {
+        width: 48%;
+        margin: 0 1%;
+    }
+    /* Custom, iPhone Retina */
+    @media only screen and (max-width : 380px) {
+        .header-logo img {
+            width: 100%;
+        }
+        .container,section > .container, section > .container-fluid {
+            padding: 0;
+        }
+        .admin_hadding {
+            font-size: 16px;
+        }
+        .episode_search li {
+            width:33.333%;
+        }
+		.episode_search li img {
+			height: 100px;
+		}
+        .episode-carousel .dec_title h3 {
+            padding: 0;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        .yesbtn, .nobtn {
+            font-size: 10px;
+            height: 30px;
+            line-height: 30px;
+            width: 30px;
+        }
+        .season h4 {
+            font-size: 14px;
+            line-height: 15px;
+        }
+    }
+
+    @media only screen and (max-width : 320px) {
+
+        html {
+            font-size: 60.5%;
+        }
+        .mfooter_menu a {
+            font-size: 14px;
+            line-height: 16px;
+            width: 85px;
+        }
+        .AdminShowControls .mfooter_menu a {
+            font-size: 13px;
+            letter-spacing: -1px;
+        }
+    }

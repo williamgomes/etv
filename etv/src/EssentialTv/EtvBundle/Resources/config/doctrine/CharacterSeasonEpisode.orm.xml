@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\CharacterSeasonEpisode" table="character_season_episode" repository-class="EssentialTv\EtvBundle\Entity\CharacterSeasonEpisodeRepository">
+    <id name="cseId" type="integer" column="CSE_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="cseCharacterId" type="integer" column="CSE_character_id" nullable="false"/>
+    <field name="cseSeasonId" type="integer" column="CSE_season_id" nullable="false"/>
+    <field name="cseEpisodeId" type="integer" column="CSE_episode_id" nullable="false"/>
+    <field name="cseApperanceCount" type="integer" column="CSE_apperance_count" nullable="false"/>
+    <field name="cseCreatedOn" type="datetime" column="CSE_created_on" nullable="false"/>
+    <field name="cseCreatedBy" type="integer" column="CSE_created_by" nullable="false"/>
+    <field name="cseUpdatedOn" type="datetime" column="CSE_updated_on" nullable="false"/>
+    <field name="cseUpdatedBy" type="integer" column="CSE_updated_by" nullable="false"/>
+  </entity>
+</doctrine-mapping>

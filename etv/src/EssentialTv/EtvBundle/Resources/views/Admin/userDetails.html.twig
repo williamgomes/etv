@@ -1,0 +1,142 @@
+{% extends 'admin.html.twig' %}
+{% block mainbody %}
+    {#{{dump(newArrSortedMaxView)}}#}
+    <section class="mainbody">
+        <h1 class="admin_hadding">Admin - User Controls</h1>
+        <div class="container">
+            <div class="user_controls">
+                <div class="usercontrol">
+                    <div class="reactions">
+                        {% if userInfo.userProfilePicture == "" %}
+                            <img alt="{{userInfo.userFirstName ~ " " ~ userInfo.userMiddleName ~ " " ~ userInfo.userLastName}}" src="{{ app.request.getBaseURL() }}/images/uploads/users/default.gif">
+                        {% else %}
+                            <img alt="{{userInfo.userFirstName ~ " " ~ userInfo.userMiddleName ~ " " ~ userInfo.userLastName}}" src="{{ app.request.getBaseURL() }}{{userInfo.userProfilePicture}}">
+                        {% endif %}
+                        <h4>{{userInfo.userFirstName ~ " " ~ userInfo.userMiddleName ~ " " ~ userInfo.userLastName}}</h4>
+                        <p><strong>User Type :</strong>
+                            {% if userInfo.userRole == "ROLE_ADMIN" %}
+                                <span>Admin</span>
+                            {% elseif userInfo.userRole == "ROLE_MOD" %}
+                                <span>Moderator</span>
+                            {% elseif userInfo.userRole == "ROLE_USER" %}
+                                <span>User</span>
+                            {% endif %}   
+                        </p>
+                        <p><span>{{userMostViewedShowInfo|length}} Shows Watched</span> | <span>{{episodeRatingInfo[0].RatingCount}} Episodes Rated</span></p>
+                        <p>
+                            {% if userInfo.UserId in newArrSortedMaxView|keys  %}
+                                <strong>Most Watched :</strong> {{attribute(newArrSortedMaxView, userInfo.UserId)['showTitle'] }}
+                            {% else %}
+                                <strong>Most Watched :</strong> N/A
+                            {% endif %}
+                        </p>
+                        <p><strong>Highest Rated:</strong> Breaking Bad</p>
+                    </div>
+                </div>
+                <p>{{userInfo.userAboutme}}</p>
+                <div class="row">
+                    {% if userInfo.userStatus == "active" %}
+                        <div class="col-md-6"><button onclick="javascript:userSuspend({{userInfo.userId}}, 'inactive');" class="btn btn-block"><span>Suspend</span></button></div>
+                    {% else %}
+                        <div class="col-md-6"><button onclick="javascript:userSuspend({{userInfo.userId}}, 'active');" class="btn btn-block"><span>Resume</span></button></div>
+                    {% endif %}    
+                    <div class="col-md-6"><button onclick="javascript:userDelete({{userInfo.userId}});" class="btn btn-block"><span>Delete</span></button></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="title">
+                            <label>Admin</label>
+                            {% if userInfo.userRole == "ROLE_ADMIN" %}
+                                <input type="checkbox" checked onchange="javascript:userType({{userInfo.userId}}, 'ROLE_USER');">
+                            {% else %}
+                                <input type="checkbox" onchange="javascript:userType({{userInfo.userId}}, 'ROLE_ADMIN');">
+                            {% endif %}    
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="title">
+                            <label>Moderator</label>
+                            {% if userInfo.userRole == "ROLE_MOD" %}
+                                <input type="checkbox" checked onchange="javascript:userType({{userInfo.userId}}, 'ROLE_USER');">
+                            {% else %}
+                                <input type="checkbox" onchange="javascript:userType({{userInfo.userId}}, 'ROLE_MOD');">
+                            {% endif %}    
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="title">
+                            <label>User</label>
+                            {% if userInfo.userRole == "ROLE_USER" %}
+                                <input type="checkbox" checked>
+                            {% else %}
+                                <input type="checkbox" onchange="javascript:userType({{userInfo.userId}}, 'ROLE_USER');">
+                            {% endif %}    
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel">
+                    <ul class="nav nav-tabs tab2" role="tablist">
+                        <li role="presentation" class="active"><a href="#ShowsWatched" aria-controls="Shows Watched" role="tab" data-toggle="tab">Shows Watched</a></li>
+                        <li role="presentation"><a href="#MostWatched" aria-controls="Most Watched" role="tab" data-toggle="tab">Most Watched</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="ShowsWatched">
+                            <div class="ShowsWatched">
+                                {% if userRecentViewedShowInfo|length > 0 %}
+                                    <ul class="list-inline episode_search">
+                                        {% for RecentShow in userRecentViewedShowInfo %}
+                                            <li class="item">
+                                                <a href="{{ url('home_page_show_selected', { 'showTitle': RecentShow["showTitle"]|replace({" " : ""}) }) }}"><img src="{{ app.request.getBaseURL() }}{{ RecentShow["showBannerImage"] }}" class="img-responsive" alt=""></a>
+                                                <h6 class="title">{{ RecentShow["showTitle"] }}</h6>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="MostWatched">
+                            <div class="MostWatched">
+                                {% if userMostViewedShowInfo|length > 0 %}
+                                    <ul class="list-inline episode_search">
+                                        {% for MostShow in userMostViewedShowInfo %}
+                                            <li class="item">
+                                                <a href="{{ url('home_page_show_selected', { 'showTitle': MostShow["showTitle"]|replace({" " : ""}) }) }}"><img src="{{ app.request.getBaseURL() }}{{ MostShow["showBannerImage"] }}" class="img-responsive" alt=""></a>
+                                                <h6 class="title">{{ MostShow["showTitle"] }}</h6>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}  
+
+{% block mfooter %}
+    <section class="mfooter">
+        <ul class="mfooter_menu">
+            <li><a class="left_link" href="{{ url('admin_user_control') }}">USER CONTROL</a></li>
+        </ul>
+        <div class="search_user">
+            <a class="search_btn"></a>
+            <div class="btmsearch closed">
+                <form class="form-inline" action="#" method="post">
+                    <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
+                    <input type="text" class="form-control pull-left" placeholder="Search..">
+                </form>
+            </div>
+            <div class="user_avater"><img src="{{asset('assets/admin/images/avater.png')}}" alt="" /></div>
+            <a class="maddbtn" href="#"><i class="fa fa-plus"></i></a>
+        </div>
+    </section>
+{% endblock %}        
+
+{% block customJs %}
+
+{% endblock %}    

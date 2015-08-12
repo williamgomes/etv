@@ -1,0 +1,27 @@
+<ul class="thumb-post infinite-item">
+    {% if elements is not empty %}
+{% for element in elements %}
+                          <li class="item">
+                            <div class="post-content">
+                                <div class="content_img">
+                                  <div class="new">New</div>
+                                    <a class="post-image" title="" href="#">
+                                    <img src="{{asset(element.postCoverImage)}}" title="" alt=""/>
+                                    </a>
+                                </div>
+                                <div class="post_dec">
+                                    <h2 class="product-name"><a title="Aliquam lorem ante olsa" href="#">{{element.postTitle}}</a></h2>
+                                    <p class="date">{{ element.postCreatedOn is empty ? "" : element.postCreatedOn|date("M d, Y") }}</p>
+                                    <p>{{element.postAbout}}</p>
+                                </div>
+                            </div>
+                          </li>
+                      {% endfor %}
+                       <div class="next" style="display:none"><a href="{{ app.request.getBaseURL() }}/moreposts/{{firstResult}}/{{filter}}">next</a></div> 
+    {% else %}
+        <div class="col-md-2 col-md-offset-5">No More Post Found..</div>
+    {% endif %}
+
+    </ul>
+
+

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block topmenu %}
+    <li class="{{filter =="Trending"?"active":""}}"><a href="/">Trending</a></li>
+    <li class="{{filter =="Newest"?"active":""}}"><a href="/post/Newest">Newest</a></li>
+    <li class="{{filter =="Popular"?"active":""}}"><a href="/post/Popular">Popular</a></li>
+    {% endblock %}
+    {% block toprow %}
+
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="top_post">
+                    <img src="{{asset(popularPost.postCoverImage)}}" alt="" />
+                    <div class="dec_title">
+                        <h5>{{popularPost.postTitle}}</h5>
+                        <p>Breaking Bad | <span>Parody</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 no-padding-left">
+                <div class="recent_episodes clearfix">
+                    <h2 class="title">Recent Episodes</h2>
+                    {% for episodes in recentEpisodes %}
+                        <div class="episode">
+                            <img src="{{asset(episodes.episodeBannerImage)}}" alt="" />
+                            <div class="dec_title">
+                                <p>{{episodes.episodeTitle}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}               
+                </div>    
+            </div>
+        </div>
+        <div class="row scrollLoader">
+            <ul class="thumb-post">
+
+                {% for post in postList %}
+                    <li class="item">
+                        <div class="post-content">
+                            <div class="content_img">
+                                <div class="new">{% if date(post.postCreatedOn) > date('-7days') %}New{% endif %}</div>
+                                <a class="post-image" title="" href="/show/details/{{post.postId}}">
+                                    <img src="{{asset(post.postCoverImage)}}" title="" alt=""/>
+                                </a>
+                            </div>
+                            <div class="post_dec">
+                                <h2 class="product-name"><a title="{{post.postTitle}}" href="/show/details/{{post.postId}}">{{post.postTitle}}</a></h2>
+                                <p class="date">{{ post.postCreatedOn is empty ? "" : post.postCreatedOn|date("M d, Y") }}</p>
+                                <p>{{post.postAbout[:110]}}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="next" style="display:none"><a class="infinite-more-link" href="/moreposts/{{firstResult}}/{{filter}}">next</a></div>
+        </div>                        
+    {% endblock %}

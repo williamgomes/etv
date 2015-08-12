@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="EssentialTv\EtvBundle\Entity\UserShowSeasonEpisode" table="user_show_season_episode" repository-class="EssentialTv\EtvBundle\Entity\UserShowSeasonEpisodeRepository">
+    <id name="usseId" type="integer" column="USSE_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="usseUserId" type="integer" column="USSE_user_id" nullable="false"/>
+    <field name="usseShowId" type="integer" column="USSE_show_id" nullable="false"/>
+    <field name="usseSeasonId" type="integer" column="USSE_season_id" nullable="false"/>
+    <field name="usseEpisodeId" type="integer" column="USSE_episode_id" nullable="false"/>
+    <field name="usseCreatedBy" type="integer" column="USSE_created_by" nullable="false"/>
+    <field name="usseCreatedOn" type="datetime" column="USSE_created_on" nullable="false"/>
+    <field name="usseUpdatedBy" type="integer" column="USSE_updated_by" nullable="false"/>
+    <field name="usseUpdatedOn" type="datetime" column="USSE_updated_on" nullable="false"/>
+  </entity>
+</doctrine-mapping>

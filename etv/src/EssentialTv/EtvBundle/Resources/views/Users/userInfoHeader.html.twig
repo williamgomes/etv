@@ -1,0 +1,22 @@
+{% if user is not null %}
+	<div class="userinfo">
+		<div class="userdec">
+                    <h3><a href="{{ app.request.getBaseURL()}}/user/profile">{{user.userFirstName}} {{user.userLastName}}</a></h3>
+			<h4><a href="{{ app.request.getBaseURL()}}/user/signout">Signout</a></h4>
+		</div>
+                <a href="{{ app.request.getBaseURL()}}/user/profile">
+		<div class="avater">
+			{% if user.userProfilePicture == "" %}
+                            <img alt="{{user.userFirstName}} {{user.userLastName}}" src="{{ app.request.getBaseURL() }}/images/uploads/users/default.gif">
+                        {% else %}
+			<img src="{{app.request.getBaseURL()}}{{user.userProfilePicture}}" alt="{{user.userFirstName}} {{user.userLastName}}">
+                        {% endif %}    
+		</div>
+                </a>
+	</div>
+{% else %}
+	<ul class="usermenu clearfix">
+		<li><a class="btn" href="{{ app.request.getBaseURL()}}/user/signin">Login</a></li>
+		<li><a class="btn" href="{{ app.request.getBaseURL()}}/user/signup">Sign Up</a></li>
+	</ul> 
+{% endif %}
